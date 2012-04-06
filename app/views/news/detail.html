@@ -1,13 +1,13 @@
 {% extends 'templates/3-column-w-calendar.html' %}
-
 {% block middlecontent %}{% spaceless %}
-
 <link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
-<article class="{{ newsitem.tag.colour }}">
+
+<article class="{{ item.tag.colour }}">
   <header>
-  	// <h2><a href="/news/{{ newsitem.id }}">{{ newsitem.headline }}</a></h2><a href="/news/tag/{{ newsitem.tag.name|slugify }}"><label>{{ newsitem.tag.name }}</label></a>
-	</header>
- {{ newsitem.content|safe }}
+    // <h2><a href="/news/{{ item.id }}">{{ item.headline }}</a></h2>
+    <a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
+  </header>
+  {{ item.content|safe }}
 </article>
 
 {% endspaceless %}{% endblock %}
