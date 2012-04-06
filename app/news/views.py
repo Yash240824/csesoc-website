@@ -15,5 +15,5 @@ def detail(request, news_id):
 
 def tag(request, tags_slug):
     latest_list = NewsItem.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')).order_by('-post')
-    return render_to_response('news/feed.html', {'latest_list': latest_list})
+    return render_to_response('news/tag.html', {'latest_list': latest_list})
 

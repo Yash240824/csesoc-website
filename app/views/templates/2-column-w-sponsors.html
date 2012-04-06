@@ -1,5 +1,10 @@
 {% extends 'templates/2-column.html' %}
 
+{% block leftcontent %}
+<div class="well">
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}
 
 {% block rightcontent %}
 
