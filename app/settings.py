@@ -131,7 +131,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    #'app.auth',
+    'app.auth',
     'app.website',
     'app.news',
     #'app.forms',
