@@ -1,0 +1,15 @@
+{% extends "templates/main.html" %}
+{% block allcontent %}
+<div class="row">
+        <div class="span2">
+          {% block leftcontent %}{% endblock %}
+        </div>
+        <div class="span8">
+          {% block middlecontent %}{% endblock %}
+       </div>
+        <div class="span2">
+          {% block rightcontent %}{% endblock %}
+        </div>
+</div>
+{% endblock %}
+

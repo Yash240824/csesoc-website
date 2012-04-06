@@ -1,0 +1,12 @@
+{% extends "templates/main.html" %}
+
+{% block titlecontent %}500 Internal Server Error{% endblock %}
+
+{% block allcontent %}
+
+<h1>Oh noes! The tubes are broken!</h1>
+
+<p>Something went wrong, and we were unable to process your request at this time. The CSESoc Sysadmins have been alerted to this issue, and we're working to resolve it as quickly as possible. Please try again later. If you have time, please provide us with details as to what you were doing at <a href="{% filter urlencode %}mailto:csesoc.sysadmin@cse.unsw.edu.au?subject=CSESoc Website Error: 500 at {{ request.path }}{% endfilter %}">csesoc DOT sysadmin AT cse DOT unsw DOT edu DOT au</a>.</p>
+<p>In the meantime, feel free to return to our <a href="/">home page</a>.</p>
+
+{% endblock %}
