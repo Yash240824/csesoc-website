@@ -131,11 +131,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'app.auth',
+    #'app.auth',
     'app.website',
     'app.news',
-    'app.forms',
-    'app.murder',
+    #'app.forms',
+    #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

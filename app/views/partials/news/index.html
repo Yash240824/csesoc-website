@@ -1,0 +1,15 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static "css/news.css" %}" type="text/css" media="screen" />
+{% if latest_list %}
+	{% for news in latest_list %}
+		<article class="{{ news.tag.colour }}">
+		  <header>
+			// <h2><a href="/news/{{ news.id }}">{{ news.headline }}</a></h2><a href="/news/tag/{{ news.tag.name|slugify }}"><label>{{ news.tag.name }}</label></a>
+		  </header>
+		 {{ news.content|safe }}
+		</article>
+	{% endfor %}
+{% else %}
+	<p>No News items are available.</p>
+{% endif %}
