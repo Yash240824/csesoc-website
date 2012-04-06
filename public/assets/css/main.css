@@ -12,7 +12,8 @@ body {
 }
 
 .hero-unit {
-	padding:20px;
+	padding:40px;
+	background: #eee url('/assets/img/banner-back.png') top right no-repeat;
 }
 
 
