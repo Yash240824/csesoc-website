@@ -12,8 +12,9 @@ body {
 }
 
 .hero-unit {
+	color: #4D90F0;
 	padding:50px;
-	background: #eee url('/assets/img/banner-back.png') top right no-repeat;
+	background: #eee url('/assets/img/banner.png') top right no-repeat;
 }
 
 
