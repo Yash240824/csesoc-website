@@ -1,19 +1,17 @@
 from django.shortcuts import get_object_or_404, render_to_response
-from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from app.news.models import *
 
-def index(request):
-    latest_list = NewsItem.objects.all().order_by('-post')[:10]
-    return render_to_response('news/feed.html', {'latest_list': latest_list})
+def feed(request):
+    posts = Item.objects.all().order_by('-post')[:10]
+    return render_to_response('news/feed.html', {'posts': posts})
 
 def detail(request, news_id):
-    n = get_object_or_404(NewsItem, pk=news_id)
-    return render_to_response('news/detail.html', {'newsitem': n},
+    item = get_object_or_404(Item, pk=news_id)
+    return render_to_response('news/detail.html', {'item': item},
                                context_instance=RequestContext(request))
 
 def tag(request, tags_slug):
-    latest_list = NewsItem.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')).order_by('-post')
-    return render_to_response('news/feed.html', {'latest_list': latest_list})
+    posts = Item.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')).order_by('-post')
+    return render_to_response('news/feed.html', {'posts': posts})
 
