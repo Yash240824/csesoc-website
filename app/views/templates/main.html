@@ -90,6 +90,19 @@
     </div>
 
     <div class="container">
+		<center>
+			<div class="global-flash">
+				{% if 1 %}
+				<div class="alert alert-error"><h1>Notice</h1><p>sam is fat</p></div>
+				{% endif %}
+				{% if 0 %}
+				<div class="alert alert-success"><h1>Warning</h1><p></p></div>
+				{% endif %}
+				{% if 0 %}
+				<div class="alert alert-info"><h1>Error</h1><p></p></div>
+				{% endif %}
+			</div>
+		</center>
         <div class="hero-unit">
             <h1>Banner</h1>
         </div>
@@ -116,5 +129,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script> 
     <script src="/assets/js/u.js"></script>
+    <script src="/assets/js/fb.js"></script>
   </body>
 </html>
