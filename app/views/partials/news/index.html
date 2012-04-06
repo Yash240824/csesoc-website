@@ -1,11 +1,7 @@
-{% extends 'templates/3-column-w-calendar.html' %}
+{% load staticfiles %}
 
-{% block middlecontent %}{% spaceless %}
-
-<h1>News</h1>
-
-<link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
-
+<link rel="stylesheet" href="{% static "css/news.css" %}" type="text/css" media="screen" />
+{% if latest_list %}
 	{% for news in latest_list %}
 		<article class="{{ news.tag.colour }}">
 		  <header>
@@ -14,5 +10,6 @@
 		 {{ news.content|safe }}
 		</article>
 	{% endfor %}
-
-{% endspaceless %}{% endblock %}
+{% else %}
+	<p>No News items are available.</p>
+{% endif %}
