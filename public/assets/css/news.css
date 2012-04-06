@@ -34,6 +34,7 @@ article header h2 a {
 
 article header label{
 	font-size: 11px;
+	line-height: 11px;
 	background:#333;
 	color:#fff;
 	display:inline-block;

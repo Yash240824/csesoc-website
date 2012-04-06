@@ -1,8 +1,7 @@
-{% extends 'templates/3-column-w-calendar.html' %}
-{% block middlecontent %}{% spaceless %}
+{% extends 'templates/2-column-w-sponsors-upcoming.html' %}
+{% block content %}{% spaceless %}
 <h1>News</h1>
 <link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
-
 {% for item in posts %}
 	<article class="{{ item.tag.colour }}">
 	  <header>
@@ -12,5 +11,4 @@
 	 {{ item.content|safe }}
 	</article>
 {% endfor %}
-
 {% endspaceless %}{% endblock %}

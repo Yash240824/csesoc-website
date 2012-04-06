@@ -14,4 +14,3 @@ def detail(request, news_id):
 def tag(request, tags_slug):
     posts = Item.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')).order_by('-post')
     return render_to_response('news/feed.html', {'posts': posts})
-
