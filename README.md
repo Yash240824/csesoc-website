@@ -38,12 +38,19 @@ Once you have virtualenv
 	virtualenv SOME_PATH
 	source SOME_PATH/bin/activate
 
-*substitute SOME_PATH for where you want to create your virtual environment. For example env
-You should now be inside your virtual environment. You can check this with  
+*substitute SOME_PATH for some path or folder where you want to create your virtual environment. For example a folder called env
+
+You should now be inside your virtual environment. You can check this with
+
+	$ which python
+	   /usr/bin/python
+	$ source env/bin/activate
+	(env)$ which python
+	   /Users/dylank/Documents/csesoc-website/env/bin/python
 
 When your done with a virtual environment, you can easily deactivate with
-	deactivate
 
+	deactivate
 
 Installing Django
 -----------------
@@ -54,6 +61,7 @@ Now while your inside your python virtualenv, install django with
 
 Currently the website also has these dependancies
 
+	No current dependencies. Yay!
 
 Installing Git
 --------------
@@ -61,7 +69,14 @@ Installing Git
 Once you have git, you can grab a copy of the csesoc website with
 
 	git pull https://github.com/csesoc/csesoc-website.git
+	
+Once you have a copy, cd into the directory and create a database
+
+	(env)$ cd csesoc-website/
+	(env)csesoc-website$ python manage.py syncdb
+	Creating tables ...
 
 Running the development webserver
+---------------------------------
 
 	python manage.py runserver
