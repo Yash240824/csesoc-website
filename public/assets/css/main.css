@@ -17,21 +17,20 @@ body {
 	background: #eee url('/assets/img/banner.png') top right no-repeat;
 }
 
-
-
-#upcoming-container {
-	margin: 10px 0 0 0;
-}
-
-#upcoming-container .well {
+.upcoming {
+	margin:10px 0 0 0;
 	background:#e3e3e3;
+
 }
 
-#upcoming-container img {
+.upcoming h3 {
+	margin:0 0 10px 0;
+}
+
+.upcoming img {
 	width:130px;
 	height:130px;
-	margin:10px;;
-	
+	margin:0 10px 0 0;
 	background:#fff;	
 	padding: 4px;
 	line-height: 1;
@@ -44,8 +43,8 @@ body {
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
-#upcoming-container .caption p {
-	margin:10px 0;
+.upcoming p {
+	margin: 10px 0;
 }
 
 
