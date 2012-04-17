@@ -1,5 +1,20 @@
+function dateFromUTC( dateAsString, ymdDelimiter ){
+  var pattern = new RegExp( "(\\d{4})" + ymdDelimiter + "(\\d{2})" + ymdDelimiter + "(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})" );
+  var parts = dateAsString.match( pattern );
+
+  return new Date(
+      parseInt( parts[1] )
+    , parseInt( parts[2], 10 ) - 1
+    , parseInt( parts[3], 10 )
+    , parseInt( parts[4], 10 )
+    , parseInt( parts[5], 10 )
+    , parseInt( parts[6], 10 )
+    , 0
+  );
+}
+
 function getFbEvents(){
-  access_token = "AAAECJC0TVB4BAD1SU1Hx1UDMMeUr7yZA9CwUMLntC9O0mpT6dKQ7UjpZCDl2Eanatnmelpkgime9ZBBYAkLlUwHhK7MvX1sWtbZATNxIxQZDZD";
+  access_token = "AAAECJC0TVB4BAIOEFFCqGjH6VfrZA7Tcqnwzsu2cfg6gyep8eKntNZA1QipxPqslQhh2KoKLZAegyK5ZBbzLYG7jiuHAG7PpXamdeqlYtAZDZD";
   $.getJSON("https://graph.facebook.com/2509117190/events",
     {
       "access_token": access_token,
@@ -7,29 +22,22 @@ function getFbEvents(){
     },
     function(group_events) {
        $.each(group_events.data, function(i,item){
-         $('#upcoming-container').html('');
+         $('#carousel-inner').html('');
          $.getJSON("https://graph.facebook.com/" + item.id,
            {
              "access_token": access_token
            },
            function(event_details){
-              $('#upcoming-container').append(
-              '<div class="span4">' +
-               '<div class="thumbnail">' +
-                '<img src="https://graph.facebook.com/'+ item.id + '/picture?type=large" alt="">' +
-                '<div class="caption">' +
-                 '<h3>'+ event_details.name +'</h3>' +
-                 '<h5>When</h5><span>'+ event_details.start_time +'</span>' +
-                 '<h5>Where</h5><span>'+ event_details.location +'</span>' +
-                 '<p><br/><br/>'+ event_details.description.substring(0,100) + '...' +'</p>' +
-                 '<p><a href="#" class="btn btn-primary">Attending</a> <a href="#" class="btn">See more</a></p>' +
-                '</div>' +
-               '</div>' +
-              '</div>'
+              //var a = dateFromUTC(event_details.start_time,"-");
+               
+              $('#carousel-inner').append(
+              'testing'
               );
            }
          );
        });
+       $('.carousel').carousel();
      }
    );
 }
+

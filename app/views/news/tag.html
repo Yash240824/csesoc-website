@@ -1,7 +1,11 @@
 {% extends 'templates/2-column-w-sponsors.html' %}
+{% block titlecontent %}{{ news.tag.name }}{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
+{% endblock %}
+
 {% block content %}{% spaceless %}
 <h1>Tag</h1>
-<link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
 	{% for news in latest_list %}
 		<article class="{{ news.tag.colour }}">
 		  <header>

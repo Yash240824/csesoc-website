@@ -1,6 +1,5 @@
 $(document).ready(function() {
-   getFbEvents();
-    $('.global-flash').click(function() {
-        $('.global-flash').fadeOut('slow');
+    $('.global-flash .alert').click(function() {
+        $(this).slideUp('fast');
     });
 });

@@ -1,6 +1,9 @@
 {% extends 'templates/2-column-w-sponsors.html' %}
-{% block content %}{% spaceless %}
+{% block titlecontent %}{{ item.headline }}{% endblock %}
+{% block stylesheets %}
 <link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
+{% endblock %}
+{% block content %}{% spaceless %}
 <article class="{{ item.tag.colour }}">
   <header>
     // <h2><a href="/news/{{ item.id }}">{{ item.headline }}</a></h2>

@@ -11,6 +11,7 @@
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -93,13 +94,13 @@
 		<center>
 			<div class="global-flash">
 				{% if 1 %}
-				<div class="alert alert-error"><h1>Notice</h1><p>sam is fat</p></div>
+				<div class="alert alert-error"><h1>Error</h1><p>sam is fat</p></div>
 				{% endif %}
-				{% if 0 %}
-				<div class="alert alert-success"><h1>Warning</h1><p></p></div>
+				{% if 1 %}
+				<div class="alert alert-success"><h1>Success!</h1><p>you are not as fat as sam</p></div>
 				{% endif %}
-				{% if 0 %}
-				<div class="alert alert-info"><h1>Error</h1><p></p></div>
+				{% if 1 %}
+				<div class="alert alert-info"><h1>Did you know?</h1><p>sam is fat</p></div>
 				{% endif %}
 			</div>
 		</center>
@@ -127,9 +128,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script> 
     <script src="/assets/js/u.js"></script>
-    <script src="/assets/js/fb.js"></script>
   </body>
 </html>

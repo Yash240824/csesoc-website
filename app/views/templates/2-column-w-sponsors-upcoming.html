@@ -2,10 +2,11 @@
 
 {% block leftcontent %}
 <div class="well">
-	<h1>Upcoming</h1>
-	<div id="upcoming-container" class="row-fluid">
-		loading...
-	</div> 
+ <h1>Upcoming</h1>
+ <div id="myCarousel" class="carousel upcoming well">
+  <!-- Carousel items -->
+  <div id="carousel-inner" class="carousel-inner" ></div>
+ </div>	
 </div>
 <div class="well">
 	{% block content %}{% endblock %}
@@ -22,4 +23,5 @@
 {% endfor %}
 </table>
 
+<script src="/assets/js/fb.js"></script>
 {% endblock %}
