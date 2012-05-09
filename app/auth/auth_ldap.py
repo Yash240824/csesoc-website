@@ -6,7 +6,6 @@ def authenticate(username,password):
       l.protocol_version = ldap.VERSION3
 
       upn = username + '@ad.unsw.edu.au'
-      print upn
 
       l.bind_s(upn, password)
 

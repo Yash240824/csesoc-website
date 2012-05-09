@@ -8,7 +8,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$', 'app.news.views.feed'),
     url(r'^login$', 'app.auth.views.login'),
-    
+    url(r'^logout$', 'app.auth.views.logout'),
     url(r'^news/', include('app.news.urls')),
 
 

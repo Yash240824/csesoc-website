@@ -88,10 +88,10 @@
                 </li>
             </ul>
             <p class="navbar-text pull-right">
-              {% if 1 %}
-                <a href="/login">login</a></p>
+              {% if request.session.fullname %}
+                <a href="/account">{{request.session.fullname}}</a></p>
               {% else %}
-                <a href="/account">username</a></p>
+                <a href="/login">login</a></p>
               {% endif %}
           </div><!--/.nav-collapse -->
         </div>
@@ -101,14 +101,19 @@
     <div class="container">
 		<center>
 			<div class="global-flash">
-				{% if 0 %}
-				<div class="alert alert-error"><h1>Error</h1><p>sam is fat</p></div>
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>Error</h1><p>{{ message }}</p></div>
+					{% endfor %}
 				{% endif %}
-				{% if 0 %}
-				<div class="alert alert-success"><h1>Success!</h1><p>you are not as fat as sam</p></div>
+				{% if notice.error %}
+				<div class="alert alert-error"><h1>Error</h1><p>{{ notice.error }}</p></div>
 				{% endif %}
-				{% if 0 %}
-				<div class="alert alert-info"><h1>Did you know?</h1><p>sam is fat</p></div>
+				{% if notice.success %}
+				<div class="alert alert-success"><h1>Success!</h1><p>{{ notice.success }}</p></div>
+				{% endif %}
+				{% if notice.info %}
+				<div class="alert alert-info"><h1>Did you know?</h1><p>{{ notice.info }}</p></div>
 				{% endif %}
 			</div>
 		</center>
