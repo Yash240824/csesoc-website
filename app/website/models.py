@@ -9,6 +9,13 @@ class AboutPage(models.Model):
    def __unicode__(self):
       return self.title
 
+class Team(models.Model):
+   name = models.CharField(max_length=200)
+   text = models.TextField()
+   updated = models.DateTimeField(auto_now_add=True)
+   def __unicode__(self):
+      return self.name
+
 class FunStuff(models.Model):
    title = models.CharField(max_length=200)
    content = models.TextField()
@@ -16,13 +23,6 @@ class FunStuff(models.Model):
    updated = models.DateTimeField(auto_now_add=True)
    def __unicode__(self):
       return self.title
-
-class Team(models.Model):
-   name = models.CharField(max_length=200)
-   text = models.TextField()
-   updated = models.DateTimeField(auto_now_add=True)
-   def __unicode__(self):
-      return self.name
 
 class Slug(models.Model):
    title = models.CharField(max_length=200)

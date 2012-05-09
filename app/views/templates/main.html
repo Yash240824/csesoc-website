@@ -89,10 +89,11 @@
             </ul>
             <p class="navbar-text pull-right">
               {% if request.session.fullname %}
-                <a href="/account">{{request.session.fullname}}</a></p>
+                <a href="/account">{{request.session.fullname}}</a>&nbsp;&nbsp;&nbsp;<a id="logout-btn" class="btn btn-small btn-danger" href="/logout">Logout</a>
               {% else %}
-                <a href="/login">login</a></p>
+                <a href="/login">login</a>
               {% endif %}
+            </p>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -117,10 +118,6 @@
 				{% endif %}
 			</div>
 		</center>
-        <div class="hero-unit">
-            <h1>CSESoc</h1>
-            UNSW Computer Science &amp; Engineering Society
-        </div>
         
         {% block allcontent %}{% endblock %}
     </div> <!-- /container -->

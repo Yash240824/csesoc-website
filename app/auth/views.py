@@ -1,18 +1,25 @@
 # Create your views here.
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from datetime import datetime
 from django.http import HttpResponse
+from django.conf import settings
 
 from app.auth.auth_ldap import authenticate
 
 def login(request):
-   if request.session['zid']:
+   if request.session.get('zid'):
       return redirect('/')
    notice = {}
    if request.method == 'POST':
-      student_number = request.REQUEST['username']
-      name = authenticate(student_number, request.REQUEST['password'])
+      # Login as fakeroot if in development
+      if settings.DEBUG:
+         student_number = 'z0000000'
+         name = 'fakeroot'
+      else:
+         student_number = request.REQUEST['username']
+         name = authenticate(student_number, request.REQUEST['password'])
+
       if name != None:
          request.session['zid'] = student_number
          request.session['fullname'] = name

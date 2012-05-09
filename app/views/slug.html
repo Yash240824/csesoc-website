@@ -1,0 +1,8 @@
+{% extends 'templates/1-column' %}
+{% block titlecontent %}{{p.title}}{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block content %}{% spaceless %}
+	<h1>{{ p.title|safe }}</h1>
+	<br/>
+	<p>{{ p.content|safe }}</p>
+{% endspaceless %}{% endblock %}

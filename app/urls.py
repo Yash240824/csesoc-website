@@ -11,7 +11,11 @@ urlpatterns = patterns('',
     url(r'^logout$', 'app.auth.views.logout'),
     url(r'^news/', include('app.news.urls')),
 
-
+    # Static pages
+    url(r'^about$', 'app.website.views.about'),
+    url(r'^teams$', 'app.website.views.teams'),
+    url(r'^fun$', 'app.website.views.fun'),
+    
     # admin site
     #(r'^admin/', include(backends.site.urls)),
 
