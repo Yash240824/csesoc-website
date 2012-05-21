@@ -88,8 +88,8 @@
                 </li>
             </ul>
             <p class="navbar-text pull-right">
-              {% if request.session.fullname %}
-                <a href="/account">{{request.session.fullname}}</a>&nbsp;&nbsp;&nbsp;<a id="logout-btn" class="btn btn-small btn-danger" href="/logout">Logout</a>
+              {% if user.is_authenticated %}
+                <a href="/account">{{user.get_full_name}}</a>&nbsp;&nbsp;&nbsp;<a id="logout-btn" class="btn btn-small btn-danger" href="/logout">Logout</a>
               {% else %}
                 <a href="/login">login</a>
               {% endif %}
@@ -104,7 +104,7 @@
 			<div class="global-flash">
 				{% if messages %}
 					{% for message in messages %}
-						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>Error</h1><p>{{ message }}</p></div>
+						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags }}</h1><p>{{ message }}</p></div>
 					{% endfor %}
 				{% endif %}
 				{% if notice.error %}

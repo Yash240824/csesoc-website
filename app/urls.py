@@ -2,13 +2,17 @@ from django.conf.urls import patterns, include, url
 #from auth import backends
 
 # Uncomment the next two lines to enable the admin:
-#from django.contrib import admin
-#admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'app.news.views.feed'),
-    url(r'^login$', 'app.auth.views.login'),
-    url(r'^logout$', 'app.auth.views.logout'),
+    # admin site
+    #url(r'^admin/', 'csesoc.auth.backends.admin_wrapper'),
+    url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^login$', 'app.auth.views.signin'),
+    url(r'^logout$', 'app.auth.views.signout'),
     url(r'^news/', include('app.news.urls')),
 
     # Static pages

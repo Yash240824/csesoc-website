@@ -1,25 +1,59 @@
 import ldap
+from django.conf import settings
+from django.contrib.auth.models import User
 
-def authenticate(username,password):
-   try:
-      l = ldap.open("ad.unsw.edu.au")
-      l.protocol_version = ldap.VERSION3
+#DJANGO_SETTINGS_MODULE
+class ldapBackend():
 
-      upn = username + '@ad.unsw.edu.au'
+   def authenticate(self,username,password):
+      # Login as fakeroot if in development
+      if 0:
+         #settings.DEBUG:
+         user = User(username='z0000000')
+         user.first_name = 'fake'
+         user.last_name = 'root'
+         user.email = 'csesoc.sysadmin.head@cse.unsw.edu.au'
+         return user
+      else:
+         try:
+            l = ldap.open("ad.unsw.edu.au")
+            l.protocol_version = ldap.VERSION3
 
-      l.bind_s(upn, password)
+            upn = username + '@ad.unsw.edu.au'
 
-      baseDN = "OU=IDM_People,OU=IDM,DC=ad,DC=unsw,DC=edu,DC=au"
-      searchScope = ldap.SCOPE_SUBTREE
-      retrieveAttributes = ['displayNamePrintable']
-      searchFilter = "cn=" + username
+            l.bind_s(upn, password)
 
-      ldap_result = l.search(baseDN, searchScope, searchFilter, retrieveAttributes)
-      result_type, result_data = l.result(ldap_result, 0)
+            baseDN = "OU=IDM_People,OU=IDM,DC=ad,DC=unsw,DC=edu,DC=au"
+            searchScope = ldap.SCOPE_SUBTREE
+            retrieveAttributes = ['displayNamePrintable', 'givenName', 'sn', 'mail']
+            searchFilter = "cn=" + username
 
-      user_dn,attr_results = result_data[0]
-      return attr_results['displayNamePrintable'][0]
+            ldap_result = l.search(baseDN, searchScope, searchFilter, retrieveAttributes)
+            result_type, result_data = l.result(ldap_result, 0)
 
-   except ldap.LDAPError, e:
-      #print e
-      return None
+            user_dn,attr_results = result_data[0]
+
+            try:
+               user = User.objects.get(username=username)
+               return user
+            except User.DoesNotExist:
+               user = User(username=username, password='get from unsw ad')
+               user.is_staff = False
+               user.is_superuser = False
+               user.first_name = attr_results['givenName'][0]
+               user.last_name = attr_results['sn'][0]
+               user.email = attr_results['mail'][0]
+               user.save()
+               return user
+
+            #return attr_results['displayNamePrintable'][0]
+
+         except ldap.LDAPError, e:
+            print e
+            return None
+
+   def get_user(self, user_id):
+          try:
+              return User.objects.get(pk=user_id)
+          except User.DoesNotExist:
+              return None
