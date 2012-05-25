@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
 
-class AboutPage(models.Model):
+class About(models.Model):
    title = models.CharField(max_length=200)
    content = models.TextField()
    slug = models.SlugField(max_length=100)
@@ -10,8 +10,8 @@ class AboutPage(models.Model):
       return self.title
 
 class Team(models.Model):
-   name = models.CharField(max_length=200)
-   text = models.TextField()
+   title = models.CharField(max_length=200)
+   content = models.TextField()
    updated = models.DateTimeField(auto_now_add=True)
    def __unicode__(self):
       return self.name

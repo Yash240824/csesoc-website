@@ -7,8 +7,7 @@ class ldapBackend():
 
    def authenticate(self,username,password):
       # Login as fakeroot if in development
-      if 0:
-         #settings.DEBUG:
+      if settings.DEBUG:
          user = User(username='z0000000')
          user.first_name = 'fake'
          user.last_name = 'root'
@@ -45,8 +44,6 @@ class ldapBackend():
                user.email = attr_results['mail'][0]
                user.save()
                return user
-
-            #return attr_results['displayNamePrintable'][0]
 
          except ldap.LDAPError, e:
             print e

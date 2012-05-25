@@ -1,17 +1,19 @@
 from django.shortcuts import get_object_or_404, render_to_response
-from app.website.models import AboutPage, Team, FunStuff, Slug
+from django.template import RequestContext
 
-def about(request):
-   page = get_object_or_404(AboutPage.objects.filter(id=1))
-   return render_to_response('slug.html', {'p': page}, context_instance=RequestContext(request))
+from app.website.models import About, Team, FunStuff, Slug
 
-def teams(request):
-   page = get_object_or_404(Team.objects.filter(id=1))
-   return render_to_response('slug.html', {'p': page}, context_instance=RequestContext(request))
+def about(request, about_slug):
+   page = get_object_or_404(About.objects.filter(slug=about_slug))
+   return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
-def fun(request):
-   page = get_object_or_404(FunStuff.objects.filter(id=1))
-   return render_to_response('slug.html', {'p': page}, context_instance=RequestContext(request))
+def teams(request, team_slug):
+   page = get_object_or_404(Team.objects.filter(title=team_slug.title()))
+   return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
+
+def fun(request, fun_slug):
+   page = get_object_or_404(FunStuff.objects.filter(slug=fun_slug))
+   return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
 def slug(request, path):
     p = get_object_or_404(Static, slug=path.replace('/','_'))

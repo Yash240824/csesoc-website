@@ -8,7 +8,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'app.news.views.feed'),
     # admin site
-    #url(r'^admin/', 'csesoc.auth.backends.admin_wrapper'),
     url(r'^admin/', include(admin.site.urls)),
     
     url(r'^login$', 'app.auth.views.signin'),
@@ -16,9 +15,9 @@ urlpatterns = patterns('',
     url(r'^news/', include('app.news.urls')),
 
     # Static pages
-    url(r'^about$', 'app.website.views.about'),
-    url(r'^teams$', 'app.website.views.teams'),
-    url(r'^fun$', 'app.website.views.fun'),
+    url(r'^about/(?P<about_slug>[a-z-]+)/$', 'app.website.views.about'),
+    url(r'^teams/(?P<team_slug>[A-Za-z-]+)/$', 'app.website.views.teams'),
+    url(r'^fun/(?P<fun_slug>[a-z-]+)/$', 'app.website.views.fun'),
     
     # admin site
     #(r'^admin/', include(backends.site.urls)),
@@ -33,8 +32,8 @@ urlpatterns = patterns('',
 )
 
 # Serve the static folder if in development
-from django.conf import settings
-if settings.DEBUG:
-    urlpatterns += patterns('django.contrib.staticfiles.views',
-        url(r'^static/(?P<path>.*)$', 'serve'),
-    )
+#from django.conf import settings
+#if settings.DEBUG:
+#    urlpatterns += patterns('django.contrib.staticfiles.views',
+#        url(r'^assets/(?P<path>.*)$', 'serve'),
+#    )
