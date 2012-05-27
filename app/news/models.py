@@ -5,7 +5,7 @@ from django.db import models
 class Post(models.Model):
    date = models.DateTimeField('data published')
    def __unicode__(self):
-      return self.name
+      return self.date.isoformat()
    def was_published_recently(self):
       return self.date >= timezone.now() - datetime.timedelta(days=1)
    was_published_recently.admin_order_field = 'pub_date'

@@ -8,10 +8,16 @@ class ldapBackend():
    def authenticate(self,username,password):
       # Login as fakeroot if in development
       if settings.DEBUG:
-         user = User(username='z0000000')
-         user.first_name = 'fake'
-         user.last_name = 'root'
-         user.email = 'csesoc.sysadmin.head@cse.unsw.edu.au'
+         try:
+            user = User.objects.get(username='fakeroot')
+            return user
+         except User.DoesNotExist:
+            user = User(username='fakeroot', password='nil')
+            user.is_staff = True
+            user.is_superuser = True
+            user.first_name = 'fakeroot'
+            user.email = 'csesoc.sysadmin.head@cse.unsw.edu.au'
+            user.save()
          return user
       else:
          try:
@@ -24,7 +30,7 @@ class ldapBackend():
 
             baseDN = "OU=IDM_People,OU=IDM,DC=ad,DC=unsw,DC=edu,DC=au"
             searchScope = ldap.SCOPE_SUBTREE
-            retrieveAttributes = ['displayNamePrintable', 'givenName', 'sn', 'mail']
+            retrieveAttributes = ['cn', 'displayNamePrintable', 'givenName', 'sn', 'mail']
             searchFilter = "cn=" + username
 
             ldap_result = l.search(baseDN, searchScope, searchFilter, retrieveAttributes)
@@ -33,7 +39,7 @@ class ldapBackend():
             user_dn,attr_results = result_data[0]
 
             try:
-               user = User.objects.get(username=username)
+               user = User.objects.get(username=attr_results['cn'][0])
                return user
             except User.DoesNotExist:
                user = User(username=username, password='get from unsw ad')

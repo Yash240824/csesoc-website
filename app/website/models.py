@@ -14,7 +14,7 @@ class Team(models.Model):
    content = models.TextField()
    updated = models.DateTimeField(auto_now_add=True)
    def __unicode__(self):
-      return self.name
+      return self.title
 
 class FunStuff(models.Model):
    title = models.CharField(max_length=200)
