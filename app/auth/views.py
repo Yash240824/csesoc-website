@@ -27,4 +27,4 @@ def signout(request):
    request.session.flush()
    notice = {}
    messages.success(request, "You have successfully been logged out.")
-   return render_to_response('auth/login.html', context_instance=RequestContext(request))
+   return redirect('/')
