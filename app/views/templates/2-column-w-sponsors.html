@@ -9,11 +9,7 @@
 {% block rightcontent %}
 
 <h1>Our Sponsors</h1>
-
-<table width="100%" id="sponsorsColumnTable">
-{% for sponsor in allSponsors %}
-    <tr><td>{{ sponsor.get_linked_logo }}</td></tr>
-{% endfor %}
-</table>
+{% load sponsor_tags %}
+{% list_sponsors %}
 
 {% endblock %}

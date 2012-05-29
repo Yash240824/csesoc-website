@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-#from auth import backends
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -18,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^about/(?P<about_slug>[a-z-]+)/$', 'app.website.views.about'),
     url(r'^teams/(?P<team_slug>[A-Za-z-]+)/$', 'app.website.views.teams'),
     url(r'^fun/(?P<fun_slug>[a-z-]+)/$', 'app.website.views.fun'),
+    url(r'^sponsors$', 'app.website.views.sponsors'),
     
     # admin site
     #(r'^admin/', include(backends.site.urls)),

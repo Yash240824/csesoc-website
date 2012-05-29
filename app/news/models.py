@@ -3,9 +3,11 @@ from django.utils import timezone
 from django.db import models
 
 class Post(models.Model):
+   title = models.CharField(max_length=200)
    date = models.DateTimeField('data published')
    def __unicode__(self):
-      return self.date.isoformat()
+      #return self.date.isoformat()
+      return self.title
    def was_published_recently(self):
       return self.date >= timezone.now() - datetime.timedelta(days=1)
    was_published_recently.admin_order_field = 'pub_date'

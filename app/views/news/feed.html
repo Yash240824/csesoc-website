@@ -7,10 +7,11 @@
 <h1>News</h1>
 {% for post in posts %}
 <article>
+ <h1>{{post.title}}</h1>
  {% for item in post.item_set.all %}
 	<article class="{{ item.tag.colour }}">
 	  <header>
-		// <h2><a href="/news/{{ item.id }}">{{ item.headline }}</a></h2>
+		// <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
 		<a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
 	  </header>
 	 {{ item.content|safe }}

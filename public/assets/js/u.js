@@ -5,7 +5,7 @@ $(document).ready(function() {
     
     
       // Fix input element click problem
-      $('.dropdown input, .dropdown label').click(function(e) {
+      $('.dropdown input, .dropdown label, .dropdown-menu').click(function(e) {
         e.stopPropagation();
       });
 });

@@ -75,7 +75,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="/fun/bling">Bling</a></li> 
                         <li><a href="/fun/games">Games</a></li> 
-                        <li><a href="/fun/irc">IRC</a></li> 
                     </ul> 
                 </li>
                 <li> 
@@ -89,34 +88,38 @@
                 </li>
             </ul>
 
-            <ul class="nav pull-right">
-                  {% if user.is_authenticated %}
-                  <li class="dropdown"> 
-                      <a class="link-username" data-toggle="dropdown">{{user.get_full_name}}</a> 
-                      <ul class="dropdown-menu">
-                        <li><a href="/account">View Account</a></li>
-                        <li class="divider"></li>
-                        <li><a  href="/logout">Logout</a></li>                      
-                      </ul> 
-                  </li>
-
-                  {% else %}
-                    <li class="divider-vertical"></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-                      <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                        <!-- Login form here -->
-                        <form action="/login" method="post" accept-charset="UTF-8">
-                            {% csrf_token %}
-                          <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
-                          <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
-                          <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
-                        </form>
-                      </div>
-                    </li>
-                  {% endif %}
+			{% if user.is_authenticated %}
+			<div class="btn-group pull-right">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="icon-user"></i> {{user.get_full_name}}
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="/account">My Account</a></li>
+					{% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
+					<li class="divider"></li>
+					<li><a href="logout">Sign Out</a></li>
+				</ul>
+			</div>
+			{% else %}
+			<ul class="nav pull-right">
+				<li class="divider-vertical"></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+					<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+						<!-- Login form here -->
+						<form action="/login" method="post" accept-charset="UTF-8">
+							{% csrf_token %}
+							<input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
+							<input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
+							<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+						</form>
+					</div>
+				</li>
+			</ul>
+			{% endif %}
               
-            </ul>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -129,15 +132,6 @@
 					{% for message in messages %}
 						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
 					{% endfor %}
-				{% endif %}
-				{% if notice.error %}
-				<div class="alert alert-error"><h1>Error</h1><p>{{ notice.error }}</p></div>
-				{% endif %}
-				{% if notice.success %}
-				<div class="alert alert-success"><h1>Success!</h1><p>{{ notice.success }}</p></div>
-				{% endif %}
-				{% if notice.info %}
-				<div class="alert alert-info"><h1>Did you know?</h1><p>{{ notice.info }}</p></div>
 				{% endif %}
 			</div>
 		</center>
