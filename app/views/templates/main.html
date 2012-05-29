@@ -42,7 +42,7 @@
                   <i class="icon-user"></i> {{user.get_full_name}}
                   <i class="caret"></i>
               </a>
-              <ul class="dropdown-menu no-collapse">
+              <ul class="dropdown-menu no-collapse" style="margin-top:8px;">
                   <li><a href="/account">My Account</a></li>
                   {% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
                   <li class="divider"></li>
@@ -57,12 +57,12 @@
                   Sign In
                   <i class="caret"></i>
               </a>
-              <div class="dropdown-menu no-collapse" style="padding: 15px; padding-bottom: 0px;">
+              <div class="dropdown-menu no-collapse" style="padding: 15px;margin-top:8px;">
                   <form action="/login" method="post" accept-charset="UTF-8">
                       {% csrf_token %}
                       <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
                       <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
-                      <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+                      <input class="btn btn-primary" style="width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
                   </form>
               </div>
           </div>
