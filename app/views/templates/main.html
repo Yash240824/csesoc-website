@@ -91,9 +91,15 @@
 
             <ul class="nav pull-right">
                   {% if user.is_authenticated %}
-                      <li><a class="link-username" href="/account">{{user.get_full_name}}</a></li>
-                      <li class="divider-vertical"></li>
-                      <li><a  href="/logout">Logout</a></li>
+                  <li class="dropdown"> 
+                      <a class="link-username" data-toggle="dropdown">{{user.get_full_name}}</a> 
+                      <ul class="dropdown-menu">
+                        <li><a href="/account">View Account</a></li>
+                        <li class="divider"></li>
+                        <li><a  href="/logout">Logout</a></li>                      
+                      </ul> 
+                  </li>
+
                   {% else %}
                     <li class="divider-vertical"></li>
                     <li class="dropdown">
