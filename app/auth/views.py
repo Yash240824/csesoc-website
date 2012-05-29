@@ -25,6 +25,5 @@ def signin(request):
 def signout(request):
    logout(request)
    request.session.flush()
-   notice = {}
    messages.success(request, "You have successfully been logged out.")
    return redirect('/')
