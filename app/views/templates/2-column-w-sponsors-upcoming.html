@@ -18,8 +18,8 @@
 <h1>Our Sponsors</h1>
 
 <table width="100%" id="sponsorsColumnTable">
-{% for sponsor in allSponsors %}
-	<tr><td>{{ sponsor.get_linked_logo }}</td></tr>
+{% for sponsor in sponsorsList %}
+	<tr><td>{{ sponsor.name }}</td></tr>
 {% endfor %}
 </table>
 
