@@ -89,10 +89,13 @@
             </ul>
 
 			{% if user.is_authenticated %}
-			<div class="btn-group pull-right">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			<ul class="nav pull-right">
+    			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="padding-top:5px;padding-bottom:6px;">
+    				<div class="btn" style="margin:0px;">
 					<i class="icon-user"></i> {{user.get_full_name}}
 					<span class="caret"></span>
+				</div>
 				</a>
 				<ul class="dropdown-menu">
 					<li><a href="/account">My Account</a></li>
@@ -100,7 +103,9 @@
 					<li class="divider"></li>
 					<li><a href="logout">Sign Out</a></li>
 				</ul>
-			</div>
+				</li>
+			</ul>
+			
 			{% else %}
 			<ul class="nav pull-right">
 				<li class="divider-vertical"></li>
