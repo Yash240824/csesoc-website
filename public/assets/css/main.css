@@ -48,8 +48,12 @@ body {
 	margin: 10px 0;
 }
 
-#logout-btn {
-   position: absolute;
+.navbar .nav > li > a.link-username {
+	color:#0088cc;
+}
+
+.bottom-pad {
+	margin-bottom: 75px;
 }
 
 footer {

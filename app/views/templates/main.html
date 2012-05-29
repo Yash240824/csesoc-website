@@ -87,24 +87,40 @@
                     <a href="/about/contact">Contact Us</a>
                 </li>
             </ul>
-            <p class="navbar-text pull-right">
-              {% if user.is_authenticated %}
-                <a href="/account">{{user.get_full_name}}</a>&nbsp;&nbsp;&nbsp;<a id="logout-btn" class="btn btn-small btn-danger" href="/logout">Logout</a>
-              {% else %}
-                <a href="/login">login</a>
-              {% endif %}
-            </p>
+
+            <ul class="nav pull-right">
+                  {% if user.is_authenticated %}
+                      <li><a class="link-username" href="/account">{{user.get_full_name}}</a></li>
+                      <li class="divider-vertical"></li>
+                      <li><a  href="/logout">Logout</a></li>
+                  {% else %}
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                      <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                        <!-- Login form here -->
+                        <form action="/login" method="post" accept-charset="UTF-8">
+                            {% csrf_token %}
+                          <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
+                          <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
+                          <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+                        </form>
+                      </div>
+                    </li>
+                  {% endif %}
+              
+            </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container bottom-pad">
 		<center>
 			<div class="global-flash">
 				{% if messages %}
 					{% for message in messages %}
-						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags }}</h1><p>{{ message }}</p></div>
+						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
 					{% endfor %}
 				{% endif %}
 				{% if notice.error %}
@@ -121,8 +137,7 @@
         
         {% block allcontent %}{% endblock %}
     </div> <!-- /container -->
-    <hr>
-    <footer>
+    <footer class="navbar-fixed-bottom">
         <div class="container">
             <span>
                 Copyright &copy; CSESoc 2012
