@@ -3,6 +3,7 @@
 {% block stylesheets %}{% endblock %}
 {% block content %}{% spaceless %}
 	<h1>{{ p.title|safe }}</h1>
-	<br/>
-	<p>{{ p.content|safe }}</p>
+	<div class="well">
+		<p>{{ p.content|safe }}</p>
+	</div>
 {% endspaceless %}{% endblock %}

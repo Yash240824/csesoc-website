@@ -130,8 +130,9 @@
       </div>
     </div>
 
-    <div class="container bottom-pad">
-		<center>
+<div class="wrapper">
+  <div class="container">
+    <center>
 			<div class="global-flash">
 				{% if messages %}
 					{% for message in messages %}
@@ -142,8 +143,14 @@
 		</center>
         
         {% block allcontent %}{% endblock %}
-    </div> <!-- /container -->
-    <footer class="navbar-fixed-bottom">
+    </div>
+      <div class="push"><!--//--></div>
+    </div><!-- /container -->
+    
+    
+    
+    
+    <footer>
         <div class="container">
             <span>
                 Copyright &copy; CSESoc 2012

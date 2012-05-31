@@ -4,7 +4,7 @@ $(document).ready(function() {
     });
     
     
-      // Fix input element click problem
+      // Fix input element click problem for login dropdown
       $('.dropdown input, .dropdown label, .dropdown-menu').click(function(e) {
         e.stopPropagation();
       });
