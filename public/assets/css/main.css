@@ -26,9 +26,12 @@ html, body {
 }
 
 .hero-unit {
-	color: #f04923;
+	/* color: #f04923;
 	padding:50px;
-	background: #eee url('/assets/img/banner.png') top right no-repeat;
+	background: #eee url('/assets/img/banner.png') top right no-repeat; */
+	color: #ffffff;
+	padding:50px;
+	background: #50659E url('/assets/img/banner.png') top right no-repeat; 
 }
 
 .upcoming {
