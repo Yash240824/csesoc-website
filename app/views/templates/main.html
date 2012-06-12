@@ -1,173 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block titlecontent %}{% endblock %} - CSESoc - UNSW Computer Science and Engineering Society</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <title>{% block titlecontent %}{% endblock %} - CSESoc - UNSW Computer Science and Engineering Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    {% block stylesheets %}{% endblock %}
+  <!-- Le styles -->
+  <link href="/assets/css/bootstrap.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+  {% block stylesheets %}{% endblock %}
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="/assets/img/favicon.ico">
-    <link href="/assets/img/icon.png" rel="icon" type="image/png"/>
-  </head>
+  <!-- Le fav and touch icons -->
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <link href="/assets/img/icon.png" rel="icon" type="image/png"/>
+</head>
 
-  <body>
+<body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="/"><img src="/assets/img/logo-simple-white.png" alt="CSESoc"/>csesoc</a>
+
+
+        {% if user.is_authenticated %}
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i> {{user.get_full_name}}
+            <i class="caret"></i>
           </a>
-          <a class="brand" href="/"><img src="/assets/img/logo-simple-white.png" alt="CSESoc"/>csesoc</a>
-          
-
-          {% if user.is_authenticated %}
-          <div class="btn-group pull-right">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  <i class="icon-user"></i> {{user.get_full_name}}
-                  <i class="caret"></i>
-              </a>
-              <ul class="dropdown-menu no-collapse" style="margin-top:8px;">
-                  <li><a href="/account">My Account</a></li>
-                  {% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
-                  <li class="divider"></li>
-                  <li><a href="logout">Sign Out</a></li>
-              </ul>
-          </div>
-          
-          {% else %}
-          
-          <div class="btn-group pull-right">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                  Sign In
-                  <i class="caret"></i>
-              </a>
-              <div class="dropdown-menu no-collapse" style="padding: 15px;padding-bottom:0px;margin-top:8px;">
-                  <form action="/login" method="post" accept-charset="UTF-8">
-                      {% csrf_token %}
-                      <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
-                      <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
-                      <div class="btn-group">
-                      <input class="btn btn-primary" style="width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
-                  </div>
-                  </form>
-              </div>
-          </div>
-          {% endif %}
-
-          
-          <div class="nav-collapse">
-            <ul class="nav">
-                <li> 
-                    <a href="/">Home</a> 
-                </li>
-                <li class="dropdown"> 
-                    <a data-toggle="dropdown">About</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about/history">History</a></li> 
-                        <li><a href="/about/constitution">Constitution</a></li> 
-                        <li><a href="/about/execheads">Exec &amp; Heads</a></li>
-                        <li><a href="/about/faq">FAQ</a></li>
-                    </ul>
-                </li> 
-                <li class="dropdown"> 
-                    <a data-toggle="dropdown">Teams</a> 
-                    <ul class="dropdown-menu">
-                        <li><a href="/teams/about">What are Teams?</a></li>
-                        <li><a href="/teams/beta">Beta</a></li>
-                        <li><a href="/teams/dev">Dev</a></li>
-                        <li><a href="/teams/publicity">Publicity</a></li>
-                        <li><a href="/teams/social">Social</a></li>
-                        <li><a href="/teams/sysadmin">Sysadmin</a></li>
-                        <li><a href="/teams/tech">Tech</a></li>
-                        <li><a href="/teams/volunteer">Volunteer!</a></li>
-                    </ul> 
-                </li>
-                <li class="dropdown"> 
-                    <a data-toggle="dropdown">Murder</a> 
-                    <ul class="dropdown-menu">
-                        <li><a href="/murder/scoreboard">Scoreboard</a></li> 
-                        <li><a href="/murder/kill-history">Kill History</a></li> 
-                        <li><a href="/murder/my-victim">My Victim</a></li> 
-                        <li><a href="/murder/signup">Signup</a></li> 
-                    </ul> 
-                </li>
-                <li class="dropdown"> 
-                    <a data-toggle="dropdown">Fun Stuff</a> 
-                    <ul class="dropdown-menu">
-                        <li><a href="/fun/bling">Bling</a></li> 
-                        <li><a href="/fun/games">Games</a></li> 
-                    </ul> 
-                </li>
-                <li> 
-                    <a href="http://beta.csesoc.unsw.edu.au">&beta;eta</a> 
-                </li>
-                <li> 
-                    <a href="/sponsors">Sponsors</a> 
-                </li>
-                <li>
-                    <a href="/about/contact">Contact Us</a>
-                </li>
-            </ul>              
-
-          </div><!--/.nav-collapse -->
+          <ul class="dropdown-menu no-collapse" style="margin-top:8px;">
+            <li><a href="/account">My Account</a></li>
+            {% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
+            <li class="divider"></li>
+            <li><a href="logout">Sign Out</a></li>
+          </ul>
         </div>
+
+        {% else %}
+
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            Sign In
+            <i class="caret"></i>
+          </a>
+          <div class="dropdown-menu no-collapse" style="padding: 15px;padding-bottom:0px;margin-top:8px;">
+            <form action="/login" method="post" accept-charset="UTF-8">
+              {% csrf_token %}
+              <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
+              <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
+              <div class="btn-group">
+                <input class="btn btn-primary" style="width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+              </div>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+
+
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li> 
+              <a href="/">Home</a> 
+            </li>
+            <li class="dropdown"> 
+              <a>About</a>
+              <ul class="dropdown-menu">
+                <li><a href="/about/history">History</a></li> 
+                <li><a href="/about/constitution">Constitution</a></li> 
+                <li><a href="/about/execheads">Exec &amp; Heads</a></li>
+                <li><a href="/about/faq">FAQ</a></li>
+              </ul>
+            </li> 
+            <li class="dropdown"> 
+              <a>Teams</a> 
+              <ul class="dropdown-menu">
+                <li><a href="/teams/about">What are Teams?</a></li>
+                <li><a href="/teams/beta">Beta</a></li>
+                <li><a href="/teams/dev">Dev</a></li>
+                <li><a href="/teams/publicity">Publicity</a></li>
+                <li><a href="/teams/social">Social</a></li>
+                <li><a href="/teams/sysadmin">Sysadmin</a></li>
+                <li><a href="/teams/tech">Tech</a></li>
+                <li><a href="/teams/volunteer">Volunteer!</a></li>
+              </ul> 
+            </li>
+            <li class="dropdown"> 
+              <a>Murder</a> 
+              <ul class="dropdown-menu">
+                <li><a href="/murder/scoreboard">Scoreboard</a></li> 
+                <li><a href="/murder/kill-history">Kill History</a></li> 
+                <li><a href="/murder/my-victim">My Victim</a></li> 
+                <li><a href="/murder/signup">Signup</a></li> 
+              </ul> 
+            </li>
+            <li class="dropdown"> 
+              <a>Fun Stuff</a> 
+              <ul class="dropdown-menu">
+                <li><a href="/fun/bling">Bling</a></li> 
+                <li><a href="/fun/games">Games</a></li> 
+              </ul> 
+            </li>
+            <li> 
+              <a href="http://beta.csesoc.unsw.edu.au">&beta;eta</a> 
+            </li>
+            <li class="dropdown"> 
+              <a>Sponsors</a>
+              <ul class="dropdown-menu">
+                <li><a href="/sponsors">Our Sponsors</a></li>
+                <li><a href="/google">Google</a></li>
+                <li><a href="/macquarie">Macquarie Group</a></li> 
+              </ul>
+            </li>
+            <li>
+              <a href="/about/contact">Contact Us</a>
+            </li>
+          </ul>              
+
+        </div><!--/.nav-collapse -->
       </div>
     </div>
+  </div>
 
-<div class="wrapper">
-  <div class="container">
-    <center>
-			<div class="global-flash">
-				{% if messages %}
-					{% for message in messages %}
-						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
-					{% endfor %}
-				{% endif %}
-			</div>
-		</center>
-        
-        {% block allcontent %}{% endblock %}
-    </div>
-      <div class="push"><!--//--></div>
-    </div><!-- /container -->
-    
-    
-    
-    
-    <footer>
-        <div class="container">
-            <span>
-                Copyright &copy; CSESoc 2012
-            </span>
-            <span class="pull-right">
-                <img src="/assets/img/google-plus.png">
-                <img src="/assets/img/facebook.png">
-            </span>
-
-
+  <div class="wrapper">
+    <div class="container">
+      <center>
+        <div class="global-flash">
+          {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
+          {% endfor %}
+          {% endif %}
         </div>
-    </footer>
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script> 
-    <script src="/assets/js/u.js"></script>
-  </body>
+      </center>
+
+      {% block allcontent %}{% endblock %}
+    </div>
+    <div class="push"><!--//--></div>
+  </div><!-- /container -->
+
+
+
+
+  <footer>
+    <div class="container">
+      <span>
+        Copyright &copy; CSESoc 2012
+      </span>
+      <span class="pull-right">
+        <img src="/assets/img/google-plus.png">
+        <img src="/assets/img/facebook.png">
+      </span>
+
+
+    </div>
+  </footer>
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script> 
+  <script src="/assets/js/u.js"></script>
+</body>
 </html>

@@ -55,13 +55,17 @@ When your done with a virtual environment, you can easily deactivate with
 Installing Django
 -----------------
 
-Now while your inside your python virtualenv, install django with
+Now while your inside your python virtualenv, you can use pip to install packages like so
+
+	pip install <package name>
+
+For example, to install django
 
 	pip install django
 
 Currently the website also has these dependancies
 
-	No current dependencies. Yay!
+	pil - python image library
 
 Installing Git
 --------------

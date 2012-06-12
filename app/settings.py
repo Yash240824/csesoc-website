@@ -136,8 +136,9 @@ INSTALLED_APPS = (
     'app.auth',
     'app.website',
     'app.news',
+    'app.finance',
     'app.forms',
-    'app.murder',
+    #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

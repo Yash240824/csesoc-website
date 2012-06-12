@@ -1,16 +1,14 @@
 {% extends 'templates/2-column.html' %}
 
 {% block leftcontent %}
-<!-- <div class="well">
- -->    {% block content %}{% endblock %}
-<!-- </div>
- -->{% endblock %}
+ {% block content %}{% endblock %}
+{% endblock %}
 
 {% block rightcontent %}
 
-<div class="sponsor">
-<center><h1>Sponsors</h1></center>
-{% load sponsor_tags %}
-{% list_sponsors %}
-</div>
+ <div class="sponsor">
+  <center><h1>Sponsors</h1></center>
+  {% load sponsor_tags %}
+  {% list_sponsors %}
+ </div>
 {% endblock %}
