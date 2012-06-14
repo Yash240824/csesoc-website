@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^fun/(?P<fun_slug>[a-z-]+)/$', 'app.website.views.fun'),
     url(r'^sponsors$', 'app.website.views.sponsors'),
     
+    # miscellaneous
+    url(r'^(?P<path>.*)/$', 'app.website.views.slug'),
+    
     # admin site
     #(r'^admin/', include(backends.site.urls)),
 

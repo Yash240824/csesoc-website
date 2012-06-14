@@ -17,8 +17,8 @@ def fun(request, fun_slug):
    return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
 def slug(request, path):
-   p = get_object_or_404(Static, slug=path.replace('/','_'))
-   return render_to_response('website/slug.html', { 'allSponsors' : sponsorsList(request), 'object' : p }, context_instance=RequestContext(request) )
+   page = get_object_or_404(Slug.objects.filter(slug=path.replace('/','_')))
+   return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
 def sponsors(request):
    sponsors = Sponsor.objects.order_by('amount_paid').reverse().filter(expiry_date__gte=date.today)
