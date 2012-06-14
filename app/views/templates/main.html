@@ -57,6 +57,7 @@
             Sign In
             <i class="caret"></i>
           </a>
+<<<<<<< HEAD
           <div class="dropdown-menu no-collapse" style="padding: 15px;padding-bottom:0px;margin-top:8px;">
             <form action="/login" method="post" accept-charset="UTF-8">
               {% csrf_token %}
@@ -67,6 +68,101 @@
               </div>
             </form>
           </div>
+=======
+          <a class="brand" href="/"><img src="/assets/img/logo-simple-white.png" alt="CSESoc"/>csesoc</a>
+          
+
+          {% if user.is_authenticated %}
+          <div class="btn-group pull-right">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="icon-user"></i> {{user.get_full_name}}
+                  <i class="caret"></i>
+              </a>
+              <ul class="dropdown-menu no-collapse" style="margin-top:8px;">
+                  <li><a href="/account">My Account</a></li>
+                  {% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
+                  <li class="divider"></li>
+                  <li><a href="logout">Sign Out</a></li>
+              </ul>
+          </div>
+          
+          {% else %}
+          
+          <div class="btn-group pull-right">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Sign In
+                  <i class="caret"></i>
+              </a>
+              <div class="dropdown-menu no-collapse" style="padding: 15px;padding-bottom:0px;margin-top:8px;">
+                  <form action="/login" method="post" accept-charset="UTF-8">
+                      {% csrf_token %}
+                      <input id="username" style="margin-bottom: 15px;" type="text" name="username" placeholder="StudentID" size="30" />
+                      <input id="password" style="margin-bottom: 15px;" type="password" name="password" placeholder="zPass" size="30" />
+                      <div class="btn-group">
+                      <input class="btn btn-primary" style="width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In" />
+                  </div>
+                  </form>
+              </div>
+          </div>
+          {% endif %}
+
+          
+          <div class="nav-collapse">
+            <ul class="nav">
+                <li> 
+                    <a href="/">Home</a> 
+                </li>
+                <li class="dropdown"> 
+                    <a data-toggle="dropdown">About</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about/history">History</a></li> 
+                        <li><a href="/about/constitution">Constitution</a></li> 
+                        <li><a href="/about/execheads">Exec &amp; Heads</a></li>
+                        <li><a href="/about/faq">FAQ</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown"> 
+                    <a data-toggle="dropdown">Teams</a> 
+                    <ul class="dropdown-menu">
+                        <li><a href="/teams/about">What are Teams?</a></li>
+                        <li><a href="/teams/beta">Beta</a></li>
+                        <li><a href="/teams/dev">Dev</a></li>
+                        <li><a href="/teams/publicity">Publicity</a></li>
+                        <li><a href="/teams/social">Social</a></li>
+                        <li><a href="/teams/sysadmin">Sysadmin</a></li>
+                        <li><a href="/teams/tech">Tech</a></li>
+                        <li><a href="/teams/volunteer">Volunteer!</a></li>
+                    </ul> 
+                </li>
+                <li class="dropdown"> 
+                    <a data-toggle="dropdown">Murder</a> 
+                    <ul class="dropdown-menu">
+                        <li><a href="/murder/scoreboard">Scoreboard</a></li> 
+                        <li><a href="/murder/kill-history">Kill History</a></li> 
+                        <li><a href="/murder/my-victim">My Victim</a></li> 
+                        <li><a href="/murder/signup">Signup</a></li> 
+                    </ul> 
+                </li>
+                <li class="dropdown"> 
+                    <a data-toggle="dropdown">Fun Stuff</a> 
+                    <ul class="dropdown-menu">
+                        <li><a href="/fun/bling">Bling</a></li> 
+                        <li><a href="/fun/games">Games</a></li> 
+                    </ul> 
+                </li>
+                <li> 
+                    <a href="http://beta.csesoc.unsw.edu.au">&beta;eta</a> 
+                </li>
+                <li> 
+                    <a href="/sponsors">Sponsors</a> 
+                </li>
+                <li>
+                    <a href="/about/contact">Contact Us</a>
+                </li>
+            </ul>              
+
+          </div><!--/.nav-collapse -->
+>>>>>>> 6335d388b290d0c925edf895c7774021931c56af
         </div>
         {% endif %}
 
@@ -135,6 +231,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <div class="wrapper">
     <div class="container">
       <center>
@@ -146,6 +243,37 @@
           {% endif %}
         </div>
       </center>
+=======
+<div class="wrapper">
+  <div class="container">
+    <center>
+			<div class="global-flash">
+				{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</center>
+        
+        {% block allcontent %}{% endblock %}
+    </div>
+      <div class="push"><!--//--></div>
+    </div><!-- /container -->
+    
+    
+    
+    
+    <footer>
+        <div class="container">
+            <span>
+                Copyright &copy; CSESoc 2012
+            </span>
+            <span class="pull-right">
+                <img src="/assets/img/google-plus.png">
+                <img src="/assets/img/facebook.png">
+            </span>
+>>>>>>> 6335d388b290d0c925edf895c7774021931c56af
 
       {% block allcontent %}{% endblock %}
     </div>
