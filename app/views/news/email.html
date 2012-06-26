@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
+</head>
+<body>
+ {% for item in post.item_set.all %}
+	<article class="{{ item.tag.colour }}">
+	  <header>
+		// <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
+		<a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
+	  </header>
+	 {{ item.content|safe }}
+	</article>
+ {% endfor %}
+ </div>
+</body>
+</html>
