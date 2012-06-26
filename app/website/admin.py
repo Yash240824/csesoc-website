@@ -16,9 +16,21 @@ class CommonMedia:
 admin.site.register(About,
   Media = CommonMedia,
 )
+admin.site.register(FunStuff,
+  Media = CommonMedia,
+)
+admin.site.register(Team,
+  Media = CommonMedia,
+)
+admin.site.register(Slug,
+  Media = CommonMedia,
+)
+admin.site.register(Sponsor,
+  Media = CommonMedia,
+)
 
 # admin.site.register(About)
-admin.site.register(FunStuff)
-admin.site.register(Team)
-admin.site.register(Slug)
-admin.site.register(Sponsor)
+# admin.site.register(FunStuff)
+# admin.site.register(Team)
+# admin.site.register(Slug)
+# admin.site.register(Sponsor)
