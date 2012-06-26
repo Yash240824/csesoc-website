@@ -1,6 +1,15 @@
 from app.news.models import *
 from django.contrib import admin
 
+class CommonMedia:
+  js = (
+	'https://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js',
+	'/assets/js/editor.js',
+  )
+  css = {
+	'all': ('/assets/css/editor.css',),
+  }
+
 class ItemInline(admin.TabularInline):
 	model = Item
 	extra = 1
@@ -8,7 +17,7 @@ class ItemInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
 	inlines = [ItemInline]
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Post, PostAdmin,Media = CommonMedia)
 
 class ItemAdmin(admin.ModelAdmin):
 	list_display = ('headline','tag','post')
