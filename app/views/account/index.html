@@ -1,0 +1,17 @@
+{% extends 'templates/2-column-w-sponsors.html' %}
+{% block titlecontent %}My Account{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block content %}{% spaceless %}
+	<h1>My Account</h1>
+	<div class="well">
+		<p>
+			<strong>Name: </strong>{{user.get_full_name}}
+		</p>
+		<p>
+			<strong>Email: </strong>{{user.email}}
+		</p>
+		{% if user.is_staff %}<p>You are Staff</p>{% endif %}
+		{% if user.is_superuser %}<p>You are God</p>{% endif %}
+
+	</div>
+{% endspaceless %}{% endblock %}

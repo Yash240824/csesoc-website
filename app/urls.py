@@ -12,6 +12,9 @@ urlpatterns = patterns('',
     url(r'^login$', 'app.auth.views.signin'),
     url(r'^logout$', 'app.auth.views.signout'),
     url(r'^news/', include('app.news.urls')),
+    
+    #account
+    url(r'^account/', include('app.account.urls')),
 
     # Static pages
     url(r'^about/(?P<about_slug>[a-z-]+)/$', 'app.website.views.about'),
@@ -19,9 +22,10 @@ urlpatterns = patterns('',
     url(r'^fun/(?P<fun_slug>[a-z-]+)/$', 'app.website.views.fun'),
     url(r'^sponsors$', 'app.website.views.sponsors'),
     
+
     # miscellaneous
     url(r'^(?P<path>.*)/$', 'app.website.views.slug'),
-    
+
     # admin site
     #(r'^admin/', include(backends.site.urls)),
 
