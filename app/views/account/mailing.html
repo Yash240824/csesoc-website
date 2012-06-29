@@ -7,34 +7,18 @@
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
 			
 			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}"><br>
-			<input type="checkbox" name="mailing" value="beta" {% for team in teams %}
-	{% if team == beta %}
-		checked
-	{% endif %}
-{%  endfor %} />Beta<br>
-			<input type="checkbox" name="mailing" value="tech"  {% for team in teams %}
-	{% if team == tech %}
-		checked
-	{% endif %}
-{%  endfor %}/>Tech<br>
-			<input type="checkbox" name="mailing" value="publicity" {% for team in teams %}
-	{% if team == publicity %}
-		checked
-	{% endif %}
-{%  endfor %} />Publicity<br>
-			<input type="checkbox" name="mailing" value="social"  {% for team in teams %}
-	{% if team == social %}
-		checked
-	{% endif %}
-{%  endfor %}/>Social<br>
-			<input type="checkbox" name="mailing" value="dev" {% for team in teams %}
-	{% if team == dev %}
-		checked
-	{% endif %}
-{%  endfor %} />Dev<br>
+			<input type="checkbox" name="mailing" value="beta" />Beta<br>
+			<input type="checkbox" name="mailing" value="tech" />Tech<br>
+			<input type="checkbox" name="mailing" value="publicity" />Publicity<br>
+			<input type="checkbox" name="mailing" value="social" />Social<br>
+			<input type="checkbox" name="mailing" value="dev" />Dev<br>
 						
 			<input type="submit" value="Update">
 		</form>
-		
+		{% for team in teams %}
+			{% if team == "beta" %}
+				checked
+			{% endif %}
+		{%  endfor %}
 	</div>
 {% endspaceless %}{% endblock %}
