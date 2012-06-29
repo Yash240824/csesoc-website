@@ -7,9 +7,12 @@
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
 			
 			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}"><br>
-			{% for team in teams %}
-				<input type="checkbox" name="mailing" value="{{team}}" />{{team}}<br>
-			{%  endfor %}	
+			
+			{% if "beta" in teams %}
+				<input type="checkbox" name="mailing" value="beta" checked />Beta<br>
+			{%  else %}	
+				<input type="checkbox" name="mailing" value="beta" />Beta<br>
+		 	{% endif %}
 					
 			<input type="submit" value="Update">
 		</form>
