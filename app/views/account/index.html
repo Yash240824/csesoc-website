@@ -17,6 +17,9 @@
 		<p>
 			<strong>Email: </strong>{{user.email}}
 		</p>
+		<p>
+			<a href="/account/mailing/">Edit Your Mailing List Subscriptions</a>	
+		</p>
 		{% if user.is_staff %}<p>You are Staff</p>{% endif %}
 		{% if user.is_superuser %}<p>You are God</p>{% endif %}
 	</div>
