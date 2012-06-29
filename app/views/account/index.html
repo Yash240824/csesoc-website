@@ -16,5 +16,6 @@
 		{% if user.is_staff %}<p>You are Staff</p>{% endif %}
 		{% if user.is_superuser %}<p>You are God</p>{% endif %}
 		{{user.profile}}
+		{{user.get_profile.cselogin}}
 	</div>
 {% endspaceless %}{% endblock %}
