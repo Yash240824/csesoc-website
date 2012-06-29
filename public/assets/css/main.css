@@ -8,6 +8,15 @@ html, body {
 	line-height: 16pt;
 }
 
+.well {
+	background: white;
+	border: 1px solid #EEE;
+	-webkit-box-shadow: 2px 2px 5px #EEE;
+	-moz-box-shadow: 2px 2px 5px #EEE;
+	-o-box-shadow: 2px 2px 5px #EEE;
+	box-shadow: 2px 2px 5px #EEE;
+}
+
 .well p {
 	font-family: 'Open Sans',sans-serif;
 	font-weight: 300;
