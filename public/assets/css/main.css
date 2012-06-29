@@ -16,9 +16,13 @@ p {
 	text-align: justify;
 	margin: 0 0 15px 0;
 }
-li {
+.container > li {
 	line-height: 16pt;
 	margin-bottom: 5pt;
+}
+
+h1 {
+	margin: 0 15px 15px 20px;
 }
 .wrapper {
 	min-height: 100%;
