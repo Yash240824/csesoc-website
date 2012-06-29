@@ -3,6 +3,7 @@ from datetime import datetime
 import os
 from django.conf import settings
 
+
 class About(models.Model):
    title = models.CharField(max_length=200)
    content = models.TextField()
@@ -47,3 +48,4 @@ class Sponsor(models.Model):
     expiry_date = models.DateField()
     def __unicode__(self):
         return self.name
+
