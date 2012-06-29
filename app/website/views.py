@@ -9,7 +9,7 @@ def about(request, about_slug):
    return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
 def teams(request, team_slug):
-   page = get_object_or_404(Team.objects.filter(title=team_slug.title()))
+   page = get_object_or_404(Team.objects.filter(slug=team_slug))
    return render_to_response('website/slug.html', {'p': page}, context_instance=RequestContext(request))
 
 def fun(request, fun_slug):

@@ -13,6 +13,7 @@ class About(models.Model):
 
 class Team(models.Model):
    title = models.CharField(max_length=200)
+   slug = models.SlugField(max_length=100)
    content = models.TextField()
    updated = models.DateTimeField(auto_now_add=True)
    def __unicode__(self):
