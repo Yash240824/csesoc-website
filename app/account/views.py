@@ -15,9 +15,9 @@ def view(request):
 
 def update_mailing(request):
    if request.user.is_authenticated():
-       h1 = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
-       h1.request('GET', '/~csesoc/mailingLists?cseid=' + request.user.get_profile().cselogin)	
-       cse = h1.getresponse().read()
+       h = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
+       h.request('GET', '/~csesoc/mailingLists?cseid=' + request.user.get_profile().cselogin)	
+       cse = h.getresponse().read()
        teams = cse.split(',')
        return render_to_response('account/mailing.html', {'teams': teams}, context_instance=RequestContext(request))
    else:
