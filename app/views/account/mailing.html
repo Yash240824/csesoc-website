@@ -4,14 +4,17 @@
 {% block content %}{% spaceless %}
 	<h1>My Mailing List</h1>
 	<div class="well">
+		<p>
+			Please select the teams you would like to register to recieve emails from:
+		</p>
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
 			
 			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}"><br>
-			
+				
 			{% if "beta" in teams %}
-				<input type="checkbox" name="mailing" value="beta" checked />Beta<br>
+				<input type="checkbox" name="mailing" value="beta" checked /><a href="/teams/beta">Beta</a><br>
 			{%  else %}	
-				<input type="checkbox" name="mailing" value="beta" />Beta<br>
+				<input type="checkbox" name="mailing" value="beta" /><a href="/teams/beta">Beta</a><br>
 		 	{% endif %}
 		 	{% if "tech" in teams %}
 		 			<input type="checkbox" name="mailing" value="tech" checked />Tech<br>
@@ -34,7 +37,7 @@
 				<input type="checkbox" name="mailing" value="dev" />Dev<br>
 			{% endif %}
 					
-			<input type="submit" value="Update">
+			<input class="btn btn-primary" type="submit" value="Update">
 		</form>
 	</div>
 {% endspaceless %}{% endblock %}
