@@ -17,4 +17,4 @@ class UserProfile(models.Model):
 		user.profile, c = UserProfile.objects.get_or_create(user=user,cselogin=cse)
 		return user.profile
 		
-	user.profile = property(get_or_create_profile)
+	User.profile = property(get_or_create_profile)
