@@ -4,6 +4,6 @@
 {% block content %}{% spaceless %}
 	<h1>{{ p.title|safe }}</h1>
 	<div class="well">
-		<p>{{ p.content|safe }}</p>
+		{{ p.content|safe }}
 	</div>
 {% endspaceless %}{% endblock %}

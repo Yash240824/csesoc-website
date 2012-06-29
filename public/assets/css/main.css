@@ -8,7 +8,7 @@ html, body {
 	line-height: 16pt;
 }
 
-p {
+.well p {
 	font-family: 'Open Sans',sans-serif;
 	font-weight: 300;
 	font-size: 10pt;
@@ -18,11 +18,11 @@ p {
 }
 .well li {
 	line-height: 16pt;
-	margin-bottom: 5pt;
+	margin:3pt 0;
 }
 
 h1 {
-	margin: 0 15px 15px 20px;
+	margin-bottom:15px;
 }
 .wrapper {
 	min-height: 100%;
