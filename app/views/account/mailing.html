@@ -5,9 +5,9 @@
 	<h1>My Mailing List</h1>
 	<div class="well">
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
-
+			
 			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}"><br>
-			<input type="checkbox" name="mailing" value="beta" checked />Beta<br>
+			<input type="checkbox" name="mailing" value="beta" />Beta<br>
 			<input type="checkbox" name="mailing" value="tech" />Tech<br>
 			<input type="checkbox" name="mailing" value="publicity" />Publicity<br>
 			<input type="checkbox" name="mailing" value="social" />Social<br>
@@ -15,6 +15,8 @@
 						
 			<input type="submit" value="Update">
 		</form>
-		
+		{% for team in teams %}
+			<p>{{team}}</p>
+		{%  endfor %}
 	</div>
 {% endspaceless %}{% endblock %}
