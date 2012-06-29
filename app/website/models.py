@@ -1,5 +1,7 @@
 from django.db import models
 from datetime import datetime
+import os
+from django.conf import settings
 
 class About(models.Model):
    title = models.CharField(max_length=200)
@@ -27,7 +29,7 @@ class FunStuff(models.Model):
 class Slug(models.Model):
    title = models.CharField(max_length=200)
    content = models.TextField()
-   template = models.FilePathField(("../templates"), match=".*\.html", recursive=True)
+   template = models.FilePathField(path=os.path.join(settings.PROJECT_PATH, "views"), match=".*\.html", recursive=True)
    slug = models.SlugField(max_length=100)
    created = models.DateTimeField(auto_now_add=True)
    updated = models.DateTimeField(auto_now_add=True)
