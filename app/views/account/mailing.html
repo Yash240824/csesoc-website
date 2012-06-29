@@ -17,24 +17,24 @@
 				<input type="checkbox" name="mailing" value="beta" /><a href="/teams/beta">Beta</a><br>
 		 	{% endif %}
 		 	{% if "tech" in teams %}
-		 			<input type="checkbox" name="mailing" value="tech" checked />Tech<br>
+		 			<input type="checkbox" name="mailing" value="tech" checked /><a href="/teams/tech">Tech</a><br>
 		 	{%  else %}	
-		 		<input type="checkbox" name="mailing" value="tech" />Tech<br>
+		 		<input type="checkbox" name="mailing" value="tech" /><a href="/teams/tech">Tech</a><br>
 			{% endif %}
 			{% if "social" in teams %}
-			 		<input type="checkbox" name="mailing" value="social" checked />Social<br>
+			 		<input type="checkbox" name="mailing" value="social" checked /><a href="/teams/social">Social</a><br>
 			{%  else %}	
-			 	<input type="checkbox" name="mailing" value="social" />Social<br>
+			 	<input type="checkbox" name="mailing" value="social" /><a href="/teams/social">Social</a><br>
 			{% endif %}
 			{% if "publicity" in teams %}
-				 	<input type="checkbox" name="mailing" value="publicity" checked />Publicity<br>
+				 	<input type="checkbox" name="mailing" value="publicity" checked /><a href="/teams/publicity">Publicity</a><br>
 			{%  else %}	
-				<input type="checkbox" name="mailing" value="publicity" />Publicity<br>
+				<input type="checkbox" name="mailing" value="publicity" /><a href="/teams/publicity">Publicity</a><br>
 			{% endif %}
 			{% if "dev" in teams %}
-					<input type="checkbox" name="mailing" value="dev" checked />Dev<br>
+					<input type="checkbox" name="mailing" value="dev" checked /><a href="/teams/dev">Dev</a><br>
 			{%  else %}	
-				<input type="checkbox" name="mailing" value="dev" />Dev<br>
+				<input type="checkbox" name="mailing" value="dev" /><a href="/teams/dev">Dev</a><br>
 			{% endif %}
 					
 			<input class="btn btn-primary" type="submit" value="Update">

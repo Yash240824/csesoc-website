@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}{% spaceless %}
 <h1>Tag</h1>
+<div class="well">
 	{% for item in items %}
 		<article class="{{ item.tag.colour }}">
 		  <header>
@@ -14,4 +15,5 @@
 		 {{ item.content|safe }}
 		</article>
 	{% endfor %}
+</div>
 {% endspaceless %}{% endblock %}
