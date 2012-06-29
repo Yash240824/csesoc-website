@@ -17,7 +17,10 @@
 		</form>
 		{% for team in teams %}
 			{% if team == "beta" %}
-				checked
+				<input type="checkbox" name="mailing" value="beta" checked />Beta<br>
+			{% else %}
+				<input type="checkbox" name="mailing" value="beta" />Beta<br>
+
 			{% endif %}
 		{%  endfor %}
 	</div>
