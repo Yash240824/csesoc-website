@@ -4,8 +4,12 @@
 {% block content %}{% spaceless %}
 	<h1>My Account</h1>
 	<div class="well">
-		<p>
+<!-- {{user.profile}} Hacks to make user profile do not delete-->		
+        <p>
 			<strong>Student Number: </strong>{{user}}
+		</p>
+		<p>
+			<strong>CSE: </strong>{{user.get_profile.cselogin}}
 		</p>
 		<p>
 			<strong>Name: </strong>{{user.get_full_name}}
@@ -15,7 +19,5 @@
 		</p>
 		{% if user.is_staff %}<p>You are Staff</p>{% endif %}
 		{% if user.is_superuser %}<p>You are God</p>{% endif %}
-		{{user.profile}}
-		{{user.get_profile.cselogin}}
 	</div>
 {% endspaceless %}{% endblock %}
