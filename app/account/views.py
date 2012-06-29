@@ -18,9 +18,9 @@ def update_mailing(request):
        h = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
        h.request('GET', '/~csesoc/mailingLists?cseid=' + request.user.get_profile().cselogin)	
        cse = h.getresponse().read()
-       currentteams = cse.split(',')
+       # currentteams = cse.split(',')
        teams = "beta,tech,publicity,social,dev".split(',')
-       return render_to_response('account/mailing.html', {'teams': teams,'currentteams':currentteams}, context_instance=RequestContext(request))
+       return render_to_response('account/mailing.html', {'teams': teams}, context_instance=RequestContext(request))
    else:
        messages.error(request, "You are not Logged In")
        return redirect('/')
