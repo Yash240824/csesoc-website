@@ -7,21 +7,13 @@
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
 			
 			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}"><br>
-			<input type="checkbox" name="mailing" value="beta" />Beta<br>
-			<input type="checkbox" name="mailing" value="tech" />Tech<br>
-			<input type="checkbox" name="mailing" value="publicity" />Publicity<br>
-			<input type="checkbox" name="mailing" value="social" />Social<br>
-			<input type="checkbox" name="mailing" value="dev" />Dev<br>
-						
+			{% for team in teams %}
+				<input type="checkbox" name="mailing" value="{{team}}" />{{team}}<br>
+			{%  endfor %}	
+			{% for team in currentteams %}
+				<input type="checkbox" name="mailing" value="{{team}}" checked />{{team}}<br>
+			{%  endfor %}			
 			<input type="submit" value="Update">
 		</form>
-		{% for team in teams %}
-			{% if team == "beta" %}
-				<input type="checkbox" name="mailing" value="beta" checked />Beta<br>
-			{% else %}
-				<input type="checkbox" name="mailing" value="beta" />Beta<br>
-
-			{% endif %}
-		{%  endfor %}
 	</div>
 {% endspaceless %}{% endblock %}
