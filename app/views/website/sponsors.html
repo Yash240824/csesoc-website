@@ -4,12 +4,12 @@
 {% block content %}
 <h1>Our Sponsors</h1>
 <br/>
-<table class="table table-bordered">
+<table class="table table-bordered table-striped table-sponsors">
     <tbody>
 {% for sponsor in sponsors %}
 <tr>
-    <td rowspan="2"><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"/></a></td>
-    <td><a href="{{ sponsor.website }}" class="sponsorName">{{ sponsor.name }}</a></td></tr><tr><td>{{ sponsor.description|safe }}</td>
+    <td class="image"><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"/></a></td>
+    <td><strong><a href="{{ sponsor.website }}" class="sponsorName">{{ sponsor.name }}</a></strong><br>{{ sponsor.description|safe }}</td>
 </tr>
 
 {% endfor %}
