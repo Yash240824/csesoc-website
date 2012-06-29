@@ -14,7 +14,7 @@ class UserProfile(models.Model):
 		h1 = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
 		h1.request('GET', '/~samli/cseid.cgi?id=' + user.username)	
 		cse = h1.getresponse().read()
-		User.profile, c = UserProfile.objects.get_or_create(user=user,cselogin=cse)
-		return User.profile
+		user.profile, c = UserProfile.objects.get_or_create(user=user,cselogin=cse)
+		return user.profile
 		
 	User.profile = property(get_or_create_profile)
