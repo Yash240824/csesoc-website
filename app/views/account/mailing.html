@@ -2,7 +2,7 @@
 {% block titlecontent %}My Account{% endblock %}
 {% block stylesheets %}{% endblock %}
 {% block content %}{% spaceless %}
-	<h1>My Mailing List</h1>
+	<h1>My Mailing Lists</h1>
 	<div class="well">
 		<p>
 			Please select the teams you would like to register to recieve emails from:
@@ -14,35 +14,35 @@
 			{%  else %}	
 				<input type="checkbox" name="mailing" value="beta" />
 		 	{% endif %}
-		 	<a href="/teams/beta">Beta</a> - βeta is a fortnightly newsletter CSESoc puts out, containing the latest and greatest news about computing, UNSW, CSE, and the world that revolves around you, our reader. <br><br>
+		 	<a href="/teams/beta"> Beta</a> - βeta is a fortnightly newsletter CSESoc puts out, containing the latest and greatest news about computing, UNSW, CSE, and the world that revolves around you, our reader. <br><br>
 		 	
 		 	{% if "tech" in teams %}
 		 		<input type="checkbox" name="mailing" value="tech" checked />
 		 	{%  else %}	
 		 		<input type="checkbox" name="mailing" value="tech" />
 			{% endif %}
-			<a href="/teams/tech">Tech</a> - The Tech working group organises educational events throughout the year to help CSE students (and anyone else, really) use CSE's technical resources, mostly the labs' computers.<br><br>
+			<a href="/teams/tech"> Tech</a> - The Tech working group organises educational events throughout the year to help CSE students (and anyone else, really) use CSE's technical resources, mostly the labs' computers.<br><br>
 			
 			{% if "social" in teams %}
 			 	<input type="checkbox" name="mailing" value="social" checked />
 			{%  else %}	
 			 	<input type="checkbox" name="mailing" value="social" />
 			{% endif %}
-			<a href="/teams/social">Social</a> - CSESoc is a all student run society, and being part of the social team is a great place to start getting involved in the society's operations.<br><br>
+			<a href="/teams/social"> Social</a> - CSESoc is a all student run society, and being part of the social team is a great place to start getting involved in the society's operations.<br><br>
 			
 			{% if "publicity" in teams %}
 				 <input type="checkbox" name="mailing" value="publicity" checked />
 			{%  else %}	
 				<input type="checkbox" name="mailing" value="publicity" />
 			{% endif %}
-			<a href="/teams/publicity">Publicity</a> - Is for those that love designing things, are very vocal or just like to try new things. <br><br>
+			<a href="/teams/publicity"> Publicity</a> - Is for those that love designing things, are very vocal or just like to try new things. <br><br>
 			
 			{% if "dev" in teams %}
 				<input type="checkbox" name="mailing" value="dev" checked />
 			{%  else %}	
 				<input type="checkbox" name="mailing" value="dev" />
 			{% endif %}
-			<a href="/teams/dev">Dev</a> - The Dev team works on improving life in CSE through software. This could be anything from improving current systems to developing and implementing completely new systems from scratch. <br><br>
+			<a href="/teams/dev"> Dev</a> - The Dev team works on improving life in CSE through software. This could be anything from improving current systems to developing and implementing completely new systems from scratch. <br><br>
 					
 			<input class="btn btn-primary" type="submit" value="Update">
 		</form>
