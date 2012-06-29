@@ -16,7 +16,7 @@ p {
 	text-align: justify;
 	margin: 0 0 15px 0;
 }
-.container > li {
+.well li {
 	line-height: 16pt;
 	margin-bottom: 5pt;
 }
