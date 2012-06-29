@@ -13,6 +13,26 @@
 			{%  else %}	
 				<input type="checkbox" name="mailing" value="beta" />Beta<br>
 		 	{% endif %}
+		 	{% if "tech" in teams %}
+		 			<input type="checkbox" name="mailing" value="tech" checked />Tech<br>
+		 	{%  else %}	
+		 		<input type="checkbox" name="mailing" value="tech" />Tech<br>
+			{% endif %}
+			{% if "social" in teams %}
+			 		<input type="checkbox" name="mailing" value="social" checked />Social<br>
+			{%  else %}	
+			 	<input type="checkbox" name="mailing" value="social" />Social<br>
+			{% endif %}
+			{% if "publicity" in teams %}
+				 	<input type="checkbox" name="mailing" value="publicity" checked />Publicity<br>
+			{%  else %}	
+				<input type="checkbox" name="mailing" value="publicity" />Publicity<br>
+			{% endif %}
+			{% if "dev" in teams %}
+					<input type="checkbox" name="mailing" value="dev" checked />Dev<br>
+			{%  else %}	
+				<input type="checkbox" name="mailing" value="dev" />Dev<br>
+			{% endif %}
 					
 			<input type="submit" value="Update">
 		</form>
