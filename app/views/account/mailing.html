@@ -10,9 +10,7 @@
 			{% for team in teams %}
 				<input type="checkbox" name="mailing" value="{{team}}" />{{team}}<br>
 			{%  endfor %}	
-			{% for team in currentteams %}
-				<input type="checkbox" name="mailing" value="{{team}}" checked />{{team}}<br>
-			{%  endfor %}			
+					
 			<input type="submit" value="Update">
 		</form>
 	</div>
