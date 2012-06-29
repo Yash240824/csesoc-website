@@ -54,8 +54,10 @@ h1 {
 	background: #eee url('/assets/img/banner.png') top right no-repeat; */
 	color: #ffffff;
 	padding:50px;
-	background: #50659E url('/assets/img/banner.png') top right no-repeat; 
-}
+	background-image: url('/assets/img/banner.png'), url('/assets/img/sand.jpg'); 
+	background-position: right top,center ;
+	background-repeat: no-repeat;
+ }
 
 .table-sponsors td {
 	padding: 12px;
