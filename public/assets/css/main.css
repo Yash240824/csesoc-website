@@ -50,6 +50,13 @@ h1 {
 	.wrapper > .container {
 		padding-top: 0px;
 	}
+	
+	.hero-unit {
+	 	background-image: url('/assets/img/sand.jpg'); 
+		background-position: center ;
+		background-repeat: no-repeat;
+		background-size:100% auto;
+	 }
 }
 
 .navbar .brand {
