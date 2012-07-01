@@ -62,8 +62,8 @@ h1 {
 	padding:50px;
 	background: #eee url('/assets/img/banner.png') top right no-repeat; */
 	color: #ffffff;
-	padding:50px;
-	background-image: url('/assets/img/banner.png'), url('/assets/img/sand.jpg'); 
+/* 	padding:50px;
+ */	background-image: url('/assets/img/banner.png'), url('/assets/img/sand.jpg'); 
 	background-position: right top,center ;
 	background-repeat: no-repeat;
 	background-size:auto 100%,100% auto;
