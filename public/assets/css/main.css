@@ -69,13 +69,13 @@ a.hero-unit-link:hover {
  
   .hero-unit div {
 	background: rgba(0, 0, 0, 0.6);
-	margin:-20px -20px;
-	padding: 20px 20px;
+	margin: -20px -20px -20px -60px;
+	padding: 20px 20px 20px 60px;
 	max-width: 320px;
 	
-	-webkit-border-radius: 5px;
+/* 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 5px; */
  }
  
  .hero-unit div h1 {
