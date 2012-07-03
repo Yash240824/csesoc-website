@@ -203,6 +203,15 @@ footer {
 	 }
 }
 
+@media (max-width: 480px) {
+	.hero-unit {
+	 	background-image: url('/assets/img/sand.jpg'); 
+		background-position: center ;
+		background-repeat: no-repeat;
+		background-size:100% 100%;
+	 }
+}
+
 .sidebar-nav {
 	padding: 9px 0;
 }
