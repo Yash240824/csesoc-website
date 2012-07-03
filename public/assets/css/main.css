@@ -69,7 +69,7 @@ a.hero-unit-link:hover {
  
   .hero-unit div {
 	background: rgba(0, 0, 0, 0.6);
-	margin: -20px -20px -20px -60px;
+	margin: -20px -60px -20px -60px;
 	padding: 20px 20px 20px 60px;
 	max-width: 320px;
 	
