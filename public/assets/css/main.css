@@ -271,7 +271,7 @@ footer {
   margin-left: -20px;
   margin-right: -20px;
 }
-
+}
 @media (max-width: 480px) {
 	.hero-unit {
 	 	background-image: url('/assets/img/sand.jpg'); 
