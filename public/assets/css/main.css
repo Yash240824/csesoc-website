@@ -46,18 +46,6 @@ h1 {
 .wrapper > .container {
 	padding-top: 60px;
 }
-@media (max-width: 979px) {
-	.wrapper > .container {
-		padding-top: 0px;
-	}
-	
-	.hero-unit {
-	 	background-image: url('/assets/img/sand.jpg'); 
-		background-position: center ;
-		background-repeat: no-repeat;
-		background-size:100% auto;
-	 }
-}
 
 .navbar .brand {
 	padding:5px 20px;
@@ -201,6 +189,18 @@ footer {
 		margin-top: 1px;
 		border-radius: 5px;
 	}
+	
+	
+	.wrapper > .container {
+		padding-top: 0px;
+	}
+	
+	.hero-unit {
+	 	background-image: url('/assets/img/sand.jpg'); 
+		background-position: center ;
+		background-repeat: no-repeat;
+		background-size:100% auto;
+	 }
 }
 
 .sidebar-nav {
