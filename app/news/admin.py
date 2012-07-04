@@ -17,7 +17,7 @@ class ItemInline(admin.TabularInline):
 class PostAdmin(admin.ModelAdmin):
 	inlines = [ItemInline]
 
-admin.site.register(Post, PostAdmin,Media = CommonMedia)
+admin.site.register(Post, PostAdmin)
 
 class ItemAdmin(admin.ModelAdmin):
 	list_display = ('headline','tag','post')
