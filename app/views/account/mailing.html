@@ -8,7 +8,7 @@
 			Please select the teams you would like to register to recieve emails from:
 		</p>
 		<form action="http://cgi.cse.unsw.edu.au/~csesoc/mailingLists" method="post">
-			<input type="hidden" name="cseid" value="{{user.get_profile.cselogin}}">
+			<input type="hidden" name="cseid" value="{{user.profile.cselogin}}">
 			{% if "beta" in teams %}
 				<input type="checkbox" name="mailing" value="beta" checked />
 			{%  else %}	

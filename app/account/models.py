@@ -12,10 +12,13 @@ class UserProfile(models.Model):
 		return self.cselogin
 
 	def get_or_create_profile(user):
-		h1 = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
-		h1.request('GET', '/~samli/cseid.cgi?id=' + user.username)	
-		cse = h1.getresponse().read()
-		user.profile, c = UserProfile.objects.get_or_create(user=user,cselogin=cse)
-		return user.profile
+		try:
+			profile = user.get_profile()
+		except UserProfile.DoesNotExist:
+			h1 = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
+			h1.request('GET', '/~samli/cseid.cgi?id=' + user.username)	
+			cse = h1.getresponse().read()
+			profile = UserProfile.objects.create(user=user,cselogin=cse)
+		return profile
 		
 	User.profile = property(get_or_create_profile)
