@@ -44,6 +44,14 @@
 				<input type="checkbox" name="mailing" value="dev" />
 			{% endif %}
 			<a href="/teams/dev"> Dev</a> - The Dev team works on improving life in CSE through software. This could be anything from improving current systems to developing and implementing completely new systems from scratch. <br><br>
+            
+                {% if "hs.team" in teams %}
+				<input type="checkbox" name="mailing" value="hs.team" checked />
+                {%  else %}	
+				<input type="checkbox" name="mailing" value="hs.team" />
+                {% endif %}
+                <a href=""> HS Team</a> - Team to help out with highschool teaching<br><br>
+                
 					
 			<input class="btn btn-primary" type="submit" value="Update">
 		</form>
