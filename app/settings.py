@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'app.news',
     'app.finance',
     'app.forms',
+    'app.account',
     #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -147,6 +148,9 @@ AUTHENTICATION_BACKENDS = (
     'app.auth.auth_ldap.ldapBackend',
     #'django.contrib.auth.backends.ModelBackend',
 )
+
+
+AUTH_PROFILE_MODULE = 'account.UserProfile'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

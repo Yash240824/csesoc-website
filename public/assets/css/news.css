@@ -7,7 +7,10 @@ Author: Chris Manouvrier
 article {
 	padding-left: 20px;
 	border-left:1px solid #333;
-	font-family:Arial;
+	font-family: 'Open Sans',sans-serif;
+	font-weight: 300;
+	font-size: 11pt;
+	line-height: 16pt;
 	color: #666;
 	margin: 10px 0px;
 	margin-bottom: 20px;
@@ -46,8 +49,8 @@ article header label{
 }
 
 article p {
-	font-size:13px;
 	color: #666;
+	margin: 0 0 8px 0;
 
 }
 

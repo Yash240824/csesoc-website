@@ -5,13 +5,15 @@
 {% endblock %}
 {% block content %}{% spaceless %}
 <h1>Tag</h1>
+<div class="well">
 	{% for item in items %}
 		<article class="{{ item.tag.colour }}">
 		  <header>
-			// <h2><a href="/news/{{ item.id }}">{{ item.headline }}</a></h2>
+			// <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
 			<a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
 		  </header>
 		 {{ item.content|safe }}
 		</article>
 	{% endfor %}
+</div>
 {% endspaceless %}{% endblock %}

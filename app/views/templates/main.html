@@ -46,7 +46,7 @@
             <li><a href="/account">My Account</a></li>
             {% if user.is_staff %}<li><a href="/admin">Django Admin Portal</a></li>{% endif %}
             <li class="divider"></li>
-            <li><a href="logout">Sign Out</a></li>
+            <li><a href="/logout">Sign Out</a></li>
           </ul>
         </div>
 
@@ -97,7 +97,7 @@
                 <li><a href="/teams/volunteer">Volunteer!</a></li>
               </ul> 
             </li>
-            <li class="dropdown"> 
+            <!-- <li class="dropdown"> 
               <a>Murder</a> 
               <ul class="dropdown-menu">
                 <li><a href="/murder/scoreboard">Scoreboard</a></li> 
@@ -105,7 +105,7 @@
                 <li><a href="/murder/my-victim">My Victim</a></li> 
                 <li><a href="/murder/signup">Signup</a></li> 
               </ul> 
-            </li>
+            </li> -->
             <li class="dropdown"> 
               <a href="/fun/menu">Fun Stuff</a> 
               <ul class="dropdown-menu">
@@ -120,8 +120,8 @@
               <a href="/sponsors">Sponsors</a>
               <ul class="dropdown-menu">
                 <li><a href="/sponsors">Our Sponsors</a></li>
-                <li><a href="/google">Google</a></li>
-                <li><a href="/macquarie">Macquarie Group</a></li> 
+<!--                 <li><a href="/google">Google</a></li>
+ -->                <li><a href="/macquarie">Macquarie Group</a></li> 
                 <li><a href="/sponsors-join">Become a Sponsor</a></li> 
               </ul>
             </li>
@@ -161,8 +161,8 @@
         Copyright &copy; CSESoc 2012
       </span>
       <span class="pull-right">
-        <img src="/assets/img/google-plus.png">
-        <img src="/assets/img/facebook.png">
+        <a href="https://plus.google.com/101220554982256575482" rel="publisher"><img src="/assets/img/google-plus.png"></a>
+        <a href="https://www.facebook.com/csesoc" ><img src="/assets/img/facebook.png"></a>
       </span>
 
 

@@ -3,15 +3,16 @@
 
 {% block content %}
 <h1>Our Sponsors</h1>
-<br/>
-<table id="sponsor-table">
+<table class="table table-bordered table-striped table-sponsors">
+    <tbody>
 {% for sponsor in sponsors %}
 <tr>
-    <td width="30%" class="sponsor-table-image"><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"/></a></td>
-    <td width="70%" class="sponsor-table-description"><a href="{{ sponsor.website }}" class="sponsorName">{{ sponsor.name }}</a><br />{{ sponsor.description|safe }}</td>
+    <td class="image"><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"/></a></td>
+    <td><strong><a href="{{ sponsor.website }}" class="sponsorName">{{ sponsor.name }}</a></strong><br>{{ sponsor.description|safe }}</td>
 </tr>
 
 {% endfor %}
+</tbody>
 </table>
 
 {% endblock %}
