@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'app.finance',
     'app.forms',
     'app.account',
+    'app.paypal.standard.ipn'
     #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
@@ -151,6 +152,11 @@ AUTHENTICATION_BACKENDS = (
 
 
 AUTH_PROFILE_MODULE = 'account.UserProfile'
+
+# django-paypal settings
+PAYPAL_RECEIVER_EMAIL = "csesoc@cse.unsw.edu.au"
+# Sandbox email:
+#PAYPAL_RECEIVER_EMAIL = "razori_1326182346_biz@gmail.com"
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

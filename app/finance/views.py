@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from app.finance.models import *
 from django.contrib import messages
+from app.paypal.standard.forms import PayPalPaymentsForm
+
 
 def invoice_thanks(request, slug):
     product = get_object_or_404(Invoice, slug=slug)
@@ -70,5 +72,6 @@ def invoice_detail(request, slug, hash):
         'total_price' : "$%.2f"%(price),
         'paypal_price' : "$%.2f"%(paypal_price),
         'dd_description': dd_description,
-    	'title' : title
+    	'title' : title,
+        'form' : PayPalPaymentsForm(initial=paypal)
         }, RequestContext(request))
