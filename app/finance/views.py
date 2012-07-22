@@ -1,11 +1,11 @@
 import uuid
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.conf import settings
 from app.finance.models import *
-from django.contrib.auth.views import redirect_to_login
+from django.contrib import messages
 
 def invoice_thanks(request, slug):
     product = get_object_or_404(Invoice, slug=slug)
@@ -28,7 +28,8 @@ def invoice_detail(request, slug, hash):
         if request.user.is_authenticated():
             item_name = '%s (%s)'%(product.title, request.user.username)
         else:
-            return redirect_to_login(request.path)
+            messages.error(request, "You are not Logged In")
+            return redirect('/')
     else:
         item_name = '%s: %s'%(str(product.slug),product.title)
 
@@ -42,16 +43,16 @@ def invoice_detail(request, slug, hash):
 
             'item_name': item_name,
             # Need a 150x150px image
-            #'image_url' : settings.SITE_DOMAIN + '/static/header/header.png',
+            #'image_url' : '/static/header/header.png',
 
             # Unique invoice ID
             'invoice': str(uuid.uuid1()),
 
             # The URL they will return to
-            'return_url': settings.SITE_DOMAIN + "invoice/thanks/" + product.slug,
+            'return_url': "/finance/thanks/" + product.slug,
 
             # The URL they will cancel to
-            'cancel_return': settings.SITE_DOMAIN + "invoice/" + product.slug + "/" + str(product.hash),
+            'cancel_return': "/finance/" + product.slug + "/" + str(product.hash),
             }
 
     if product.students_login:

@@ -27,8 +27,8 @@ class InvoiceAdmin(admin.ModelAdmin):
     def invoice_number(obj):
         return obj.slug
     def link(obj):
-        url = "%sinvoice/%s/%s" % (settings.SITE_DOMAIN, obj.slug, obj.hash)
-        return "<a href='%s'>%s</a>"%(url, url)
+        url = "/finance/%s/%s" % (obj.slug, obj.hash)
+        return "<a href='%s'>%s</a>"%(url, 'Click Here')
     link.allow_tags = True
     def company(obj):
         if obj.students_login:
