@@ -1,0 +1,12 @@
+{% extends "templates/main.html" %}
+
+{% block titlecontent %}403 Not Authorised{% endblock %}
+
+{% block allcontent %}
+
+<h1>Oh noes! The tubes are ILLEGAL! (error 403)</h1>
+<br/>
+<p>Hmmmmmm, seems like your not supposed to be here... have you been a naughty girl?? o.O<br/>
+If you believe this is a mistake on our part, please email us at <a href="mailto:csesoc.dev@cse.unsw.edu.au?subject=CSESoc Website Error: 404 at {{ request.path }}">csesoc.dev@cse.unsw.edu.au</a>.</p>
+
+{% endblock %}
