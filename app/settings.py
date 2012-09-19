@@ -139,7 +139,8 @@ INSTALLED_APPS = (
     'app.finance',
     'app.forms',
     'app.account',
-    'app.paypal.standard.ipn'
+    'app.paypal.standard.ipn',
+    'app.music'
     #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
