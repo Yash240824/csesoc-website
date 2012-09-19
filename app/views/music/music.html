@@ -1,8 +1,7 @@
-<html>
-<head>
-<title>Song Suggestions</title>
-</head>
+{% extends 'templates/2-column-w-sponsors.html' %}
 
+{% block titlecontent %}Song Suggestions{% endblock %}
+{% block stylesheets %}
 <style> 
     table, td, th {
       border:1px solid #cccccc;
@@ -12,19 +11,6 @@
    th {
       font-style:italic;
       font-weight:normal;
-   }
-
-   #content {
-      margin: 0 auto;
-      width: 92%;
-   }
-   
-   h2, h3 {
-      margin: 9 1;
-   }
-
-   body {
-      font-family:"Arial"
    }
 
    .up {
@@ -64,9 +50,7 @@
    
 </style> 
 
-<body>
-
-   <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
    <script type="text/javascript" src="/assets/music/jquery.tablesorter.js"></script>
    <script type="text/javascript">
       $(document).ready(function() 
@@ -120,15 +104,20 @@
             });
       };
 </script>
+{% endblock %}
+
+{% block content %}{% spaceless %}
+
+   
 
 
-<h2 align="center" style="color:#ee8800; font-weight:bold"> 
+<h2 > 
    Soctail Night Song Suggestions
 </h2>
-<div id='content'> 
+<div id='content' class="well"> 
    <form method="POST" action="" />
    {% csrf_token %}
-    <h3 style="color: rgb(238, 136, 0); font-weight: bold;">Suggest a song</h3> 
+    <h3>Suggest a song</h3> 
     <table cellpadding="4" width="100%"> 
       <tr> 
          <th align="center" width="22%">Artist</td> 
@@ -158,7 +147,7 @@
    
 
       {% if songs|length %}
-   <h3 style="color: rgb(238, 136, 0); font-weight: bold;">Current suggestions</h3> 
+   <h3>Current suggestions</h3> 
    <table cellpadding="4" id="musicTable" class="tablesorter" width="100%">  
       <thead>
       <tr> 
@@ -201,5 +190,5 @@
    </table>
 </div>
 
-</body>
-</html>
+{% endspaceless %}{% endblock %}
+
