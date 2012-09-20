@@ -2,29 +2,6 @@
 
 {% block titlecontent %}Song Suggestions{% endblock %}
 {% block stylesheets %}
-<style> 
-
-   .up {
-      width:25;
-      height:23;
-      background:url("/assets/music/upBright.png") no-repeat center;
-   }
- 
-   .down {
-      width:25;
-      height:23;
-      background:url("/assets/music/downBright.png") no-repeat center;
-   }
- 
-   .up:disabled {
-      background:url("/assets/music/upDull.png") no-repeat center;
-   }
- 
-   .down:disabled {
-      background:url("/assets/music/downDull.png") no-repeat center;
-   }
-
-</style> 
 
    <script type="text/javascript">
       function setVisibility(id, up, none, down) {
@@ -156,12 +133,12 @@
          <td>{{ f.song.artist }}</td>
          <td>{{ f.song.title }}</td>
          <td align="center"><span id="votes_{{f.song.id}}">{{ f.song.votes }}</span><span id="votes_{{f.song.id}}_loading"></span></td>
-         <td colspan="2" align="center">
+         <td colspan="2" align="center" class="btn-group">
 
-
-            <button id="{{f.song.id}}_up" {% if f.states.0 %} disabled="true" {% endif %} class="btn up" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'up');"></button>&nbsp;&nbsp;
+            <button id="{{f.song.id}}_up" {% if f.states.0 %} disabled="true" {% endif %} class="btn" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'up');"><i class="icon-arrow-up"></i></button>&nbsp;&nbsp;
             <button class="btn" id="{{f.song.id}}_none"  {% if f.states.1 %} disabled="true" {% endif %}  onclick="voteSong({{f.song.id}}, 'none');">None</button>&nbsp;&nbsp;
-            <button id="{{f.song.id}}_down" {% if f.states.2 %} disabled="true" {% endif %} class="btn down" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'down');"></button> 
+            <button id="{{f.song.id}}_down" {% if f.states.2 %} disabled="true" {% endif %} class="btn" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'down');"><i class="icon-arrow-down"></i></button> 
+   
          </td>
       </tr>
    {% endfor %}
