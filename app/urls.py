@@ -25,9 +25,9 @@ urlpatterns = patterns('',
     #finance(invoice, paypal)
     url(r'^finance/', include('app.finance.urls')),
                        
-                       # urls for music
-                       (r'^music/$', 'app.music.views.music_submit_song'),
-                       (r'^music/vote/$', 'app.music.views.music_vote'),
+    # urls for music
+    (r'^music/vote/$', 'app.music.views.music_vote'),
+    (r'^music/$', 'app.music.views.music_submit_song'),
 
     # miscellaneous
     url(r'^(?P<path>.*)/$', 'app.website.views.slug'),

@@ -3,15 +3,6 @@
 {% block titlecontent %}Song Suggestions{% endblock %}
 {% block stylesheets %}
 <style> 
-    table, td, th {
-      border:1px solid #cccccc;
-      border-collapse:collapse;
-    }
- 
-   th {
-      font-style:italic;
-      font-weight:normal;
-   }
 
    .up {
       width:25;
@@ -33,36 +24,9 @@
       background:url("/assets/music/downDull.png") no-repeat center;
    }
 
-   table.tablesorter thead tr .header {
-      background-image: url("/assets/music/bg.gif");
-      background-repeat: no-repeat;
-      background-position: center right;
-      cursor: pointer;
-   }
-
-   table.tablesorter thead tr .headerSortUp {
-      background-image: url("/assets/music/asc.gif");
-   }
-
-   table.tablesorter thead tr .headerSortDown {
-      background-image: url("/assets/music/desc.gif");
-   } 
-   
 </style> 
 
-<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-   <script type="text/javascript" src="/assets/music/jquery.tablesorter.js"></script>
    <script type="text/javascript">
-      $(document).ready(function() 
-          { 
-              $("#musicTable").tablesorter({
-                  headers: {
-                      3: {sorter:false}
-                  }
-              }); 
-          } 
-      ); 
-      
       function setVisibility(id, up, none, down) {
          $("#" + id + "_up").attr("disabled", up);
          $("#" + id + "_none").attr("disabled", none);
@@ -84,6 +48,32 @@
          $("#votes_" + song_id + "_loading").html(imgContent);
 
          setVisibility(song_id, true, true, true);
+
+
+         //added this to for csrf token
+         $.ajaxSetup({ 
+           beforeSend: function(xhr, settings) {
+               function getCookie(name) {
+                   var cookieValue = null;
+                   if (document.cookie && document.cookie != '') {
+                       var cookies = document.cookie.split(';');
+                       for (var i = 0; i < cookies.length; i++) {
+                           var cookie = jQuery.trim(cookies[i]);
+                           // Does this cookie string begin with the name we want?
+                       if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                           cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                           break;
+                       }
+                   }
+               }
+               return cookieValue;
+               }
+               if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                   // Only send the token to relative URLs i.e. locally.
+                   xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+               }
+           } 
+      });
 
          $.ajax({
             url: 'vote/',
@@ -118,37 +108,37 @@
    <form method="POST" action="" />
    {% csrf_token %}
     <h3>Suggest a song</h3> 
-    <table cellpadding="4" width="100%"> 
+    <table class="table table-bordered"> 
       <tr> 
-         <th align="center" width="22%">Artist</td> 
-         <th align="center" width="33%">Title</td> 
-         <th align="center" width="20%">Do you have the song?</td> 
-         <th align="center" width="15%">Notes</td> 
-         <th align="center" width="10%">&nbsp;</td> 
+         <th >Artist</td> 
+         <th >Title</td> 
+         <th >Do you have the song?</td> 
+         <th >Notes</td> 
       </tr> 
  
       <tr> 
-         <td align="center"><input type="text" name="artist" maxlength="50" /></td> 
-         <td align="center"><input type="text" name="title" maxlength="50" /></td> 
-         <td align="center"><input type="checkbox" name="hassong" /></td> 
-         <td align="center"><input type="text" name="notes" maxlength="100"/></td> 
-         <td align="center"><input type="submit" name="Submit" value="Submit"></td> 
+         <td><input type="text" name="artist" maxlength="40"/></td> 
+         <td><input type="text" name="title" maxlength="40" /></td> 
+         <td><input type="checkbox" name="hassong" /></td> 
+         <td><input type="text" name="notes" maxlength="100"/></td> 
       </tr> 
 
       {% if submitted %}
-      <tr><td colspan="5" align="center" style="font-style:italic">
+      <tr><td colspan="4" align="center" style="font-style:italic">
             <div id="submitted">
                Your suggestion of {{ songdetails }} has been added, thanks!
             </div>
       </td></tr> 
       {% endif %}
+
    </table>
+   <input type="submit" class="btn" name="Submit" value="Submit">
 </form>
    
 
       {% if songs|length %}
    <h3>Current suggestions</h3> 
-   <table cellpadding="4" id="musicTable" class="tablesorter" width="100%">  
+   <table cellpadding="4" class="table table-bordered" width="100%">  
       <thead>
       <tr> 
          <th align="center" width="22%">Artist</td> 
@@ -158,18 +148,7 @@
       </tr> 
       </thead>
 
-    <tr>
-    <td>Rebecca Black</td>
-    <td>Friday</td>
-    <td align="center"><span id="votes_-1">9001</span>
-    <span id="votes_-1_loading"></span></td>
-    <td colspan="2" align="center">
 
-            <button id="-1_up" disabled="true" class="up" style="vertical-align:middle"></button> 
-            <button id="-1_none" disabled="true">None</button> 
-            <button id="-1_down" disabled="true" class="down" style="vertical-align:middle"></button> 
-         </td>
-      </tr>
 
 
    {% for f in songs %}
@@ -180,13 +159,17 @@
          <td colspan="2" align="center">
 
 
-            <button id="{{f.song.id}}_up" {% if f.states.0 %} disabled="true" {% endif %} class="up" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'up');"></button> 
-            <button id="{{f.song.id}}_none"  {% if f.states.1 %} disabled="true" {% endif %}  onclick="voteSong({{f.song.id}}, 'none');">None</button> 
-            <button id="{{f.song.id}}_down" {% if f.states.2 %} disabled="true" {% endif %} class="down" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'down');"></button> 
+            <button id="{{f.song.id}}_up" {% if f.states.0 %} disabled="true" {% endif %} class="btn up" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'up');"></button>&nbsp;&nbsp;
+            <button class="btn" id="{{f.song.id}}_none"  {% if f.states.1 %} disabled="true" {% endif %}  onclick="voteSong({{f.song.id}}, 'none');">None</button>&nbsp;&nbsp;
+            <button id="{{f.song.id}}_down" {% if f.states.2 %} disabled="true" {% endif %} class="btn down" style="vertical-align:middle" onclick="voteSong({{f.song.id}}, 'down');"></button> 
          </td>
       </tr>
    {% endfor %}
    {% endif %}
+
+   <form method="POST" action="vote">
+      
+   </form>
    </table>
 </div>
 
