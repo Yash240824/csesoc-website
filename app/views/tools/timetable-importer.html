@@ -1,0 +1,151 @@
+{% extends 'templates/2-column-w-sponsors.html' %}
+{% block titlecontent %}UNSW Timetable Importer{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascript %}
+<script src="/assets/js/timetable-importer.js" content="text/javascript" type="text/javascript"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{% endblock %}
+{% block content %}{% spaceless %}
+<div class="well">
+
+  <div id="logo">
+    <h1>Timetable Importer by Chris Lam (clam@cse)</h1>
+  </div>
+
+  <div>
+    <div>
+      <form id="import-timetable" method="post" action="">
+        {% csrf_token %}
+        <div id="content-bgtop">
+          <div id="content-bgbtm">
+            <div class="post entry">
+              <p>Ok. So the idea here is to throw your uni timetable into google calendar.
+                You can then share the calendar with friends and even import all that <a href="http://www.google.com/support/mobile/bin/answer.py?hl=en&amp;answer=151674"> into your IPod</a> or whatever. If you're worried about passwords and whatnot, try <a href="http://www.cse.unsw.edu.au/~szyf396/timetable.html">steven's version</a> which outputs a csv ready for import.
+              </p>
+
+              <h4 style="color:red">IMPORTANT</h4>
+
+              <ul>
+                <li>This works pretty slow so give the page time to fully load afterwards (it will say success once it's done)</li>
+                <li>You have to enable google calendar. That means just access it at least once</li>
+                <li>Sometimes this will fail due to dodgy google api, something about a 302 moved</li>
+              </ul>
+            </div>
+            <div class="post" id="entry">
+              <h3>Google details</h3>
+
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>Username:</p>
+                    </td>
+
+                    <td><input class="required" id="guser" type="text" name="username" /></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <p>Password:</p>
+                    </td>
+
+                    <td><input id="gpass" type="password" name="password" /></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="gerror" class="error"> Google details are required </div>
+            </div>
+            <hr/>
+            <div class="post" id="entry">
+              <h3>Timetable Source</h3><br />
+
+              <div class="control-group">
+                <div class="controls">
+                  <label class="radio">
+                    <input type="radio" name="input-type" id="login-radio" value="use-login" checked="">
+                    myUnsw Login
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="input-type" id="login-radio" value="use-source">
+                    Paste Source
+                  </label>
+                </div>
+              </div>
+
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div id="use-source">
+                        <textarea class="input-xlarge" id="source" rows="10"></textarea>
+                        <div class="error"> Source is empty </div>
+
+                        <h4 id="source-help">Help</h4>
+
+                        <p id="source-help-text">Paste the source of your Class Timetable page from My UNSW (should be <a href="https://my.unsw.edu.au/active/studentTimetable/timetable.xml">here</a>, then click click Source or Page Source from the View menu up the top). You can use this to do timetables that aren't the current one. Only handles main semesters though (I think).
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div id="use-login">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p>zUser:</p>
+                              </td>
+
+                              <td><input id="zUser" type="text" name="zUser" /></td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                                <p>zPass:</p>
+                              </td>
+
+                              <td><input id="zPass" type="password" name="zPass" /></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="error"> Enter myUnsw information </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="submit-area">
+                <a id="import-button" class="btn btn-primary"/>Go!</a>
+                <br/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr/>
+      <div>
+        <div id="plusone">
+          <g:plusone href="www.cse.unsw.edu.au/~clam/timetable/"></g:plusone>
+        </div>
+        <div id="like-button">
+          <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.cse.unsw.edu.au%2F%7Eclam%2Ftimetable%2F&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=80"
+          scrolling="no" frameborder="0" class="c9" allowtransparency="true"></iframe>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p>Source at ~clam/public_html/timetable/timetable.py or <a href="http://www.nik3daz.com/timetable.py">here</a><br/>
+        Original Timetable Parsing Code by Steven Fan (stevenf)<br/>
+        <b>Report bugs to <a href="mailto:clam@cse.unsw.edu.au">clam</a></b>
+        <br/><br/>
+        DISCLAIMER: Passwords and usernames are not used for any other purpose than to login, get the timetable and create the calendar. They don't get seen by anyone during or after execution of code. Go read the source if you want to make sure.
+      </p>
+    </div>
+
+  </div>
+</div>
+{% endspaceless %}{% endblock %}
