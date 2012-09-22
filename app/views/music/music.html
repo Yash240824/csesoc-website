@@ -102,7 +102,16 @@ table.tablesorter thead tr .headerSortDown {
 
          $(document).ready(function() 
           { 
-              $("#musicTable").tablesorter({sortList: [[2,1]]} ); 
+              $("#musicTable").tablesorter({
+                sortList: [[2,1]],
+                headers: { 
+                      // assign the secound column (we start counting zero) 
+                      3: { 
+                          // disable it by setting the property sorter to false 
+                          sorter: false 
+                      }
+                } 
+              }); 
           } 
       ); 
 
