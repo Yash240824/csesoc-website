@@ -5,15 +5,16 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+   # root and news
     url(r'^$', 'app.news.views.feed'),
-    # admin site
-    url(r'^admin/', include(admin.site.urls)),
-    
-    url(r'^login$', 'app.auth.views.signin'),
-    url(r'^logout$', 'app.auth.views.signout'),
     url(r'^news/', include('app.news.urls')),
     
-    #account
+    # admin site
+    url(r'^admin/', include(admin.site.urls)),
+
+    # account and auth    
+    url(r'^login$', 'app.auth.views.signin'),
+    url(r'^logout$', 'app.auth.views.signout'),
     url(r'^account/', include('app.account.urls')),
 
     # Static pages
@@ -22,9 +23,11 @@ urlpatterns = patterns('',
     url(r'^fun/(?P<fun_slug>[a-z-]+)/$', 'app.website.views.fun'),
     url(r'^sponsors$', 'app.website.views.sponsors'),
     
-    #finance(invoice, paypal)
+    # tools
+    url(r'^timetable-importer$', 'app.timetable.views.show'),
+    
+    # finance(invoice, paypal)
     url(r'^finance/', include('app.finance.urls')),
-
 
     # miscellaneous
     url(r'^(?P<path>.*)/$', 'app.website.views.slug'),

@@ -134,12 +134,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'app.auth',
+    'app.account',
     'app.website',
     'app.news',
+    'app.timetable',
     'app.finance',
-    'app.forms',
-    'app.account',
     'app.paypal.standard.ipn'
+    #'app.forms',
     #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
