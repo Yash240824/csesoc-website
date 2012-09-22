@@ -66,6 +66,7 @@ For example, to install django
 Currently the website also has these dependancies
 
 	pil - python image library
+	python-ldap - ldap library for python (used for zpass authentication)
 
 Installing Git
 --------------
