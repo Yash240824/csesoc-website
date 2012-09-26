@@ -30,8 +30,8 @@ def invoice_detail(request, slug, hash):
         if request.user.is_authenticated():
             item_name = '%s (%s)'%(product.title, request.user.username)
         else:
-            messages.error(request, "You are not Logged In")
-            return redirect('/')
+            messages.error(request, "You need to login first")
+            return redirect('/login?redirect=' + "/finance/" + product.slug + "/" + str(product.hash))
     else:
         item_name = '%s: %s'%(str(product.slug),product.title)
 

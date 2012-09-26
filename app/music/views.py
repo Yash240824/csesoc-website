@@ -76,8 +76,8 @@ def music_submit_song(request):
         # yay submit a song template
         return render_to_response('music/music.html', {'songs': getFinalList(request.user), 'submitted': False},context_instance=RequestContext(request))
   else:
-    messages.error(request, "You are not Logged In")
-    return redirect('/')
+    messages.error(request, "You need to login first")
+    return redirect('/login?redirect=/music')
 
 # returns a list for disabled state for up, none, and down
 def calcVisibility(voteAmt):
@@ -113,6 +113,6 @@ def music_vote(request):
 
         return HttpResponse(res)
   else:
-    messages.error(request, "You are not Logged In")
-    return redirect('/')
+    messages.error(request, "You need to login first")
+    return redirect('/login?redirect=/music')
 

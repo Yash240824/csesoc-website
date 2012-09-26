@@ -11,7 +11,7 @@ def view(request):
         return render_to_response('account/index.html', context_instance=RequestContext(request))
     else:
         messages.error(request, "You are not Logged In")
-        return redirect('/')
+        return redirect('/login?redirect=/account')
 
 def update_mailing(request):
    if request.user.is_authenticated():

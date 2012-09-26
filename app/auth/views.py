@@ -6,8 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def signin(request):
+   redirect_path = (request.REQUEST.get('redirect', '/'))
    if request.user.is_authenticated():
-      return redirect('/')
+      return redirect(redirect_path)
    if request.method == 'POST':
       student_number = request.REQUEST['username']
       user = authenticate(username=student_number, password=request.REQUEST['password'])
@@ -15,12 +16,12 @@ def signin(request):
       if user != None:
          login(request, user)
          messages.success(request, user.get_full_name() + " you're now logged in.")
-         return redirect('/')
+         return redirect(redirect_path)
       else:
          messages.error(request, "Invalid login.")
-         return render_to_response('auth/login.html', context_instance=RequestContext(request))
+         return render_to_response('auth/login.html', {'redirect_path': redirect_path}, context_instance=RequestContext(request))
    else:
-      return render_to_response('auth/login.html', context_instance=RequestContext(request))
+      return render_to_response('auth/login.html', {'redirect_path': redirect_path}, context_instance=RequestContext(request))
 
 def signout(request):
    logout(request)

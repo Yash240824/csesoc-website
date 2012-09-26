@@ -9,13 +9,14 @@
 <form action="/login" method="post">
 	{% csrf_token %}
 	<p>
+	   <input name="redirect" value="{{redirect_path}}" type="hidden" />
 		<label>UNSW Student Number</label>
-		<input name="username">
+		<input name="username"/>
 		<br/>
 		<label>zPass</label>
-		<input name="password" type="password">
+		<input name="password" type="password"/>
 		<br/>
-		<input type="submit" value="Login" class="btn btn-primary">
+		<input type="submit" value="Login" class="btn btn-primary"/>
 	</p>
 </form>
 {% endblock %}
