@@ -2,12 +2,7 @@
 {% block titlecontent %}{{ title }}{% endblock %}
 {% block javascript %}
 <script type="text/javascript">
-$(document).ready(function(){
-$(".cash").hide();
-$(".dd").hide();
-$(".paypal").hide();
 
-});
 function togglecash(){
 $(".cash").toggle('fast');
 $(".dd").hide();
@@ -38,17 +33,17 @@ $(".cash").hide();
 
     <tr><td colspan="2"><h4>Choose payment method:</h4></td></tr>
     <tr><td><h3><a href='javascript:togglecash();'>Cash</a> or <a href='javascript:toggledd();'>Direct Deposit</a></h3></td><td><h3> {{total_price }}</h3></td></tr>
-    <tr class='cash'><td colspan='2'>Please pay cash in person to a CSESoc Executive, at the Socs Office, Basement Level, Building K17, UNSW.</td></tr>
-        <tr class='dd'><td>Account Name:</strong></td><td>CSE SOCIETY</td></tr>
-        <tr class='dd'><td>BSB:</strong></td><td>062 303</td></tr>
-        <tr class='dd'><td>Account Number:</strong></td><td>1048 5828</td></tr>
-        <tr class='dd'><td>Payment Description:</strong></td><td><strong>{{product.slug}}</strong></td></tr>
+    <tr class='cash' style="display:none;"><td colspan='2'>Please pay cash in person to a CSESoc Executive, at the Socs Office, Basement Level, Building K17, UNSW.</td></tr>
+        <tr class='dd' style="display:none;"><td>Account Name:</strong></td><td>CSE SOCIETY</td></tr>
+        <tr class='dd' style="display:none;"><td>BSB:</strong></td><td>062 303</td></tr>
+        <tr class='dd' style="display:none;"><td>Account Number:</strong></td><td>1048 5828</td></tr>
+        <tr class='dd' style="display:none;"><td>Payment Description:</strong></td><td><strong>{{product.slug}}</strong></td></tr>
     <tr><td>
             <h3><a href='javascript:togglepaypal();'>Paypal or Credit Card</a></h3></td><td><h3> {{paypal_price }}</h3></td></tr>
-    <tr class='paypal'><td colspan="2">
+    <tr class='paypal' style="display:none;"><td colspan="2">
             <em>Note: Paying by credit card or PayPal incurs a 2.5% fee, as shown above.</em></td></tr>
 
-    <tr class='paypal'><td colspan="2" style='text-align:center;'>
+    <tr class='paypal' style="display:none;"><td colspan="2" style='text-align:center;'>
 {{ form.render }}
 </td></tr>
 </table>
