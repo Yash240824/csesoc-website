@@ -7,5 +7,6 @@ class Invoice(models.Model):
     title = models.CharField(max_length=255)
     price = models.PositiveIntegerField()
     discount = models.IntegerField()
+    max_quantity = models.PositiveIntegerField()
     hash = models.CharField(max_length=32)
     students_login = models.BooleanField(default=False)

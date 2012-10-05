@@ -38,7 +38,8 @@ def invoice_detail(request, slug, hash):
     # See the following guide for more details on variables
     # https://cms.paypal.com/cms_content/US/en_US/files/developer/PP_WebsitePaymentsStandard_IntegrationGuide.pdf
     paypal = {
-            'amount': paypal_price,
+            'amount': "%.2f"%paypal_price,
+            'quantity': 1,
             'currency_code' : "AUD",
             'no_shipping' : 1, # Don't prompt for an address
             'no_note' : 1, # Don't prompt for a note
@@ -71,7 +72,8 @@ def invoice_detail(request, slug, hash):
         'discount': "($%.2f)"%product.discount,
         'total_price' : "$%.2f"%(price),
         'paypal_price' : "$%.2f"%(paypal_price),
+        'max_quantity' : product.max_quantity,
         'dd_description': dd_description,
-    	'title' : title,
+    	  'title' : title,
         'form' : PayPalPaymentsForm(initial=paypal)
         }, RequestContext(request))
