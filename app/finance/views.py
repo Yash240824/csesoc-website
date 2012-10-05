@@ -23,7 +23,8 @@ def invoice_detail(request, slug, hash):
     price = product.price - product.discount
 
     # The paypal price is the direct debit price plus a 2.5% fee
-    paypal_price = price * 1.025
+    paypal_surcharge = 1.025
+    paypal_price = price * paypal_surcharge
 
     # Add the CSE login to the item name we send to paypal
     if product.students_login:
@@ -68,8 +69,9 @@ def invoice_detail(request, slug, hash):
         dd_description = str(product.slug)
     return render_to_response(template, {
         'product':product,
-        'price' : "$%.2f"%product.price,
+        'price' : "%.2f"%product.price,
         'discount': "($%.2f)"%product.discount,
+        'paypal_surcharge': paypal_surcharge,
         'total_price' : "$%.2f"%(price),
         'paypal_price' : "$%.2f"%(paypal_price),
         'max_quantity' : product.max_quantity,

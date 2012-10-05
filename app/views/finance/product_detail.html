@@ -26,8 +26,8 @@ function togglepaypal(){
    <h1>Invoice #{{ product.slug }}</h1>
    <h2>for {{product.company}}</h2>
    <table>
-      <tr><td class='lhs'>{{product.title}}</td><td class='price'>{{price}}</td></tr>
-      {% if product.max_quantity > 1 %}
+      <tr><td class='lhs'>{{product.title}}</td><td class='price'>${{price}}</td></tr>
+      {% if product.max_quantity > 0 %}
       <tr><td class='lhs'>Quantity : </td><td class='price'><input id="desired_quantity" name="desired_quantity" value="1"></td></tr>
       {% endif %}
       {% if product.discount > 0 %}
