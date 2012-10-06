@@ -53,7 +53,7 @@ def invoice_detail(request, slug, hash):
             'invoice': str(uuid.uuid1()),
 
             # The URL they will return to
-            'return_url': "/finance/thanks/" + product.slug,
+            'return_url': "http://www.csesoc.unsw.edu.au/finance/thanks/" + product.slug,
 
             # The URL they will cancel to
             'cancel_return': "/finance/" + product.slug + "/" + str(product.hash),
