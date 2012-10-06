@@ -13,7 +13,7 @@ def invoice_thanks(request, slug):
     product = get_object_or_404(Invoice, slug=slug)
     return render_to_response('finance/product_thanks.html', {
         'product':product,
-	'title':"Thanks!",
+	     'title':"Thanks!",
         }, RequestContext(request))
 
 def invoice_detail(request, slug, hash):
@@ -23,8 +23,8 @@ def invoice_detail(request, slug, hash):
     price = product.price - product.discount
 
     # The paypal price is the direct debit price plus a 2.5% fee
-    paypal_surcharge = 1.025
-    paypal_price = price * paypal_surcharge
+    paypal_surcharge = 2.5
+    paypal_price = price * ((paypal_surcharge / 100) + 1)
 
     # Add the CSE login to the item name we send to paypal
     if product.students_login:
@@ -60,14 +60,12 @@ def invoice_detail(request, slug, hash):
             }
 
     if product.students_login:
-        template = 'finance/product_students_detail.html'
         title = '%s'%product.title
         dd_description = "%s %s"%(str(product.slug)[-5:],str(request.user.username))
     else:
-        template = 'finance/product_detail.html'
         title = 'Invoice #%s'%str(product.slug)
         dd_description = str(product.slug)
-    return render_to_response(template, {
+    return render_to_response('finance/product_detail.html', {
         'product':product,
         'price' : "%.2f"%product.price,
         'discount': "($%.2f)"%product.discount,

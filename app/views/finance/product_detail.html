@@ -2,7 +2,28 @@
 {% block titlecontent %}{{ title }}{% endblock %}
 {% block javascript %}
 <script type="text/javascript">
-
+$(document).ready(function(){
+   $(".cash").hide();
+   $(".dd").hide();
+   $(".paypal").hide();
+   $('#desired_quantity').change(function (){
+      desired_quantity = $('#desired_quantity').val();
+      max_quantity = {{ max_quantity }};
+      price = {{ price }};
+      paypal_surcharge = (({{ paypal_surcharge }} / 100) + 1);
+      if (desired_quantity > max_quantity){
+         $('#desired_quantity_group').addClass('error');
+         desired_quantity = max_quantity;
+         $('#desired_quantity').val(max_quantity)
+      } else { 
+         $('#desired_quantity_group').removeClass('error');
+      }
+      $('#cash-price').text('$' + (price * desired_quantity).toFixed(2));
+      $('#paypal-price').text('$' +(price * paypal_surcharge * desired_quantity).toFixed(2));
+      $('#id_quantity').val(desired_quantity);
+      
+   });
+});
 function togglecash(){
    $(".cash").toggle('fast');
    $(".dd").hide();
@@ -23,28 +44,44 @@ function togglepaypal(){
 {% endblock %}
 {% block content %}
 <div class='well'>
+   {% if product.students_login %}
+   <h1>{{ product.title }}</h1>
+   <h2>for {{request.user.username}}</h2>
+   {% else %}
    <h1>Invoice #{{ product.slug }}</h1>
    <h2>for {{product.company}}</h2>
+   {% endif %}
+   <br/>
    <table>
       <tr><td class='lhs'>{{product.title}}</td><td class='price'>${{price}}</td></tr>
-      {% if product.max_quantity > 0 %}
-      <tr><td class='lhs'>Quantity : </td><td class='price'><input id="desired_quantity" name="desired_quantity" value="1"></td></tr>
+      {% if product.max_quantity > 1 %}
+      <tr><td class='lhs'>Quantity : </td><td id="desired_quantity_group" class='price control-group'><input id="desired_quantity" name="desired_quantity" value="1"><span class="help-inline">Maximum of {{max_quantity}}</span></td></tr>
       {% endif %}
       {% if product.discount > 0 %}
       <tr><td class='lhs'>Discount</td><td class='price'>{{discount}}</td></tr>
       {% endif %}
-
+      
       <tr><td colspan="2"><h4>Choose payment method:</h4></td></tr>
-      <tr><td><h3><a href='javascript:togglecash();'>Cash</a> or <a href='javascript:toggledd();'>Direct Deposit</a></h3></td><td><h3> {{total_price }}</h3></td></tr>
-      <tr class='cash' style="display:none;"><td colspan='2'>Please pay cash in person to a CSESoc Executive, at the Socs Office, Basement Level, Building K17, UNSW.</td></tr>
-      <tr class='dd' style="display:none;"><td>Account Name:</strong></td><td>CSE SOCIETY</td></tr>
-      <tr class='dd' style="display:none;"><td>BSB:</strong></td><td>062 303</td></tr>
-      <tr class='dd' style="display:none;"><td>Account Number:</strong></td><td>1048 5828</td></tr>
-      <tr class='dd' style="display:none;"><td>Payment Description:</strong></td><td><strong>{{product.slug}}</strong></td></tr>
-      <tr><td><h3><a href='javascript:togglepaypal();'>Paypal or Credit Card</a></h3></td><td><h3> {{paypal_price }}</h3></td></tr>
-      <tr class='paypal' style="display:none;"><td colspan="2"><em>Note: Paying by credit card or PayPal incurs a 2.5% fee, as shown above.</em></td></tr>
-
-      <tr class='paypal' style="display:none;"><td colspan="2" style='text-align:center;'>{{ form.render }}</td></tr>
+      <tr><td><h3><a href='javascript:togglecash();'>Cash</a> or <a href='javascript:toggledd();'>Direct Deposit</a></h3></td><td><h3 id="cash-price"> {{total_price }}</h3></td></tr>
+      <tr class='cash'><td colspan='2'>Please pay cash in person to a CSESoc Executive, at the Socs Office, Basement Level, Building K17, UNSW.</td></tr>
+      <tr class='dd'><td>Account Name:</strong></td><td>CSE SOCIETY</td></tr>
+      <tr class='dd'><td>BSB:</strong></td><td>062 303</td></tr>
+      <tr class='dd'><td>Account Number:</strong></td><td>1048 5828</td></tr>
+      <tr class='dd'><td>Payment Description:</strong></td><td><strong>{{dd_description}}</strong></td></tr>
+      {% if product.students_login %}
+      <tr class='dd'><td colspan="2">
+         <span style='color:red;'><em>Please ensure your CSE username or UNSW Student Number (<strong>{{user.username}}</strong>) is present in the payment description.</em></span>
+      </td></tr>
+      {% endif %}
+      <tr><td><h3><a href='javascript:togglepaypal();'>Paypal or Credit Card</a></h3></td><td><h3 id="paypal-price"> {{paypal_price }}</h3></td></tr>
+      <tr class='paypal'><td colspan="2">
+         <em>Note: Paying by credit card or PayPal incurs a {{ paypal_surcharge }}% fee, as shown above.</em>
+         <br/>
+         {% if product.students_login %}
+         <span style='color:red;'><em>Please ensure your CSE username is <strong>{{user.username}}</strong> before you continue.</em></span>
+         {% endif %}
+      </td></tr>
+      <tr class='paypal'><td colspan="2" style='text-align:center;'>{{ form.render }}</td></tr>
    </table>
 </div>
 {% endblock %}
