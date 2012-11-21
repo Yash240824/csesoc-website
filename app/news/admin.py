@@ -18,7 +18,7 @@ class PostAdmin(admin.ModelAdmin):
 	inlines = [ItemInline]
 	list_display = ('name','date', 'email_link')
 	def email_link(self,obj):
-		return obj.id
+		return '<a href="/news/email">Soc Annouce</a>'
 
 admin.site.register(Post, PostAdmin)
 
