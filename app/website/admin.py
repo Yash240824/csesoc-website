@@ -36,7 +36,7 @@ admin.site.register(Slug)
 
 
 class SponsorAdmin(admin.ModelAdmin):
-    fields = ('name', 'amount_paid', 'expiry_date')
+    list_display = ('name', 'amount_paid', 'expiry_date')
 
 
 admin.site.register(Sponsor, SponsorAdmin)
