@@ -33,4 +33,10 @@ admin.site.register(About)
 admin.site.register(FunStuff)
 admin.site.register(Team)
 admin.site.register(Slug)
-admin.site.register(Sponsor)
+
+
+class SponsorAdmin(admin.ModelAdmin):
+    fields = ('name', 'amount_paid', 'expiry_date')
+
+
+admin.site.register(Sponsor, SponsorAdmin)
