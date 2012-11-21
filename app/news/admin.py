@@ -16,10 +16,7 @@ class ItemInline(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
 	inlines = [ItemInline]
-	list_display = ('title','date','email_link')
-	def email_link(self,obj):
-		url = "/news/email/%s" % (obj.hash)
-        return "<a href='%s'>%s</a>"%(url, 'Click Here')
+	list_display = ('title','date')
 
 admin.site.register(Post, PostAdmin)
 
