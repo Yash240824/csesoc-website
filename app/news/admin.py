@@ -16,7 +16,7 @@ class ItemInline(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
 	inlines = [ItemInline]
-	list_display = ('name','date')
+	list_display = ('title','date')
 
 admin.site.register(Post, PostAdmin)
 
