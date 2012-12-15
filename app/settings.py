@@ -142,10 +142,13 @@ INSTALLED_APPS = (
     #'app.paypal.standard.ipn'
     #'app.forms',
     'app.account',
-    'app.music'
+    'app.music',
     #'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'app.campleaders',
+    'app.campattendees',
+
 )
 
 AUTHENTICATION_BACKENDS = (

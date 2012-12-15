@@ -33,8 +33,15 @@ urlpatterns = patterns('',
     (r'^music/vote/$', 'app.music.views.music_vote'),
     (r'^music/$', 'app.music.views.music_submit_song'),
 
+    # camp leader applications
+    (r'^apply/$', 'app.campleaders.views.apply'),
+    # camp attendee applications
+    (r'^signup/$', 'app.campattendees.views.signup'),
+
+
     # miscellaneous
     url(r'^(?P<path>.*)/$', 'app.website.views.slug'),           
+
 
     # admin site
     #(r'^admin/', include(backends.site.urls)),

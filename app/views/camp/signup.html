@@ -1,0 +1,74 @@
+{% extends 'templates/2-column-w-sponsors.html' %}
+
+{% block titlecontent %}CSESoc First Year Camp 2013 - Application Form{% endblock %}
+
+{% block content %}{% spaceless %}
+{% block stylesheets %}
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js'></script>
+
+<style>
+    th {vertical-align:middle;}
+    td {padding:10px;}
+</style>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    $("#id_gender").change(loadShirtSize).each(loadShirtSize);
+  });
+
+  function loadShirtSize() {
+    options = "";
+    update = true;
+    if($(this).val() == 'M') {
+      options += "<option value=\"S\">Small</option>";
+      options += "<option value=\"M\">Medium</option>";
+      options += "<option value=\"L\">Large</option>";
+      options += "<option value=\"XL\">Extra Large</option>";
+      options += "<option value=\"XXL\">XXL</option>";
+    } else if($(this).val() == 'F') {
+      options += "<option value=\"6\">6</option>";
+      options += "<option value=\"8\">8</option>";
+      options += "<option value=\"10\">10</option>";
+      options += "<option value=\"12\">12</option>";
+      options += "<option value=\"14\">14</option>";
+      options += "<option value=\"16\">16</option>";
+    } else {
+      update = false;
+    }
+
+    if (update) {
+      selected = $("#id_shirt_size").val();
+      $("#id_shirt_size").html(options);
+      $("#id_shirt_size").val(selected);
+    }
+  }
+</script>
+{% endblock %}
+
+<div class='application_form camp_form'>
+<h1>CSESoc First Year Camp 2013 - Application Form</h1>
+<br/>
+<ul style='list-style-type:none'>
+<li><strong>Date:</strong> End of Week 3 Semester 1 (16th March - 18th March)</li>
+<li><strong>Theme:</strong> Sci-fi and Fantasy</li>
+<li><strong>Location:</strong> <a href="http://www.outbreak.com.au">Wombaroo Adventure Centre</a></li>
+<li><strong>Payment:</strong></li>
+<li>- <span style='color:red; font-weight:bold;'>Early bird special:</span> Pay in full by the end of Monday of Week 2 to receive <strong>$10 off full price</strong>.</li>
+<li>- <strong>$70 for Arc</strong> members (must show your Arc membership sticker)</li>
+<li>- $80 for non-Arc</li>
+<li>- A $10 deposit can be put down to secure your spot if you cannot pay in full at the moment</li>
+<li><strong>Includes free camp t-shirt</strong></li>
+<li><span style='color:red'>Payment must be made in full (and cleared if by DD) by <b>14th March</b>.</strong></li>
+<li><strong><a href='/camp'>Click here for more information about camp.</a></strong></li>
+</ul>
+<br/>
+   <form action="/signup/" method="post">
+      <table>
+         {{ form.as_table }}
+      </table>
+      <div class='submit_button'>
+         <input type="submit" value="Submit Application" />
+      </div>
+   </form>
+</div>
+{% endspaceless %}{% endblock %}
+
