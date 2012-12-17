@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm,Textarea
 from django import forms
 from django.shortcuts import render_to_response
 from models import AwkwardQuestion
@@ -23,6 +23,19 @@ class ApplicationForm(ModelForm):
       #http://docs.djangoproject.com/en/dev/topics/forms/modelforms/#overriding-the-default-field-types-or-widgets
       #widgets = {'q9question': forms.HiddenInput}
       exclude = ( 'cse_username', 'q5', 'q6', 'q7', 'accepted', 'payment_status', 'medical_form' )
+      widgets = {
+            'dietary': Textarea(attrs={'style': 'width:500px;'}),
+            'medical': Textarea(attrs={'style': 'width:500px;'}),
+            'q1': Textarea(attrs={'style': 'width:500px;'}),
+            'q2': Textarea(attrs={'style': 'width:500px;'}),
+            'q3': Textarea(attrs={'style': 'width:500px;'}),
+            'q4': Textarea(attrs={'style': 'width:500px;'}),
+            'q5': Textarea(attrs={'style': 'width:500px;'}),
+            'q6': Textarea(attrs={'style': 'width:500px;'}),
+            'q7': Textarea(attrs={'style': 'width:500px;'}),
+            'q8': Textarea(attrs={'style': 'width:500px;'}),
+            'q9': Textarea(attrs={'style': 'width:500px;'})
+      }
 
 #@login_required
 def apply(request):
