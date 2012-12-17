@@ -62,6 +62,8 @@
 </ul>
 <br/>
    <form action="/signup/" method="post">
+
+   {% csrf_token %}
       <table>
          {{ form.as_table }}
       </table>

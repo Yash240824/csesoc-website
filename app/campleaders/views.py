@@ -24,7 +24,7 @@ class ApplicationForm(ModelForm):
       #widgets = {'q9question': forms.HiddenInput}
       exclude = ( 'cse_username', 'q5', 'q6', 'q7', 'accepted', 'payment_status', 'medical_form' )
 
-@login_required
+#@login_required
 def apply(request):
    year = (datetime.date.today() + timedelta(weeks=21)).year
    if request.method == 'POST': # form submitted
@@ -37,7 +37,7 @@ def apply(request):
       form.setQ9(AwkwardQuestion.objects.get(id=int(request.POST['q9question'])))
       if form.is_valid():
          form.save() # create new Application instance
-         return render_to_response('thanks.html', context_instance=RequestContext(request))
+         return render_to_response('camp/thanks.html', context_instance=RequestContext(request))
    else:
       q9question = AwkwardQuestion.objects.order_by('?')[0]
       apps = Application.objects.filter(cse_username=request.user.username).order_by('-year')
@@ -48,6 +48,7 @@ def apply(request):
         most_recent_app = apps[0]
         if most_recent_app.year != year:
           initial = {'q9question': q9question.id, 'q9': ''}
+          initial = {}
         else:
           initial = {}
         most_recent_app.year = year

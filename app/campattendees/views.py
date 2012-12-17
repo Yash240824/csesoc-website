@@ -19,7 +19,7 @@ def signup(request):
       form = ApplicationForm(request.POST, instance=appl) # form bound to POST data
       if form.is_valid():
          form.save() # create new Application instance
-         return render_to_response('thanks-signup.html', context_instance=RequestContext(request))
+         return render_to_response('camp/thanks-signup.html', context_instance=RequestContext(request))
    else:
       username = ''
       if request.COOKIES.has_key('cseauth'):
