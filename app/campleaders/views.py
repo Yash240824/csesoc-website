@@ -24,17 +24,17 @@ class ApplicationForm(ModelForm):
       #widgets = {'q9question': forms.HiddenInput}
       exclude = ( 'cse_username', 'q5', 'q6', 'q7', 'accepted', 'payment_status', 'medical_form' )
       widgets = {
-            'dietary': Textarea(attrs={'style': 'width:500px;'}),
-            'medical': Textarea(attrs={'style': 'width:500px;'}),
-            'q1': Textarea(attrs={'style': 'width:500px;'}),
-            'q2': Textarea(attrs={'style': 'width:500px;'}),
-            'q3': Textarea(attrs={'style': 'width:500px;'}),
-            'q4': Textarea(attrs={'style': 'width:500px;'}),
-            'q5': Textarea(attrs={'style': 'width:500px;'}),
-            'q6': Textarea(attrs={'style': 'width:500px;'}),
-            'q7': Textarea(attrs={'style': 'width:500px;'}),
-            'q8': Textarea(attrs={'style': 'width:500px;'}),
-            'q9': Textarea(attrs={'style': 'width:500px;'})
+            'dietary': Textarea(attrs={'style': 'width:100%;'}),
+            'medical': Textarea(attrs={'style': 'width:100%;'}),
+            'q1': Textarea(attrs={'style': 'width:100%;'}),
+            'q2': Textarea(attrs={'style': 'width:100%;'}),
+            'q3': Textarea(attrs={'style': 'width:100%;'}),
+            'q4': Textarea(attrs={'style': 'width:100%;'}),
+            'q5': Textarea(attrs={'style': 'width:100%;'}),
+            'q6': Textarea(attrs={'style': 'width:100%;'}),
+            'q7': Textarea(attrs={'style': 'width:100%;'}),
+            'q8': Textarea(attrs={'style': 'width:100%;'}),
+            'q9': Textarea(attrs={'style': 'width:100%;'})
       }
 
 #@login_required
