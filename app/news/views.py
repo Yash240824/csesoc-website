@@ -3,7 +3,7 @@ from django.template import RequestContext
 from app.news.models import *
 
 def feed(request):
-    posts = Post.objects.all().order_by('-date')
+    posts = Post.objects.filter(draft=False).order_by('-date')
     return render_to_response('news/feed.html', {'posts': posts}, context_instance=RequestContext(request))
 
 def detail(request, news_id):
@@ -11,7 +11,9 @@ def detail(request, news_id):
     return render_to_response('news/detail.html', {'item': item}, context_instance=RequestContext(request))
 
 def tag(request, tags_slug):
-    items = Item.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')).order_by('-post')
+    items = Item.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')
+                       ).filter(draft=False
+                       ).order_by('-post')
     return render_to_response('news/tag.html', {'items': items}, context_instance=RequestContext(request))
 
 def email(request, post_id):
