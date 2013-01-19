@@ -7,7 +7,11 @@
     <tbody>
 {% for sponsor in sponsors %}
 <tr>
-    <td class="image"><a href="{{ sponsor.website }}"><img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"/></a></td>
+    <td class="image"><a href="{{ sponsor.website }}">
+    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"
+        {% if sponsor.alt_text %} title="{{ sponsor.alt_text }}"
+        {% else %} {{ sponsor.name }} title="{{ sponsor.name }}"
+        {% endif %}/></a></td>
     <td><strong><a href="{{ sponsor.website }}" class="sponsorName">{{ sponsor.name }}</a></strong><br>{{ sponsor.description|safe }}</td>
 </tr>
 

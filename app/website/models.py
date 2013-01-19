@@ -46,6 +46,7 @@ class Sponsor(models.Model):
     amount_paid = models.PositiveIntegerField()
     start_date = models.DateField(auto_now_add=True, editable=False)
     expiry_date = models.DateField()
+    alt_text = models.TextField(blank=True)
     def __unicode__(self):
         return self.name
 
