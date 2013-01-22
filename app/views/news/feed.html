@@ -19,4 +19,15 @@
  {% endfor %}
  </div>
 {% endfor %}
+<div class="pagination pagination-centered">
+  	<ul>
+  		{% if posts.has_previous %}
+            <li><a href="?page={{ posts.previous_page_number }}"><i class="icon-backward"></i></a></li>
+        {% endif %}
+        	<li><a>Page {{ posts.number }} of {{ posts.paginator.num_pages }}</a></li>
+        {% if posts.has_next %}
+            <li><a href="?page={{ posts.next_page_number }}"><i class="icon-forward"></i></a></li>
+        {% endif %}
+	</ul>
+</div>
 {% endspaceless %}{% endblock %}

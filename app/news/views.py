@@ -1,9 +1,24 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from app.news.models import *
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def feed(request):
-    posts = Post.objects.filter(draft=False).order_by('-date')
+    posts_list = Post.objects.filter(draft=False).order_by('-date')
+
+    paginator = Paginator(posts_list, 5) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     return render_to_response('news/feed.html', {'posts': posts}, context_instance=RequestContext(request))
 
 def detail(request, news_id):
