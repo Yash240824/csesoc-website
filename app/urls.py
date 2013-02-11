@@ -34,9 +34,9 @@ urlpatterns = patterns('',
     (r'^music/$', 'app.music.views.music_submit_song'),
 
     # camp leader applications
-    url(r'^apply/$', 'app.campleaders.views.apply'),
+    url(r'^camp/apply/$', 'app.campleaders.views.apply'),
     # camp attendee applications
-    url(r'^signup/$', 'app.campattendees.views.signup'),
+    url(r'^camp/signup/$', 'app.campattendees.views.signup'),
 
 
     # miscellaneous

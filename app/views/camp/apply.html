@@ -13,7 +13,7 @@
    </ul>
 
    {% spaceless %}
-   <form action="/apply/" method="post">
+   <form action="/camp/apply/" method="post">
      {% csrf_token %}
      {{ form.as_p }}
          <input type="submit" class="btn" value="Submit Application" />

@@ -72,4 +72,4 @@ def apply(request):
       return render_to_response('camp/apply.html', {'form' : form}, context_instance=RequestContext(request))
    else:
       messages.error(request, "You need to log in first")
-      return redirect('/login?redirect=/apply')
+      return redirect('/login?redirect=/camp/apply')
