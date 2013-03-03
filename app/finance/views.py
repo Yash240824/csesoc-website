@@ -23,8 +23,8 @@ def invoice_detail(request, slug, hash):
     price = product.price - product.discount
 
     # The paypal price is the direct debit price plus a 2.5% fee
-    paypal_surcharge = 2.5
-    paypal_price = price * 100 / (100 - paypal_surcharge)
+    paypal_surcharge = 0.024
+    paypal_price = (price+0.3) / (1 - paypal_surcharge)
 
     # Add the CSE login to the item name we send to paypal
     if product.students_login:
