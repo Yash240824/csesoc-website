@@ -38,9 +38,11 @@ urlpatterns = patterns('',
     # camp attendee applications
     url(r'^camp/signup/$', 'app.campattendees.views.signup'),
 
+    url(r'^hs/', include('app.hs.urls')),
 
     # miscellaneous
     url(r'^(?P<path>.*)/$', 'app.website.views.slug'),           
+
 
 
     # admin site
