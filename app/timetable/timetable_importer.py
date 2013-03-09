@@ -5,10 +5,10 @@ try:
   from xml.etree import ElementTree # for Python 2.5 users
 except ImportError:
   from elementtree import ElementTree
-import gdata.calendar.service
 import gdata.service
 import atom.service
 import gdata.calendar
+import gdata.calendar.service
 import atom
 
 from BeautifulSoup import BeautifulSoup
@@ -29,7 +29,15 @@ import datetime
 dst_dates = {
    2011:['3/4/2011','2/10/2011'],
    2012:['1/4/2012','7/10/2012'],
-   2013:['7/6/2013','6/10/2013']
+   2013:['7/6/2013','6/10/2013'],
+   2014:['6/4/2014','5/10/2014'],
+   2015:['5/4/2015','4/10/2015'],
+   2016:['3/4/2016','2/10/2016'],
+   2017:['2/4/2017','1/10/2017'],
+   2018:['1/4/2018','7/10/2018'],
+   2019:['7/4/2019','6/10/2019'],
+   2020:['5/4/2020','4/10/2020'],
+   2021:['4/4/2021','3/10/2021']
 }
 
 unsw_start_dates = {
@@ -38,7 +46,13 @@ unsw_start_dates = {
    '12s1':'27/2/2012',
    '12s2':'16/7/2012',
    '13s1':'4/3/2013',
-   '13s2':'22/7/2013'
+   '13s2':'29/7/2013',
+   '14s1':'3/3/2014',
+   '14s2':'28/7/2014',
+   '15s1':'2/3/2015',
+   '15s2':'27/7/2015',
+   '16s1':'29/2/2016',
+   '16s2':'25/7/2016'
 }
 
 days = {"Mon":0, "Tue":1, "Wed":2, "Thu":3, "Fri":4}
@@ -86,10 +100,10 @@ def export(f, gu, gp, zu, zp):
    if not gp or not gu:
        print "if you don't want to ul direct to gcal, use http://www.cse.unsw.edu.au/~szyf396/timetable.html instead"
 
-   if not f and (not zu or not zp):
+   if f == 'use-login' and (not zu or not zp):
        print "no source and no z details"
 
-   if not f:
+   if f == 'use-login':
        print "getting timetable"
        f = getTimetable(zu, zp)
        print "got timetable!"
