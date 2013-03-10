@@ -98,10 +98,10 @@ def dateCompare(date1, date2):
 
 def export(f, gu, gp, zu, zp):
    if not gp or not gu:
-       print "if you don't want to ul direct to gcal, use http://www.cse.unsw.edu.au/~szyf396/timetable.html instead"
+       return "Missing Google username and password - if you don't want to upload direct to gcal, use http://www.cse.unsw.edu.au/~szyf396/timetable.html instead"
 
    if f == 'use-login' and (not zu or not zp):
-       print "no source and no z details"
+       return "No zPass details or timetable source"
 
    if f == 'use-login':
        print "getting timetable"
@@ -109,7 +109,7 @@ def export(f, gu, gp, zu, zp):
        print "got timetable!"
 
    if "sectionHeading" not in f:
-       print "bad timetable source, possibly incorrect login details or dipshit myunsw general incompetence downtime (12am-2am or whatever)"
+       return "Bad timetable source, possibly incorrect login details or dipshit myunsw general incompetence downtime (12am-2am or whatever)"
 
    # parsing shit
    s = BeautifulSoup(f.replace("\n",""))
@@ -122,9 +122,9 @@ def export(f, gu, gp, zu, zp):
    try:
       calendar_service.ProgrammaticLogin()
    except socket.sslerror:
-      print "socket.sslerror, probably out of quota. wait til quota resets"
+      return "Probably out of quota. Wait until quota resets (socket.sslerror)"
    except gdata.service.BadAuthentication:
-      print "bad groogle username or password"
+      return "Bad groogle username or password"
 
    ####################################################
    #  LOOK EVERYONE, I'M THROWING YOUR PASSWORDS AWAY #
@@ -146,7 +146,7 @@ def export(f, gu, gp, zu, zp):
    try:
       calendar = calendar_service.InsertCalendar(new_calendar=calendar)
    except gdata.calendar.service.RequestError:
-      print "failed to create new calendar ", title
+      return "Failed to create new calendar " + title
 
 
    batch_request_feed = gdata.calendar.CalendarEventFeed()
@@ -222,6 +222,6 @@ def export(f, gu, gp, zu, zp):
    try:
       calendar_service.ExecuteBatch(batch_request_feed, 'https://www.google.com/calendar/feeds/' + re.sub('.*/', '', calendar.id.text) + '/private/full/batch')
    except gdata.calendar.service.RequestError:
-      print "Error. Most likely a google api failure. Try again. If it happens lots, raise a bug"
+      return "Error. Most likely a google api failure. Try again. If it happens lots, raise a bug"
    print "Probably success!"
 

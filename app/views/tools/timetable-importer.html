@@ -6,6 +6,21 @@
 {% block javascript %}
 <script src="/assets/js/timetable-importer.js" content="text/javascript" type="text/javascript"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#import-timetable').submit(function() {
+      window.console.log('hi!');
+      timetable_modal();
+    });
+  });
+
+  function timetable_modal(){
+    $('#importing-timetable-modal').modal({
+      keyboard: false
+    });
+    $('#importing-timetable-statusbar').animate({width:'100%'}, 5000, function() {});    
+  }
+</script>
 {% endblock %}
 {% block content %}{% spaceless %}
 <div class="well">
@@ -119,7 +134,7 @@
                 </tbody>
               </table>
               <div id="submit-area">
-                <a id="import-button" class="btn btn-primary"/>Go!</a>
+                <input id="import-button" class="btn btn-primary" type="submit" value="Go!">
                 <br/>
               </div>
             </div>
@@ -146,6 +161,15 @@
       </p>
     </div>
 
+  </div>
+</div>
+<div id="importing-timetable-modal" class="modal hide fade">
+  <div class="modal-body">
+      <h3>Importing timetable...</h3>
+      <div class="progress progress-striped active">
+        <div id="importing-timetable-statusbar" class="bar" style="width: 0%;"></div>
+      </div>
+      <span id="importing-timetable-status"></span>
   </div>
 </div>
 {% endspaceless %}{% endblock %}
