@@ -149,7 +149,7 @@
         <div class="global-flash">
           {% if messages %}
           {% for message in messages %}
-          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message }}</p></div>
+          <div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}"><h1>{{ message.tags|capfirst }}</h1><p>{{ message|safe }}</p></div>
           {% endfor %}
           {% endif %}
         </div>

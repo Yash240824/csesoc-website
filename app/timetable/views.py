@@ -17,7 +17,7 @@ def show(request):
       messages.error(request, result)
       return render_to_response('tools/timetable-importer.html', context_instance=RequestContext(request))
     else:
-      messages.success('Success! Check <a href="http://calendar.google.com">google calendar</a>')
+      messages.success(request, 'Success! Check <a href="http://calendar.google.com">google calendar</a>')
       return render_to_response('tools/timetable-importer.html', context_instance=RequestContext(request))
   else:
     return render_to_response('tools/timetable-importer.html', context_instance=RequestContext(request))
