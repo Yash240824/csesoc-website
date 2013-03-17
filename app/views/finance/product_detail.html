@@ -75,7 +75,7 @@ function togglepaypal(){
       {% endif %}
       <tr><td><h3><a href='javascript:togglepaypal();'>Paypal or Credit Card</a></h3></td><td><h3 id="paypal-price"> {{paypal_price }}</h3></td></tr>
       <tr class='paypal'><td colspan="2">
-         <em>Note: Paying by credit card or PayPal incurs a {{ paypal_surcharge }}% fee, as shown above.</em>
+         <em>Note: Paying by credit card or PayPal incurs a {{ paypal_display_percentage }}% fee, as shown above.</em>
          <br/>
          {% if product.students_login %}
          <span style='color:red;'><em>Please ensure your CSE username is <strong>{{user.username}}</strong> before you continue.</em></span>
