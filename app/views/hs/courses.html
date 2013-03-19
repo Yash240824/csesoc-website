@@ -1,0 +1,18 @@
+{% extends 'templates/hsmain.html' %}
+
+{% block titlecontent %}HS Courses{% endblock %}
+
+{% block content %}{% spaceless %}
+
+<div class="container well">
+	<ul>
+   {% for c in courses %}
+         <li>{{ c.title }}</li>
+   {% endfor %}
+  </ul>
+</div>
+
+{% endspaceless %}{% endblock %}
+{% block javascript %}
+{% endblock %}
+

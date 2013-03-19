@@ -23,3 +23,9 @@ def signup(request):
 
    return render_to_response('hs/signup.html', {'form' : form}, context_instance=RequestContext(request))
 
+def about(request):
+    return render_to_response('hs/about.html', context_instance=RequestContext(request))
+
+def courses(request):
+    courses = Course.objects.all();
+    return render_to_response('hs/courses.html', {'courses': courses}, context_instance=RequestContext(request));

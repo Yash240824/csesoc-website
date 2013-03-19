@@ -1,10 +1,20 @@
+{% extends 'templates/hsmain.html' %}
+
+{% block titlecontent %}HS Courses{% endblock %}
+
+{% block content %}
+
 <form action="/hs/signup/" method="post">
 
-   {% csrf_token %}
-      <table>
-         {{ form.as_table }}
-      </table>
-      <div class='submit_button'>
-         <input type="submit" value="Submit Registration" />
-      </div>
-   </form>
+	{% csrf_token %}
+	<table>
+		{{ form.as_table }}
+	</table>
+	<div class='submit_button'>
+		<input type="submit" value="Submit Registration" />
+	</div>
+</form>
+
+
+
+{% endblock %}
