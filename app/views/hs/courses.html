@@ -4,14 +4,15 @@
 
 {% block content %}{% spaceless %}
 
-<div class="container well">
-	<ul>
-   {% for c in courses %}
-         <li>{{ c.title }}</li>
-   {% endfor %}
-  </ul>
+<div class="container">
+	{% for c in courses %}
+		<div class="well">
+			<h2>{{ c.title }}</h2>
+			{{ c.description|safe }}
+			<button class="btn btn-primary">Register</button>
+		</div>
+	{% endfor %}
 </div>
-
 {% endspaceless %}{% endblock %}
 {% block javascript %}
 {% endblock %}

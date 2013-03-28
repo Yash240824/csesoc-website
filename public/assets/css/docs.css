@@ -10,11 +10,12 @@
 -------------------------------------------------- */
 body {
   position: relative;
-  padding-top: 90px;
+  padding-top: 30px;
 /*  background-color: #fff;
   background-image: url(../img/grid-18px-masked.png);*/
   background-repeat: repeat-x;
   background-position: 0 40px;
+  background-color: #f3f3f3;
 }
 
 
@@ -60,10 +61,10 @@ hr.soften {
 .jumbotron {
   position: relative;
 }
-.jumbotron h1 {
+.jumbotron h1 { 
   margin-bottom: 9px;
   font-size: 81px;
-  font-weight: bold;
+  font-weight: 400;
   letter-spacing: -1px;
   line-height: 1;
 }

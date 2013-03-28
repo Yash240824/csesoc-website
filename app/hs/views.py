@@ -27,5 +27,12 @@ def about(request):
     return render_to_response('hs/about.html', context_instance=RequestContext(request))
 
 def courses(request):
-    courses = Course.objects.all();
+    # Checks for get param, if so, just display that one course
+    if request.method == 'GET':
+      course = request.GET.get('course', '');
+    if course != '':
+      courses = [Course.objects.get(title=course)]
+    # otherwise just display all the courses
+    else:
+      courses = Course.objects.all();
     return render_to_response('hs/courses.html', {'courses': courses}, context_instance=RequestContext(request));

@@ -4,26 +4,56 @@
 
 {% block content %}{% spaceless %}
 
-<div id="desc" class="container well">
-    <img style="width:100%;padding-bottom:20px" src="/assets/img/hs-splash.jpg"></img>
-    <p>Started by the students of UNSW Computing, Computing Club is a chance for high school students to further explore computing and get a head start in the world of technology. Computing Club is a school without the formality and also a great chance to meet other students with the same passion, all while learning a great skill.</p>
+
+<div class="container">
+  <div class="well">
+    <b>Who are we?</b> Started by the students of UNSW Computing, Computing Club... 
+    <div style="float:right"><a href="#" id="aboutExpand">Read more <i class="icon-arrow-down" style="vertical-align:-2px"></i></a></div>
+    <div id="aboutLong" class="row-fluid" style="display:none">
+      <div class="video span6"><iframe width="560" height="315" src="http://www.youtube.com/embed/nKIu9yen5nc" frameborder="0" allowfullscreen></iframe></div>
+      <div class="span6">
+        <p>Some long textSome long textSome long textSome long textSome long textSome long textSome long textdsfasdfadfasdfas</p>
+        <p>asdfsadffa</p>
+      </div>
+    </div>
+  </div>
+  <div id="myCarousel" class="carousel slide hero-unit">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item" style="min-height:300px">
+        <img src="/assets/img/hs-splash.jpg">
+        <div class="carousel-caption">
+          <h4>Intro to programming</h4>
+          <p>Some text here</p>
+        </div>
+      </div>
+      <div class="item">helllooo222</div>
+      <div class="item">helloooo3333</div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
     
-    <p>At Computing Club, we offer a variety of modules that cater to all skill levels, so no one gets left out. At present, all our modules are <em>free</em>.</p>
-    <center>
-        <a class="btn btn-primary btn-large" href="#" id="interestedBtn">Tell me more</a>
-    </center>
+
+  <center>
+    <div class="row-fluid">
+      <div class="span6 mainButtons"><a class="btn btn-large btn-block btn-primary" href="wizard/" type="button">Find the right course</button></span></div>
+      <div class="span6 mainButtons"><a class="btn btn-large btn-block btn-success" href="courses/" type="button">See all available courses</button></a></div>
+    </div>
+  </center>
 </div>
 
-<div id='content' class="well"> 
-	<ul>
-   {% for c in courses %}
-         <li>{{ c.title }}</li>
-   {% endfor %}
-</ul>
 
-</div>
 
 {% endspaceless %}{% endblock %}
+
+
+
 {% block javascript %}
 {% endblock %}
-

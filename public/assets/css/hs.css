@@ -1,0 +1,44 @@
+.heading img {
+	padding: 10px 30px;
+	border-right: dashed 1px #BBB;
+	margin-right: 30px;
+}
+
+.container .well {
+	background-color: white;
+}
+
+.heading h1 {
+	margin-bottom: 9px;
+	font-weight: 400;
+	letter-spacing: -1px;
+	line-height: 1;
+	color: #0B61A4;
+}
+
+footer {
+	font-weight: 300;
+	font-size: 0.9em;
+	margin: 20px;
+}
+
+body {
+	font-weight: 300;
+	line-height: 1.6em;
+	font-size: 16px;
+	color: #555;
+}
+
+.carousel {
+	min-height: 500px;
+	padding: 0px;
+}
+
+.mainButtons {
+	padding: 5px 100px;
+}
+
+.mainButtons a {
+	font-size: 1.5em;
+	padding: 1em;
+}
