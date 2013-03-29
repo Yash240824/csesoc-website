@@ -5,4 +5,5 @@ urlpatterns = patterns('app.hs.views',
 	url(r'^signup/$', 'signup'),
 	url(r'^about/$', 'about'),
 	url(r'^courses/$', 'courses'),
+	url(r'^wizard/$', 'wizard'),
 )

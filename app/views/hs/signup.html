@@ -4,17 +4,42 @@
 
 {% block content %}
 
-<form action="/hs/signup/" method="post">
-
-	{% csrf_token %}
-	<table>
-		{{ form.as_table }}
-	</table>
-	<div class='submit_button'>
-		<input type="submit" value="Submit Registration" />
+<div class="container">
+	<div class="well">
+		<form class="form-vertical" action="/hs/signup/" method="post">
+			{% csrf_token %}
+			<legend>Signup for {{ c.title }}</legend>
+			<input type="hidden" name="course" value="{{ c.id }}" />
+			<div class="alert alert-error" style="display:none" id="regoError">
+				Please fill in all fields.
+			</div>
+			<fieldset>
+				<label>Full name</label>
+				{{ form.full_name }}
+				<label>Gender</label>
+				{{ form.gender }}
+				<label>Email</label>
+				{{ form.email	 }}
+				<label>High school</label>
+				{{ form.highschool	 }}
+				<label>Emergency contact name</label>
+				{{ form.emergency_contact_name }}
+				<label>Emergency contact number</label>
+				{{ form.emergency_contact_number }}
+				<label>Do you have access to a laptop?</label>
+				{{ form.laptop }}
+				<label>What year are you in?</label>
+				{{ form.year }}
+				<label>What is your level of programming skill?</label>
+				{{ form.level }}
+			</fieldset>
+			<center>
+				<a class="btn btn-secondary btn-large" href="javascript:history.go(-1)" type="button" style="margin-right: 70px">Back</a>
+				<input class="btn btn-primary btn-large" id="findClassBtn" type="submit" value="I'm done, sign me up!">
+			</center>
+		</form>
 	</div>
-</form>
-
+</div>
 
 
 {% endblock %}
