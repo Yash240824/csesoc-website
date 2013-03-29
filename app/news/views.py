@@ -27,7 +27,7 @@ def detail(request, news_id):
 
 def tag(request, tags_slug):
     items = Item.objects.filter(tag__name__icontains=tags_slug.replace('-', ' ')
-                       ).filter(draft=False
+                       ).filter(post__draft__exact=False
                        ).order_by('-post')
     return render_to_response('news/tag.html', {'items': items}, context_instance=RequestContext(request))
 
