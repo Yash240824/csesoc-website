@@ -1,8 +1,14 @@
 $(document).ready(function () {
 	// Expand about section click handler
 	$('#aboutExpand').click(function() {
-		$(this).hide();
 		$('#aboutLong').slideDown();
+		$('#aboutShort').hide();
+	});
+
+	// Hide about section click handler
+	$('#aboutHide').click(function() {
+		$('#aboutLong').slideUp();
+		$('#aboutShort').slideDown();
 	});
 
 	// Wizard validate
