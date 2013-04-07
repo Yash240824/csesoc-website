@@ -28,7 +28,6 @@ def signup(request):
        'level': request.GET.get('experience')}) # unbound form
     course = Course.objects.get(id=request.GET.get('id'))
 
-
     return render_to_response('hs/signup.html', {'form' : form, 'c': course}, context_instance=RequestContext(request))
 
 def about(request):
