@@ -6,71 +6,34 @@
 {% block javascript %}
 <script src="/assets/js/timetable-importer.js" content="text/javascript" type="text/javascript"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#import-timetable').submit(function() {
-      window.console.log('hi!');
-      timetable_modal();
-    });
-  });
-
-  function timetable_modal(){
-    $('#importing-timetable-modal').modal({
-      keyboard: false
-    });
-    $('#importing-timetable-statusbar').animate({width:'100%'}, 30000, function() {});    
-  }
-</script>
 {% endblock %}
 {% block content %}{% spaceless %}
 <div class="well">
 
   <div id="logo">
-    <h1>Timetable Importer by Chris Lam (clam@cse)</h1>
+    <h1>Timetable Importer</h1>
   </div>
 
   <div>
     <div>
-      <form id="import-timetable" method="post" action="">
+      <form id="import-timetable" method="post" action="" onsubmit="return validate();">
         {% csrf_token %}
         <div id="content-bgtop">
           <div id="content-bgbtm">
             <div class="post entry">
               <p>Ok. So the idea here is to throw your uni timetable into a google calendar.
-                You can then share the calendar with friends. If you have an iOS device/iCal, you can choose multiple calendars you would like to sync <a href="https://www.google.com/calendar/syncselect?pli=1">here</a>.
+              You can then share the calendar with friends. If you have an iOS device/iCal,
+              you can choose multiple calendars you would like to sync <a href="https://www.google.com/calendar/syncselect?pli=1">here</a>.
+              The Android Calendar app should work out of the box.
               </p>
 
-              <h4 style="color:red">IMPORTANT</h4>
+              <h4>NOTES</h4>
 
               <ul>
-                <li>This works pretty slow so give the page time to fully load afterwards (it will say success once it's done)</li>
+                <li>This works pretty slowly so give the page time to fully load afterwards (it will say success once it's done)</li>
                 <li>You have to enable google calendar. That means just access it at least once</li>
-                <li>Sometimes this will fail due to dodgy google api, something about a 302 moved</li>
+                <li>Sometimes this will fail due to dodgy google api, so try a couple of times and then let us know</li>
               </ul>
-            </div>
-            <div class="post" id="entry">
-              <h3>Google details</h3>
-
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      <p>Username:</p>
-                    </td>
-
-                    <td><input class="required" id="guser" type="text" name="username" /></td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <p>Password:</p>
-                    </td>
-
-                    <td><input id="gpass" type="password" name="password" /></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div id="gerror" class="error"> Google details are required </div>
             </div>
             <hr/>
             <div class="post" id="entry">
@@ -93,8 +56,8 @@
                 <tbody>
                   <tr>
                     <td>
-                      <div id="use-source">
-                        <textarea class="input-xlarge" id="source" rows="10"></textarea>
+                      <div id="use-source" style="display:none">
+                        <textarea class="input-xlarge" name="source" id="source" rows="10"></textarea>
                         <div class="error"> Source is empty </div>
 
                         <h4 id="source-help">Help</h4>
@@ -133,6 +96,7 @@
                   </tr>
                 </tbody>
               </table>
+              <input type="hidden" name="code" value="{{auth_code}}">
               <div id="submit-area">
                 <input id="import-button" class="btn btn-primary" type="submit" value="Go!">
                 <br/>
@@ -155,7 +119,8 @@
     <div>
       <p>Source at ~clam/public_html/timetable/timetable.py or <a href="http://www.nik3daz.com/timetable.py">here</a><br/>
         Original Timetable Parsing Code by Steven Fan (stevenf)<br/>
-        <b>Report bugs to <a href="mailto:clam@cse.unsw.edu.au">clam</a></b>
+        Google Calendar integration and WebUI by Christopher Lam (clam)<br/>
+        <b>Report bugs to <a href="mailto:dylank@cse.unsw.edu.au">dylank</a></b>
         <br/><br/>
         DISCLAIMER: Passwords and usernames are not used for any other purpose than to login, get the timetable and create the calendar. They don't get seen by anyone during or after execution of code. Go read the source if you want to make sure.
       </p>
