@@ -59,14 +59,9 @@ Now while your inside your python virtualenv, you can use pip to install package
 
 	pip install <package name>
 
-For example, to install django
+The list of dependencies has already been made. So to install everything just run:
 
-	pip install django
-
-Currently the website also has these dependancies
-
-	pil - python image library
-	python-ldap - ldap library for python (used for zpass authentication)
+	pip install -r requirements.txt
 
 Installing Git
 --------------
