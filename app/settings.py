@@ -85,7 +85,7 @@ STATICFILES_FINDERS = (
 )
 
 # Overridden by production settings
-SECRET_KEY = 'a'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
