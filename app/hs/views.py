@@ -3,11 +3,11 @@ from django.template import RequestContext
 from app.hs.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm,Textarea
+from django.core.mail import send_mail
 
 class RegistrationForm(ModelForm):
    class Meta:
       model = Registration
-
 def main(request):
     courses = Course.objects.all()
     return render_to_response('hs/main.html', {'courses': courses}, context_instance=RequestContext(request))
