@@ -21,4 +21,23 @@ $(document).ready(function () {
 			return false;
 		}
 	});
+
+	// Validate rego
+	$("#submitRego").click(function () {
+		valid = true;
+		$.each($('input[type=text]'), function(i, v) {
+			if (v.value == '') {
+				$('#regoError').slideDown();
+				$(v).parent().addClass('error');
+				valid = false;
+			} else {
+				$(v).parent().removeClass('error');
+			}
+		});
+		// scroll to the top so they can see the error message
+		if (!valid) {
+			$("html, body").animate({ scrollTop: 0 }, 600);
+		}
+		return valid;
+	});
 });
