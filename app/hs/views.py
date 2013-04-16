@@ -4,6 +4,8 @@ from app.hs.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm,Textarea
 from django.core.mail import send_mail
+import httplib
+import urllib
 
 class RegistrationForm(ModelForm):
    class Meta:
@@ -17,8 +19,13 @@ def signup(request):
     form = RegistrationForm(request.POST) # form bound to POST data
     if form.is_valid():
       # Send automated email to intro to programming
-      if request.POST.get('course') is 1:
-        send_mail("hello", "message", "csesoc.compclub@cse.unsw.edu.au", "samli@codesphere.com")
+      print request.POST.get('course')
+      if int(request.POST.get('course')) is 1:
+        h = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
+        s = '/~samli/hs/sendMailIntro.cgi?' + 'name=' + request.POST.get('full_name') + '&email=' + request.POST.get('email')
+        encoded = urllib.quote(s)
+        h.request('GET', encoded)
+
       form.save() # create new Application instance
       return render_to_response('hs/thanks.html', {'email' : request.POST.get('email')},context_instance=RequestContext(request))
     else:
