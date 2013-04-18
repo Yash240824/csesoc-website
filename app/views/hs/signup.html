@@ -22,8 +22,9 @@
 				{{ form.email	 }}
 				<label>High school</label>
 				{{ form.highschool	 }}
-            <label>What year are you in?</label>
-				{{ form.year }}
+            	<label>What year are you in?</label>
+				<!--{{ form.year }}-->
+				<input type="number" name="year" id="id_year" min="5", max="12">
 				<label>Emergency contact name</label>
 				{{ form.emergency_contact_name }}
 				<label>Emergency contact number</label>
