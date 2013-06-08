@@ -2,8 +2,7 @@ BeautifulSoup==3.2.1
 Django==1.4.2
 PIL==1.1.7
 argparse==1.2.1
-atomic==0.5.2
 distribute==0.6.24
-gdata==2.0.17
 python-ldap==2.4.10
 wsgiref==0.1.2
+google-api-python-client=1.1
