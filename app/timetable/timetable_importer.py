@@ -46,8 +46,8 @@ timetable_url='https://my.unsw.edu.au/active/studentTimetable/timetable.xml'
 
 def getFlow(full_path):
   print full_path
-  return OAuth2WebServerFlow(client_id='216834235087@developer.gserviceaccount.com',
-                             client_secret='afPuuycPMDAcEGKgGvpF6c-9',
+  return OAuth2WebServerFlow(client_id='52070605511-3e5l10hi90c8t4t3foa0aptmhe5psgsr.apps.googleusercontent.com',
+                             client_secret='aKejP602Oz7Axrump73Oh1_R',
                              scope='https://www.googleapis.com/auth/calendar',
                              redirect_uri=full_path)
 
