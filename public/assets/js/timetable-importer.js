@@ -44,11 +44,14 @@ function validate() {
     if (active == 'use-source') {
       $('#use-login :input').each(function(i, e) { e.value="" });
     }
-    $('#importing-timetable-modal').modal({
-      keyboard: false,
-      backdrop: "static",
-    });
-    $('#importing-timetable-statusbar').animate({width:'100%'}, 60000, function() {});
   }
   return good;
+}
+
+function activateModalStatusBar() {
+  $('#importing-timetable-modal').modal({
+    keyboard: false,
+    backdrop: "static",
+  });
+  $('#importing-timetable-statusbar').animate({width:'100%'}, 60000, function() {});
 }
