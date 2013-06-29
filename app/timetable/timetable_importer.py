@@ -45,7 +45,6 @@ login_url='https://ssologin.unsw.edu.au/cas/login?service=https%3A%2F%2Fmy.unsw.
 timetable_url='https://my.unsw.edu.au/active/studentTimetable/timetable.xml'
 
 def getFlow(full_path):
-  print full_path
   return OAuth2WebServerFlow(client_id='52070605511-3e5l10hi90c8t4t3foa0aptmhe5psgsr.apps.googleusercontent.com',
                              client_secret='aKejP602Oz7Axrump73Oh1_R',
                              scope='https://www.googleapis.com/auth/calendar',
@@ -54,7 +53,7 @@ def getFlow(full_path):
 def getGoogleRedirect(full_path):
   return getFlow(full_path).step1_get_authorize_url()
 
-def getTimetable(zUser, zPass):
+def getTimetable(zUser, zPass, semester):
   jar = cookielib.CookieJar()
   opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(jar))
   # CSRF Token or something. We need to steal it from SSO
@@ -62,7 +61,15 @@ def getTimetable(zUser, zPass):
   stupid_thing = re.findall(r'_cNoOpConversation.*?"', opener.open(login_url).read())[0].replace('"', '')
   data = {'username': zUser, 'password': zPass, '_eventId': 'submit', 'lt': stupid_thing}
   opener.open(login_url, urllib.urlencode(data))
-  return opener.open(timetable_url).read()
+  data = {}
+  if semester:
+    source = opener.open(timetable_url).read().replace('\n', '')
+    if "sectionHeading" not in source:
+      return ''
+    s = BeautifulSoup(source)
+    bsds = s.find('input', {'name': 'bsdsSequence'})['value']
+    data = {'term': semester, 'bsdsSubmit-commit': 'Get Timetable', 'bsdsSequence': bsds}
+  return opener.open(timetable_url, urllib.urlencode(data)).read()
 
 def CreateClassEvent(title, content, where, start_time, end_time):
   event = {
@@ -80,22 +87,36 @@ def CreateClassEvent(title, content, where, start_time, end_time):
     }
   return event
 
-def export(f, source, zu, zp, code, full_path):
-  if f == 'use-login' and (not zu or not zp):
-    return "No zPass details or timetable source"
+def getSemester(zu, zp):
+  source = getTimetable(zu, zp, None)
+  if "sectionHeading" not in source:
+    return ("Bad timetable source, possibly incorrect login details or myunsw daily dose of downtime (12am-2am or whatever)", {})
 
-  if f == 'use-login':
-    print "getting timetable"
-    f = getTimetable(zu, zp)
-    print "got timetable!"
-  else:
-    f = source
+  # parsing shit
+  s = BeautifulSoup(source.replace("\n",""))
+  select_html = s.find("select", {'name': 'term'})
+  select_html['style'] = 'width: 400px;'
+  return (None,
+          {
+            'semester_select_html': select_html.prettify(),
+            'source': source
+          })
+
+
+def export(source, code, full_path):
+  f = source.replace('\r', '')
 
   if "sectionHeading" not in f:
     return "Bad timetable source, possibly incorrect login details or myunsw daily dose of downtime (12am-2am or whatever)"
 
   # parsing shit
   s = BeautifulSoup(f.replace("\n",""))
+  sem = re.sub(r'.*Semester (\d+) \S\S(\d+).*', u'\\2s\\1', s.find("option", {'selected':'true'}).text)
+  title = sem + " Timetable"
+
+  if not re.match(r'\d\ds\d', sem):
+    current_time = datetime.datetime.now()
+    sem = '%ds%d' % (current_time.year % 100, 1 if current_time.month < 7 else 2)
 
   credentials = getFlow(full_path).step2_exchange(code)
   http = httplib2.Http()
@@ -108,8 +129,6 @@ def export(f, source, zu, zp, code, full_path):
   ####################################################
   zp = ''
 
-  sem = re.sub(u'.*Semester (\S+) \S\S(\S+).*', u'\\2s\\1', s.find("option", {'selected':'true'}).text)
-  title = sem + " Timetable"
 
 
   # make gcal calendar
@@ -186,3 +205,7 @@ def export(f, source, zu, zp, code, full_path):
 
   print "Probably success!"
 
+
+def exportByScraping(zu, zp, semester, code, full_path):
+  source = getTimetable(zu, zp, None)
+  return export(source, code, full_path)

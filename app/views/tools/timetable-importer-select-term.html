@@ -1,0 +1,52 @@
+{% extends 'templates/2-column-w-sponsors.html' %}
+{% block titlecontent %}UNSW Timetable Importer{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascript %}
+<script src="/assets/js/timetable-importer.js" content="text/javascript" type="text/javascript"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+{% endblock %}
+{% block content %}{% spaceless %}
+<div class="well">
+
+  <div id="logo">
+    <h1>Timetable Importer</h1>
+  </div>
+
+  <div>
+    <div>
+      <form id="import-timetable" method="post" action="" onsubmit="activateModalStatusBar(); return true;">
+        {% csrf_token %}
+        <div id="content-bgtop">
+          <div id="content-bgbtm">
+            <div class="post" id="entry">
+              <h3>Select Semester</h3><br />
+
+              {% autoescape off %}{{ semester_select_html }}{% endautoescape %}
+
+              <input type="hidden" name="zUser" value="{{zu}}">
+              <input type="hidden" name="zPass" value="{{zp}}">
+              <input type="hidden" name="code" value="{{auth_code}}">
+              <div id="submit-area">
+                <input id="import-button" class="btn btn-primary" type="submit" value="Go!">
+                <br/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="importing-timetable-modal" class="modal hide fade">
+  <div class="modal-body">
+      <h3>Importing timetable...</h3>
+      <div class="progress progress-striped active">
+        <div id="importing-timetable-statusbar" class="bar" style="width: 0%;"></div>
+      </div>
+      <span id="importing-timetable-status"></span>
+  </div>
+</div>
+{% endspaceless %}{% endblock %}
+
