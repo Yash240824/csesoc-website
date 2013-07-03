@@ -207,5 +207,5 @@ def export(source, code, full_path):
 
 
 def exportByScraping(zu, zp, semester, code, full_path):
-  source = getTimetable(zu, zp, None)
+  source = getTimetable(zu, zp, semester)
   return export(source, code, full_path)
