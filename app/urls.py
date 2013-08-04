@@ -38,10 +38,15 @@ urlpatterns = patterns('',
     # camp attendee applications
     url(r'^camp/signup/$', 'app.campattendees.views.signup'),
 
+    # hs
     url(r'^hs/', include('app.hs.urls')),
 
+    # murder
+    url(r'^murder/', include('app.murder.urls')),
+
     # miscellaneous
-    url(r'^(?P<path>.*)/$', 'app.website.views.slug'),           
+    url(r'^(?P<path>.*)/$', 'app.website.views.slug'),
+    
 
 
 

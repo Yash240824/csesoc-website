@@ -143,12 +143,12 @@ INSTALLED_APPS = (
     #'app.forms',
     'app.account',
     'app.music',
-    #'app.murder',
+    'app.murder',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'app.campleaders',
     'app.campattendees',
-    'app.hs',
+    'app.hs'
 
 )
 
@@ -193,3 +193,13 @@ LOGGING = {
         },
     }
 }
+
+# Mail Settings
+EMAIL_HOST = 'smtp.cse.unsw.edu.au'
+SEND_BROKEN_LINKS = False
+
+EMAIL_USE_TLS = True
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = 'mdm'
+EMAIL_HOST_PASSWORD = 'zarniwoop4ever'

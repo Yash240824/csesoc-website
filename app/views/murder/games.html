@@ -1,0 +1,14 @@
+{% extends "templates/2-column-w-sponsors.html" %}
+
+{% block titlecontent %}Game Listing{% endblock %}
+
+{% block content %}
+<h1>List of Murder Games</h1>
+   <ul>
+   {% for game in games %}
+   <li><a href="{% url app.murder.views.index game=game.slug %}">{{ game.name }}</a></li>
+   {% endfor %}
+   </ul>
+{% endblock %}
+
+
