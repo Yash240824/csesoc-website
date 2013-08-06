@@ -193,10 +193,3 @@ LOGGING = {
         },
     }
 }
-
-# Mail Settings
-EMAIL_HOST = 'smtp.cse.unsw.edu.au'
-SEND_BROKEN_LINKS = False
-
-EMAIL_USE_TLS = True
-EMAIL_PORT = 465
