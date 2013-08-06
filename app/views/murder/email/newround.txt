@@ -10,7 +10,7 @@ IMPORTANT: Remember the password '{{ rp.password.text }}' because, in the event 
 
 Use your CSE username and password to login at http://csesoc.unsw.edu.au/murder to see your victim.
 
-For more information, rules, etc. see http://www.csesoc.unsw.edu.au/csemurder/
+For more information, rules, etc. see http://www.csesoc.unsw.edu.au/fun/csemurder/
 
 Good hunting!
 
