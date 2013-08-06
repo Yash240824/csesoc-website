@@ -1,7 +1,7 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from app.murder.models import *
 from collections import defaultdict
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from datetime import datetime
 from django.contrib.auth import logout
 from django import forms
@@ -49,42 +49,46 @@ def roundkills(request, game, roundid):
 class KillForm(forms.Form):
    password = forms.CharField(max_length=100)
 
-@login_required
 def myvictim(request, game):
-   try:
-      current_round = Game.objects.get(slug=game).round_set.get(start__lt=datetime.now, end__gt=datetime.now())
+   if request.user.is_authenticated():
+      try:
+         current_round = Game.objects.get(slug=game).round_set.get(start__lt=datetime.now, end__gt=datetime.now())
 
-      rp = current_round.roundplayer_set.get(player=Player.objects.get(username=request.user.username))   
+         rp = current_round.roundplayer_set.get(player=Player.objects.get(username=request.user.username))   
 
-      if not rp.alive:
-         return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are DEAD. See you next week!' }))
+         if not rp.alive:
+            return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are DEAD. See you next week!' }))
 
-      flash = ''
-      if request.method == 'POST':
-         form = KillForm(request.POST)
-         if form.is_valid():
-            password = form.cleaned_data['password']
-            if password == current_round.roundplayer_set.get(player=rp.currentvictim).password.text:
-               k = Kill(round=current_round, killer=rp.player)
-               k.save()
-               flash = 'Good Kill!'
-               rp = current_round.roundplayer_set.get(player=Player.objects.get(username=request.user.username))   
-            else:
-               flash = 'Wrong Password!'
-      else:
-         form = KillForm()
+         flash = ''
+         if request.method == 'POST':
+            form = KillForm(request.POST)
+            if form.is_valid():
+               password = form.cleaned_data['password']
+               if password == current_round.roundplayer_set.get(player=rp.currentvictim).password.text:
+                  k = Kill(round=current_round, killer=rp.player)
+                  k.save()
+                  flash = 'Good Kill!'
+                  rp = current_round.roundplayer_set.get(player=Player.objects.get(username=request.user.username))   
+               else:
+                  flash = 'Wrong Password!'
+         else:
+            form = KillForm()
 
-      return render_to_response('murder/myvictim.html', 
-            RequestContext(request, {'victim':rp.currentvictim, 'gameslug':game, 'flash':flash, 'form':form}))
+         return render_to_response('murder/myvictim.html', 
+               RequestContext(request, {'victim':rp.currentvictim, 'gameslug':game, 'flash':flash, 'form':form}))
 
-   except Round.DoesNotExist:
-      return render_to_response('murder/basic.html', RequestContext(request, { 'title':'No Current Round. Go Away!' }))
-   except Game.DoesNotExist:
-      return render_to_response('murder/basic.html', RequestContext(request, { 'title':'Invalid Game. Go Away!' }))
-   except RoundPlayer.DoesNotExist:
-      return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are not registered in this round. Go Away!' }))
-   except Player.DoesNotExist:
-      return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are not registered in this game. Go Away!' }))
+      except Round.DoesNotExist:
+         return render_to_response('murder/basic.html', RequestContext(request, { 'title':'No Current Round. Go Away!' }))
+      except Game.DoesNotExist:
+         return render_to_response('murder/basic.html', RequestContext(request, { 'title':'Invalid Game. Go Away!' }))
+      except RoundPlayer.DoesNotExist:
+         return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are not registered in this round. Go Away!' }))
+      except Player.DoesNotExist:
+         return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are not registered in this game. Go Away!' }))
+   else:
+      messages.error(request, "You need to login first")
+      return redirect('/login?redirect=/murder/myvictim')
+ 
 
 def logout_game(request, game):
    logout(request)
