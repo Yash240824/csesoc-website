@@ -40,5 +40,5 @@ players = RoundPlayer.objects.filter(round=current_round)
 
 for p in players:
     email = User.objects.filter(username=p.player.username)[0].email
-    message = render_to_string('murder/email/newround.txt', {'rp':players})
+    message = render_to_string('murder/email/newround.txt', {'rp':p})
     send_mail('Welcome to Murder@CSE', message, 'csesoc.dev.murder@cse.unsw.edu.au', [email], fail_silently=True)
