@@ -87,7 +87,7 @@ def myvictim(request, game):
          return render_to_response('murder/basic.html', RequestContext(request, { 'title':'You are not registered in this game. Go Away!' }))
    else:
       messages.error(request, "You need to login first")
-      return redirect('/login?redirect=/murder/myvictim')
+      return redirect('/login?redirect=/murder')
  
 
 def logout_game(request, game):
