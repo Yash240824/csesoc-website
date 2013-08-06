@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def signin(request):
-   redirect_path = (request.REQUEST.get('redirect', '/'))
+   # Note the beautiful hacks here. Use 'redirect' param, or 'next' param
+   redirect_path = (request.REQUEST.get('redirect', request.REQUEST.get('next', '/'))
    if request.user.is_authenticated():
       return redirect(redirect_path)
    if request.method == 'POST':
