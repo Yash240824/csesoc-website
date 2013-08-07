@@ -114,7 +114,7 @@ class Kill(models.Model):
       super(Kill, self).save(force_insert, force_update) 
 
    def expandquip(self):
-      return unicode(self.quip).replace('!killer!', unicode(self.killer)).replace('!victim!',unicode(self.victim))
+      return unicode(self.quip).replace('!killer!', unicode(self.killer.firstname + " " + self.killer.lastname)).replace('!victim!',unicode(self.victim.firstname + " " + self.victim.lastname))
 
    def __unicode__(self):
       return "round: %s\nkiller: %s\nvictim: %s\ndatetime: %s\nquip: %s" % (

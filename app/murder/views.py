@@ -23,7 +23,7 @@ def scoreboard(request, game):
       total = 0
       for round in gameo.round_set.all():
          for kill in round.kill_set.all():
-            c[kill.killer.username] += 1
+            c[kill.killer.firstname + " " + kill.killer.lastname] += 1
             total += 1
       counts = sorted(c.iteritems(), key = lambda (k,v):(v,k), reverse=True)
       return render_to_response('murder/scoreboard.html', RequestContext(request, { 'game': gameo, 'counts': counts, 'total': total }))
