@@ -56,7 +56,8 @@ class Round(models.Model):
       super(Round, self).save(force_insert, force_update) 
 
       # Generate 'ring of death', and update user accounts
-      roundplayers = shuffle(list(self.game.players.all()))
+      roundplayers = list(self.game.players.all())
+      shuffle(roundplayers)
       passwords = Password.objects.all()
 
       for i in range(len(roundplayers)):
