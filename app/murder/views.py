@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, redirect
 from app.murder.models import *
 from collections import defaultdict
 from django.contrib import messages
+from django.contrib.auth.models import User
 from datetime import datetime
 from django.contrib.auth import logout
 from django import forms
@@ -23,7 +24,8 @@ def scoreboard(request, game):
       total = 0
       for round in gameo.round_set.all():
          for kill in round.kill_set.all():
-            c[kill.killer.firstname + " " + kill.killer.lastname] += 1
+            user = User.objects.filter(username = kill.killer)[0]
+            c[user.first_name + " " + user.last_name] += 1
             total += 1
       counts = sorted(c.iteritems(), key = lambda (k,v):(v,k), reverse=True)
       return render_to_response('murder/scoreboard.html', RequestContext(request, { 'game': gameo, 'counts': counts, 'total': total }))
