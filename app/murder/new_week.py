@@ -35,7 +35,7 @@ if currentGames.count() > 0:
   r = Round(name=roundname, start=startdate, end=enddate, game=currentGame)
   r.save()
 
-current_round = Round.objects.order_by('-end')
+current_round = Round.objects.order_by('-end')[0]
 players = RoundPlayer.objects.filter(round=current_round)
 
 for p in players:
