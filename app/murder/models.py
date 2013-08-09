@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.core.mail import send_mail
 
+from random import choice, shuffle
+
 class Password(models.Model):
    text = models.CharField(max_length=30)
    def __unicode__(self):
@@ -54,11 +56,14 @@ class Round(models.Model):
       super(Round, self).save(force_insert, force_update) 
 
       # Generate 'ring of death', and update user accounts
-      roundplayers = list(self.game.players.order_by('?'))
+      roundplayers = shuffle(list(self.game.players.all()))
+      passwords = Password.objects.all()
+
       for i in range(len(roundplayers)):
+
          rp = RoundPlayer(player=roundplayers[i], startvictim=roundplayers[i-1], 
                           currentvictim=roundplayers[i-1],round=self,
-                          password=Password.objects.order_by('?')[0])
+                          password=choice(passwords))
          rp.save()
 
          try:
