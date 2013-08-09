@@ -36,7 +36,7 @@ def newkills(request, game):
    try:
       c = defaultdict(int)
       gameo = Game.objects.get(slug=game)
-      kills = gameo.round_set.get(start__lt=datetime.now, end__gt=datetime.now()).kill_set.order_by('-datetime')
+      kills = gameo.round_set.order_by('end')[0].kill_set.order_by('-datetime')
       return render_to_response('murder/newkills.html', RequestContext(request, { 'game': gameo, 'kills': kills }))
 
    except Round.DoesNotExist:
@@ -54,7 +54,7 @@ class KillForm(forms.Form):
 def myvictim(request, game):
    if request.user.is_authenticated():
       try:
-         current_round = Game.objects.get(slug=game).round_set.get(start__lt=datetime.now, end__gt=datetime.now())
+         current_round = Game.objects.get(slug=game).round_set.order_by('end')[0]
 
          rp = current_round.roundplayer_set.get(player=Player.objects.get(username=request.user.username))   
 
