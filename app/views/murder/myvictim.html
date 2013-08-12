@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1>Hello {{user.username}}</h1>
-<p>Your current victim is {{victim.username}}</p>
-<p><img src="{{ MEDIA_URL }}{{victim.photo}}" alt="{{victim.username}}" width="800px" /></p>
+<h1>Hello {{ killer_name }}</h1>
+<p>Your current victim is {{ victim_name }}</p>
+<p><img src="{{ MEDIA_URL }}{{victim.photo}}" alt="{{ victim_name }}" width="800px" /></p>
 <form action="{% url app.murder.views.myvictim game=gameslug %}" method="POST">
-<p>Enter {{victim.username}}'s password to kill:</p>
+<p>Enter {{ victim_name }}'s password to kill:</p>
 {{ form.as_p }}
 <input type="submit" name="submit" value="submit" />
 {% if flash %}

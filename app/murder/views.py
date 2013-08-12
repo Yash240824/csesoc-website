@@ -76,8 +76,14 @@ def myvictim(request, game):
          else:
             form = KillForm()
 
+         killer_user = User.objects.get(username=rp.player.username)
+         victim_user = User.objects.get(username=rp.currentvictim.username)
+
+         killer_name = killer_user.first_name + " " + killer_user.last_name
+         victim_name = victim_user.first_name + " " + victim_user.last_name
+
          return render_to_response('murder/myvictim.html', 
-               RequestContext(request, {'victim':rp.currentvictim, 'gameslug':game, 'flash':flash, 'form':form}))
+               RequestContext(request, {'victim':rp.currentvictim, 'gameslug':game, 'flash':flash, 'form':form, 'victim_name':victim_name, 'killer_name': killer_name}))
 
       except Round.DoesNotExist:
          return render_to_response('murder/basic.html', RequestContext(request, { 'title':'No Current Round. Go Away!' }))
