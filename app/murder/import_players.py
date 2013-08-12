@@ -28,7 +28,7 @@ print "Importing to: " + photoDir
 
 allowedExt = ['.jpg', '.gif']
 
-g = Game.objects.filter(name="beta2")[0]
+g = Game.objects.filter(name="Semester 2 2013")[0]
 
 for image in glob(sys.argv[1] + "*"):
   print "Image found", image
