@@ -23,10 +23,11 @@ players = RoundPlayer.objects.filter(round=current_round)
 for p in players:
     email = User.objects.filter(username=p.player.username)[0].email
     message = render_to_string('murder/email/newround.txt', {'rp':p})
-    if (sys.argc > 1):
-        message = sys.argv[1] + '\n' + message
-    if (sys.argv > 2):
+    if (len(sys.argv) > 1):
+        print "Test mode"
         email = "csesoc.dev.head@cse.unsw.edu.au"
+    if (len(sys.argv) > 2):
+        message = sys.argv[1] + '\n' + message
     send_mail('Welcome to Murder@CSE', message, 'csesoc.dev.murder@cse.unsw.edu.au', [email], fail_silently=True)
     if (sys.argv > 2):
         sys.exit()
