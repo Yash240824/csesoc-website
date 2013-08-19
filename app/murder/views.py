@@ -9,13 +9,13 @@ from django import forms
 from django.template import RequestContext
 
 def gamelist(request):
-   return render_to_response('murder/games.html', {'games': Game.objects.order_by('id') })
+   return render_to_response('murder/games.html', RequestContext(request, {'games': Game.objects.order_by('id') }))
 
 def index(request, game):
    try:
-      return render_to_response('murder/index.html', {'game': Game.objects.get(slug=game) })
+      return render_to_response('murder/index.html', RequestContext(request, {'game': Game.objects.get(slug=game) }))
    except Game.DoesNotExist:
-      return render_to_response('murder/basic.html', {'title':'Invalid Game. Go Away!' })
+      return render_to_response('murder/basic.html', RequestContext(request, {'title':'Invalid Game. Go Away!' }))
 
 def scoreboard(request, game):
    try:
