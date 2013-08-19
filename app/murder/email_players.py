@@ -26,7 +26,7 @@ if (len(sys.argv) > 2):
     test_mode = True
 
 for p in players:
-    email = p.email
+    email = p.player.email
     if len(User.objects.filter(username=p.player.username)) > 0:
         email = User.objects.filter(username=p.player.username)[0].email
     message = render_to_string('murder/email/newround.txt', {'rp':p})
