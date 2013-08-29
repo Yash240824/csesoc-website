@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/assets/css/news-email.css" type="text/css" media="screen" />
 
+<head>
+    <link rel="stylesheet" href="/assets/css/news.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/css/news-email.css" type="text/css" media="screen" />
 </head>
+
 <body>
 
+    <div style="color:#666;font:11px Arial;text-align:center;margin:10px">UNSW Computer Science &amp; Engineering Student Society<br>
+        <a href="http://goo.gl/jMFxF">www.csesoc.unsw.edu.au</a>
+    </div> 
 
-<div style="color:#666;font:11px Arial;text-align:center;margin:10px">UNSW Computer Science &amp; Engineering Student Society<br>
-<a href="http://goo.gl/jMFxF">www.csesoc.unsw.edu.au</a>
-</div> 
+    <div id="socannounce">  
+        <pre id="socannounceHeader">
+            <a href="http://goo.gl/jMFxF">
+                <span style="font-weight: bold"><pre>___ ___ ___ ___  ___   ___ 
+                                                      / __/ __| __/ __|/ _ \ / __|
+                                                     | (__\__ \ _|\__ \ (_) | (__ 
+                                                      \___|___/___|___/\___/ \___|</pre></span>
+                                                                Computer Science &amp; Engineering
+                                                                Student Society</a>
+        </pre>                               
 
-<div id="socannounce">  
+        <div id="socannounceArticles">
 
-	<pre id="socannounceHeader">
-		<a href="http://goo.gl/jMFxF">
-			<span style="font-weight: bold">___ ___  ___  ___  ___   ___ 
-	 / __/ __|/ _ \/ __|/ _ \ / __|
-	| (__\__ \  __/\__ \ (_) | (__ 
-	 \___|___/\___||___/\___/ \___|
-			</span>
-			Computer Science &amp; Engineering
-			Student Society</a>
-	</pre>                               
+             {% for item in post.item_set.all %}
+                <article class="{{ item.tag.colour }}">
+                  <header>
+                    // <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
+                    <a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
+                  </header>
+                 {{ item.content|safe }}
+                </article>
+             {% endfor %}
 
-	<div id="socannounceArticles">
-
-	 {% for item in post.item_set.all %}
-		<article class="{{ item.tag.colour }}">
-		  <header>
-			// <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
-			<a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
-		  </header>
-		 {{ item.content|safe }}
-		</article>
-	 {% endfor %}
-
-	</div>
+        </div>
 
 
 
-	<div class="footer footerText">
-		<p>For further information, including event cancellations <a href="http://goo.gl/jMFxF">visit the CSESoc website</a>.</p>
-		
-		<p>Help out, <a href="http://goo.gl/CqxXk">join a team</a>.</p>
-		
-		<p>If you do not wish to continue to receive this email, you can unsubscribe by removing 'soc-announce' from your  <a href="http://goo.gl/tKlMb">CSE mailing lists</a>.</p>
+        <div class="footer footerText">
+            <p>For further information, including event cancellations <a href="http://goo.gl/jMFxF">visit the CSESoc website</a>.</p>
+            
+            <p>Help out, <a href="http://goo.gl/CqxXk">join a team</a>.</p>
+            
+            <p>If you do not wish to continue to receive this email, you can unsubscribe by removing 'soc-announce' from your  <a href="http://goo.gl/tKlMb">CSE mailing lists</a>.</p>
 
-		<p>Stay connected with CSESoc on <a href="http://goo.gl/7L1Uw">Facebook</a>, <a href="http://goo.gl/0r4JJ">Google+</a> and <a href="http://goo.gl/YCHhl">Twitter</a> for updates on the latest news and events!</p>
+            <p>Stay connected with CSESoc on <a href="http://goo.gl/7L1Uw">Facebook</a>, <a href="http://goo.gl/0r4JJ">Google+</a> and <a href="http://goo.gl/YCHhl">Twitter</a> for updates on the latest news and events!</p>
 
-		<table width="100%" class="footerText">
-			<tbody>
-				<tr>
-					<td><a href="http://goo.gl/7L1Uw"><img src="/assets/img/facebook.png" class="icon" title="Stayed connected with our Facebook page"></a>
+            <table width="100%" class="footerText">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="http://goo.gl/7L1Uw"><img src="/assets/img/facebook.png" class="icon" title="Stayed connected with our Facebook page"></a>
+                            <a href="http://goo.gl/0r4JJ"><img src="/assets/img/google-plus.png" class="icon" title="Add our Google+ Page"></a>                     
+                            <a href="http://goo.gl/Bu9mw"><img src="/assets/img/google-calendar.png" class="icon" title="Add our Google Calendar"></a><br>
+                        </td>
 
-					<a href="http://goo.gl/0r4JJ"><img src="/assets/img/google-plus.png" class="icon" title="Add our Google+ Page"></a>                     <a href="http://goo.gl/Bu9mw">                     <img src="/assets/img/google-calendar.png" class="icon" title="Add our Google Calendar"></a><br>
-					</td>
-					<td>
-						<div style="float:right">                     <img src="/assets/img/arcLogos.png" title="Arc" style="margin:0 0 0 5px">                     <img src="/assets/img/macq.png" title="Macquarie" style="margin:0 16px">                     <img src="http://goo.gl/VzPzG" title="Google"></div>                   
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+                        <td>
+                            <div id="sponsors" style="float:right">                     
+                                <img src="/assets/img/arcLogos.png" title="Arc" style="margin:0 0 0 5px">                     
+                                <img src="http://goo.gl/VzPzG" title="Google" style="margin:0 0 0 5px">
+                                <img src="/assets/media/sponsors/new-microsoft-logo-square-large_1.jpg" title="Microsoft" style="margin:0 0 0 5px">
+                                <img src="/assets/media/sponsors/accenture_web.png" title="Accenture" style="margin:0 0 0 5px">
+                                <img src="/assets/media/sponsors/image_1.jpeg" title="Jane Street" style="margin:0 0 0 5px">
+                            </div>                   
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-</div>
+    </div>
 
 
 </body>
