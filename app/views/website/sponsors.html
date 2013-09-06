@@ -8,7 +8,7 @@
 {% for sponsor in sponsors %}
 <tr>
     <td class="image"><a href="{{ sponsor.website }}">
-    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name|safe }}"
+    <img src="{{ sponsor.logo.url }}" width="150px" alt="{{ sponsor.name|safe }}"
         {% if sponsor.alt_text %} title="{{ sponsor.alt_text }}"
         {% else %} {{ sponsor.name }} title="{{ sponsor.name }}"
         {% endif %}/></a></td>

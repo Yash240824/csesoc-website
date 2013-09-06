@@ -1,7 +1,7 @@
 {% for sponsor in sponsors %}
 <div align="center" style="padding:10px;">
   <a href="{{sponsor.website}}">
-    <img border="0" alt="{{ sponsor.name }}" src="{{ sponsor.logo.url }}"
+    <img border="0" width="150px" alt="{{ sponsor.name }}" src="{{ sponsor.logo.url }}"
         {% if sponsor.alt_text %} title="{{ sponsor.alt_text }}"
         {% else %} title="{{ sponsor.name }}"
         {% endif %}/></a>
