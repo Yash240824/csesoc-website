@@ -29,6 +29,7 @@ a
 
 #socannounceArticles {
 	padding: 20px;
+    background-color:#FFF;
 }
 
 .footer
@@ -48,4 +49,92 @@ a
 .icon
 {
    margin-right: 5px;
+}
+
+.section
+{
+   padding-left: 20px;
+   border-left:1px solid #333;
+   font-family: 'Open Sans',sans-serif;
+   font-weight: 300;
+   font-size: 11pt;
+   line-height: 16pt;
+   color: #666;
+   margin: 10px 0px;
+   margin-bottom: 20px;
+   border-left: 1px solid #4D90F0;
+   margin: 30px 10px;
+   padding: 0 20px;
+   color: #666;
+   line-height: 16pt;
+   text-align: justify;
+}
+
+h2.section-header
+{
+   color: #333;
+   font-size: 24px;
+   margin: 5px 0;
+   font-weight: normal;
+   display: inline;
+   text-align: left;
+}
+
+h2.section-slashes
+{
+	display:inline;
+    font-size: 24px;
+}
+
+.section-label
+{
+   font-size: 11px;
+   line-height: 11px;
+   color: #EEE;
+   display: inline-block;
+   padding: 2px 5px;
+   margin: 0px 5px;
+   vertical-align: 5px;
+   cursor: pointer;
+   font-weight: normal;
+}
+
+div.yellow {
+	border-left-color: #FFA400;
+} 
+
+div.yellow label{
+	background: #FFA400;
+}
+
+div.red {
+	border-left-color: #F04D4D;
+}
+
+div.red label{
+	background: #F04D4D;
+}
+
+div.purple {
+	border-left-color: #9702A7;    
+} 
+
+div.purple label{
+	background: #9702A7;
+}
+
+div.green {
+	border-left-color: #00BD39;
+} 
+
+div.green label{
+	background: #00BD39;
+}
+
+div.blue {
+	border-left-color:  #4D90F0;    
+}
+
+div.blue label{
+	background: #4D90F0;
 }

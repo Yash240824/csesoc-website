@@ -26,13 +26,16 @@
         <div id="socannounceArticles">
 
              {% for item in post.item_set.all %}
-                <article class="{{ item.tag.colour }}">
-                  <header>
-                    // <h3><a href="/news/{{ item.id }}">{{ item.headline }}</a></h3>
-                    <a href="/news/tag/{{ item.tag.name|slugify }}"><label>{{ item.tag.name }}</label></a>
-                  </header>
+                <div class="section {{ item.tag.colour }}">
+
+                    <div class="section-header">
+                        <h2 class="section-slashes">//</h2>
+                        <a href="/news/{{ item.id }}"><h2 class="section-header">{{ item.headline }}</h2></a>
+                        <a href="/news/tag/{{ item.tag.name|slugify }}"><label class="section-label">{{ item.tag.name }}</label></a>
+                    </div>
+                    
                  {{ item.content|safe }}
-                </article>
+                </div>
              {% endfor %}
 
         </div>
