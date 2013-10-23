@@ -78,7 +78,7 @@ function togglepaypal(){
          <em>Note: Paying by credit card or PayPal incurs a {{ paypal_display_percentage }}% fee, as shown above.</em>
          <br/>
          {% if product.students_login %}
-         <span style='color:red;'><em>Please ensure your CSE username is <strong>{{user.username}}</strong> before you continue.</em></span>
+         <span style='color:red;'><em>Please ensure your student number is <strong>{{user.username}}</strong> before you continue.</em></span>
          {% endif %}
       </td></tr>
       <tr class='paypal'><td colspan="2" style='text-align:center;'>{{ form.render }}</td></tr>
