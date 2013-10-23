@@ -39,7 +39,7 @@ if currentGames.count() > 0:
 
   enddate = startdate + roundlength
   if enddate.date() >= currentGame.last_day:
-    enddate = currentGame.end - timedelta(minutes=20)
+    enddate = currentGame.last_day - timedelta(minutes=20)
 
   r = Round(name=roundname, start=startdate, end=enddate, game=currentGame)
   r.save()
