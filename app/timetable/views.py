@@ -1,11 +1,15 @@
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import RequestContext
 from django.contrib import messages
+from django.views.decorators.debug import sensitive_variables, sensitive_post_parameters
 import timetable_importer
 import urlparse
 
 # TODO: it would be nice if somebody could figure out if we could make google
 # auth the last step in the flow.
+
+@sensitive_post_parameters('zPass')
+@sensitive_variables('zp')
 def show(request):
   this_url = urlparse.urlunsplit(urlparse.urlsplit(request.build_absolute_uri())[:3] + ('', ''))
   if 'code' in request.REQUEST and 'fail' not in request.REQUEST:
