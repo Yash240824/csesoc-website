@@ -140,7 +140,11 @@ def export(source, code, full_path):
   created_calendar = service.calendars().insert(body=calendar).execute()
   print created_calendar['id']
 
-  week_after_midsem_break = int(s.find(text="N1").findNext("table").findNext("td").text)
+  # Summer courses have N1 and N2 right after each other
+  if s.find(text="N1").findNext("table").findNext("td").text == "N2":
+    week_after_midsem_break = int(s.find(text="N2").findNext("table").findNext("td").text)
+  else:    
+    week_after_midsem_break = int(s.find(text="N1").findNext("table").findNext("td").text)
 
   courses = [x.contents[0] for x in s.findAll("td", {"class":"sectionHeading"})]
 
