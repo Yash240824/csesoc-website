@@ -1,42 +1,40 @@
 from django.forms import ModelForm
-from django.shortcuts import render_to_response
-from django.contrib.auth import authenticate
+from django.shortcuts import render_to_response, redirect
+
+from django.contrib import messages
 from models import Application
-from django.conf import settings
 from django.template import RequestContext
 import datetime
-import urllib
+
 
 class ApplicationForm(ModelForm):
    class Meta:
       model = Application
-      exclude = ('medical_form','payment_status',)
+      exclude = ('payment_status')
 
 def signup(request):
-   this_year = datetime.date.today().year
-   if request.method == 'POST': # form submitted
-      appl = Application(year=this_year)
-      form = ApplicationForm(request.POST, instance=appl) # form bound to POST data
-      if form.is_valid():
-         form.save() # create new Application instance
-         return render_to_response('camp/thanks-signup.html', context_instance=RequestContext(request))
+   if request.user.is_authenticated():
+      this_year = datetime.date.today().year
+      if request.method == 'POST': # form submitted
+         student = Application.objects.filter(student_number=request.user.username)
+         if len(student) == 0:
+            student = Application(year=this_year)
+         else:
+            student = student[0]
+         form = ApplicationForm(request.POST, request.FILES, instance=student) # form bound to POST data
+         if form.is_valid():
+            form.save()
+            return render_to_response('camp/thanks-signup.html', context_instance=RequestContext(request))
+      else:
+         student = Application.objects.filter(student_number=request.user.username)
+         if len(student) == 0:
+             appl = Application(year=this_year, student_number = request.user.username)
+             form = ApplicationForm(instance=appl) # unbound form
+         else:
+             print student[0]
+             form = ApplicationForm(instance=student[0]) # unbound form
+      return render_to_response('camp/signup.html', {'form' : form}, context_instance=RequestContext(request))
    else:
-      username = ''
-      if request.COOKIES.has_key('cseauth'):
-         uname = request.COOKIES['cseauth']
-         uname = urllib.unquote(uname)
-         uname = uname.decode('iso-8859-1')
-         import MySQLdb
-         db = MySQLdb.connect(db='cse_auth', user=settings.DB_USERNAME, passwd=settings.DB_PASSWORD)
-         c = db.cursor()
-         c.execute('select `user` from `users` where `cookie` = %s;', (uname,))
-         
-         row = c.fetchone()
-         if row and row[0]:
-            username = row[0]
-
-      appl = Application(year=this_year, cse_username = username)
-      form = ApplicationForm(instance=appl) # unbound form
-
-   return render_to_response('camp/signup.html', {'form' : form}, context_instance=RequestContext(request))
+       messages.error(request, "You are not Logged In")
+       return redirect('/')
 

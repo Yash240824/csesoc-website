@@ -1,6 +1,6 @@
 {% extends 'templates/2-column-w-sponsors.html' %}
 
-{% block titlecontent %}CSESoc First Year Camp 2013 - Application Form{% endblock %}
+{% block titlecontent %}CSESoc First Year Camp 2014 - Application Form{% endblock %}
 
 {% block content %}{% spaceless %}
 {% block stylesheets %}
@@ -13,8 +13,11 @@
 <script type='text/javascript'>
   $(document).ready(function() {
     $("#id_gender").change(loadShirtSize).each(loadShirtSize);
+    $("#id_student_number").attr("readonly", "readonly");
+    $('#id_age').each(function() {
+       $("<input type='date' />").attr({ name: this.name, value: this.value }).insertBefore(this);
+    }).remove();
   });
-
   function loadShirtSize() {
     options = "";
     update = true;
@@ -43,34 +46,22 @@
   }
 </script>
 {% endblock %}
+<h3>Please download the medical form, fill it out and upload it again.</h3>
+<a href="/assets/media/medform.pdf">Medical form</a>
 
 <div class='application_form camp_form'>
-<h1>CSESoc First Year Camp 2013 - Application Form</h1>
-<br/>
-<ul style='list-style-type:none'>
-<li><strong>Date:</strong> End of Week 3 Semester 1 (22nd March - 24th March)</li>
-<li><strong>Theme:</strong> Cartoon Camp </li>
-<li><strong>Location:</strong> <a href="http://www.outbreak.com.au">Wombaroo Adventure Centre</a></li>
-<li><strong>Payment:</strong></li>
-<li>- <span style='color:red; font-weight:bold;'>Early bird special:</span> Pay in full by the end of Monday of Week 2 to receive <strong>$10 off full price</strong>.</li>
-<li>- <strong>$70 for Arc</strong> members (must show your Arc membership sticker)</li>
-<li>- $80 for non-Arc</li>
-<li>- A $10 deposit can be put down to secure your spot if you cannot pay in full at the moment</li>
-<li><strong>Includes free camp t-shirt</strong></li>
-<li><span style='color:red'>Payment must be made in full (and cleared if by DD) by <b>20th March</b>.</strong></li>
-<li><strong><a href='/camp'>Click here for more information about (or to pay for)camp.</a></strong></li>
-</ul>
-<br/>
-   <form action="/camp/signup/" method="post">
+   <form action="/camp/signup/" enctype="multipart/form-data" method="post">
 
    {% csrf_token %}
       <table>
          {{ form.as_table }}
       </table>
       <div class='submit_button'>
-         <input type="submit" value="Submit Application" />
+         <input type="submit" value="Save Application" />
       </div>
    </form>
 </div>
+
+
 {% endspaceless %}{% endblock %}
 
