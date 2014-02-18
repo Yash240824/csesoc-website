@@ -148,7 +148,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'app.campleaders',
     'app.campattendees',
-    'app.hs'
+    'app.hs',
+    'south'
 
 )
 

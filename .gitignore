@@ -3,3 +3,5 @@ db.sqlite3
 *.pot
 *.pyc
 .DS_Store
+.idea/*
+public/assets/media/storage/uploads/*
