@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.shortcuts import render_to_response, redirect
-
+from django import forms
 from django.contrib import messages
 from models import Application
 from django.template import RequestContext
@@ -25,11 +25,11 @@ def signup(request):
             if student.payment_status == "D":
              deposit = True
          arc = False
-         if request.POST['arc']:
+         if 'arc' in request.POST:
              arc = True
          form = ApplicationForm(request.POST, request.FILES, instance=student) # form bound to POST data
          early_bird = False
-         if str(datetime.date.today()) < "2014-03-07":
+         if str(datetime.date.today()) < "2014-03-08":
              early_bird = True
          if form.is_valid():
             form.save()

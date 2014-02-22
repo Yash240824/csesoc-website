@@ -15,7 +15,8 @@
     $("#id_gender").change(loadShirtSize).each(loadShirtSize);
     $("#id_student_number").attr("readonly", "readonly");
     $('#id_age').each(function() {
-       $("<input type='date' />").attr({ name: this.name, value: this.value }).insertBefore(this);
+       widget = $("<input type='date' />").attr({ name: this.name, value: this.value})
+       widget.insertBefore(this);
     }).remove();
   });
   function loadShirtSize() {
