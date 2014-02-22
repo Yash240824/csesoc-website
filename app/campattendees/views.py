@@ -46,3 +46,14 @@ def signup(request):
        messages.error(request, "You are not Logged In")
        return redirect('/')
 
+def music(request):
+   if request.user.is_authenticated():
+      student = Application.objects.filter(student_number=request.user.username)
+      if len(student) == 0:
+         messages.error(request, "Please sign up for first year camp")
+         return redirect('/')
+      else:
+         return render_to_response('camp/music.html', context_instance=RequestContext(request))
+   else:
+      messages.error(request, "You are not Logged In")
+      return redirect('/')

@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     url(r'^camp/apply/$', 'app.campleaders.views.apply'),
     # camp attendee applications
     url(r'^camp/signup/$', 'app.campattendees.views.signup'),
-
+    url(r'^camp/music/$', 'app.campattendees.views.music'),
     # hs
     url(r'^hs/', include('app.hs.urls')),
 
