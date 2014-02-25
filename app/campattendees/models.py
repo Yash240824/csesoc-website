@@ -16,7 +16,7 @@ class Application(models.Model):
 
    payment_status = models.CharField(max_length=1, choices=campglobals.PAYMENT_CHOICES, default='N')
    medical_pdf = models.FileField(upload_to="storage/uploads", blank=True)
-   year = models.IntegerField(verbose_name='Application Year', editable=False)
+   year = models.IntegerField(verbose_name='Application Year', editable=True)
    shirt_size = models.CharField(max_length=3, choices=campglobals.SHIRT_CHOICES, default='N')
 
    def __unicode__(self):

@@ -10,7 +10,7 @@ import datetime
 class ApplicationForm(ModelForm):
    class Meta:
       model = Application
-      exclude = ('payment_status')
+      exclude = ('payment_status', 'year')
 
 def signup(request):
    if request.user.is_authenticated():
