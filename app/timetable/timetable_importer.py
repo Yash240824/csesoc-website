@@ -45,8 +45,8 @@ login_url='https://ssologin.unsw.edu.au/cas/login?service=https%3A%2F%2Fmy.unsw.
 timetable_url='https://my.unsw.edu.au/active/studentTimetable/timetable.xml'
 
 def getFlow(full_path):
-  return OAuth2WebServerFlow(client_id='52070605511-3e5l10hi90c8t4t3foa0aptmhe5psgsr.apps.googleusercontent.com',
-                             client_secret='aKejP602Oz7Axrump73Oh1_R',
+  return OAuth2WebServerFlow(client_id='112575428906-lsl2rtf6uaputfhdnjct9sfaijn032op.apps.googleusercontent.com',
+                             client_secret='CBFhmZhToirv9F2NrjwtQjNN',
                              scope='https://www.googleapis.com/auth/calendar',
                              redirect_uri=full_path)
 

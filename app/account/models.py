@@ -16,7 +16,7 @@ class UserProfile(models.Model):
 			profile = user.get_profile()
 		except UserProfile.DoesNotExist:
 			h1 = httplib.HTTPConnection('cgi.cse.unsw.edu.au')
-			h1.request('GET', '/~samli/cseid.cgi?id=' + user.username)	
+			h1.request('GET', '/~csesoc/cseid.cgi?id=' + user.username)
 			cse = h1.getresponse().read()
 			profile = UserProfile.objects.create(user=user,cselogin=cse)
 		return profile
