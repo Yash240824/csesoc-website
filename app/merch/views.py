@@ -21,6 +21,3 @@ def hoodies(request):
     else:
       form = HoodieForm() # unbound form
     return render_to_response('merch/hoodies.html', {'form' : form}, context_instance=RequestContext(request))
-
-def merch(request):
-    return render_to_response('merch/index.html')

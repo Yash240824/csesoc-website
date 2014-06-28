@@ -32,7 +32,6 @@ urlpatterns = patterns('',
 
 
     #merch
-    url(r'^merch', 'app.merch.views.merch'),
     url(r'^merch/hoodies', 'app.merch.views.hoodies'),
                        
     # urls for music
