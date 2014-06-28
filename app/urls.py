@@ -29,6 +29,11 @@ urlpatterns = patterns('',
     
     # finance(invoice, paypal)
     url(r'^finance/', include('app.finance.urls')),
+
+
+    #merch
+    url(r'^merch', 'app.merch.views.merch'),
+    url(r'^merch/hoodies', 'app.merch.views.hoodies'),
                        
     # urls for music
     (r'^music/vote/$', 'app.music.views.music_vote'),

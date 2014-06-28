@@ -1,0 +1,33 @@
+{% extends 'templates/2-column-w-sponsors.html' %}
+
+{% block titlecontent %}CSESoc Hoodie Preorder{% endblock %}
+
+{% block content %}{% spaceless %}
+<h1> CSESoc Hoodie Preorder</h1>
+<table>
+    <tr>
+        <td>
+            <img style="height:200px;" src="/assets/img/csesoc_sample_hoodie.png"/>
+        </td>
+        <td>
+            <img style="height:200px;" src="/assets/img/sizingchart_changed_edited-1.png"/>
+        </td>
+    </tr>
+</table>
+<div class='application_form camp_form'>
+   <form action="/merch/hoodies/" method="post">
+
+   {% csrf_token %}
+      <table>
+         {{ form.as_table }}
+      </table>
+      <div class='submit_button'>
+         <input class="button class btn btn-large" type="submit" value="Order!" />
+      </div>
+   </form>
+</div>
+
+<p>For cash and bank transfer, please email csesoc@cse.unsw.edu.au. Please note: pre-order is not finalised until payment is received.</p>
+
+{% endspaceless %}{% endblock %}
+

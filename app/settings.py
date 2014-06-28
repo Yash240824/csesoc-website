@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'app.account',
     'app.music',
     'app.murder',
+    'app.merch',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'app.campleaders',
