@@ -15,7 +15,7 @@ class Migration(SchemaMigration):
             ('email_address', self.gf('django.db.models.fields.EmailField')(max_length=75)),
             ('contact_number', self.gf('django.db.models.fields.CharField')(max_length=15)),
             ('gender', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('shirt_size', self.gf('django.db.models.fields.CharField')(default='N', max_length=3)),
+            ('size', self.gf('django.db.models.fields.CharField')(default='N', max_length=3)),
             ('payment_status', self.gf('django.db.models.fields.CharField')(default='N', max_length=1)),
         ))
         db.send_create_signal('merch', ['Hoodie'])
@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             'contact_number': ('django.db.models.fields.CharField', [], {'max_length': '15'}),
             'email_address': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'gender': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
-            'shirt_size': ('django.db.models.fields.CharField', [], {'default': "'N'", 'max_length': '3'}),
+            'size': ('django.db.models.fields.CharField', [], {'default': "'N'", 'max_length': '3'}),
             'payment_status': ('django.db.models.fields.CharField', [], {'default': "'N'", 'max_length': '1'}),
         }
     }

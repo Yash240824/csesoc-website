@@ -93,7 +93,7 @@ function togglepaypal(){
    {% else %}
    <div id="paypal_hidden" style="display: none;"></div>
       <table onload="$(".paypal").show();">
-         <tr><td class='lhs'>{{product.title}}</td><td class='price'>${{price}}</td></tr>
+         <tr><td class='lhs'>{{product.title}}</td><td class='price'>{{paypal_price}}</td></tr>
          {% if product.max_quantity > 1 %}
             <tr><td class='lhs'>Quantity : </td><td id="desired_quantity_group" class='price control-group'><input id="desired_quantity" name="desired_quantity" value="1"><span class="help-inline">Maximum of {{max_quantity}}</span></td></tr>
          {% endif %}
@@ -102,20 +102,12 @@ function togglepaypal(){
          {% endif %}
          
          <tr><td class='lhs'>Discount</td><td class='price'>{{discount}}</td></tr>
-         {% if product.students_login %}
-            <tr class='dd'><td colspan="2">
-               <span style='color:red;'><em>Please ensure your CSE username or UNSW Student Number (<strong>{{user.username}}</strong>) is present in the payment description.</em></span>
-            </td></tr>
-         {% endif %}
          <tr><td><h3>Paypal Only</h3></td><td><h3 id="paypal-price"> {{paypal_price }}</h3></td></tr>
          <tr class='paypal'><td colspan="2">
-            <em>Note: Paying by PayPal incurs a {{ paypal_display_percentage }}% fee, as shown above.</em>
             <br/>
-            {% if product.students_login %}
-               <span style='color:red;'><em>Please ensure your student number is <strong>{{user.username}}</strong> before you continue.</em></span>
-            {% endif %}
          </td></tr>
          <tr class='paypal'><td colspan="2" style='text-align:center;'>{{ form.render }}</td></tr>
+         <tr><td>If you are paying by cash, email <a href="mailto:csesoc@cse.unsw.edu.au?Subject=CSESoc%20Hoodie%20preorder" target="_top">csesoc@cse.unsw.edu.au</a> to organise when you want to pick up your hoodie</td></tr>
       </table>
    {% endif %}
 </div>
