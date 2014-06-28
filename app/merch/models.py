@@ -12,6 +12,7 @@ PAYMENT_CHOICES = (
       )
 
 SHIRT_CHOICES = (
+    ('XS', 'XS'),
     ('S', 'S'),
     ('M', 'M'),
     ('L', 'L'),
