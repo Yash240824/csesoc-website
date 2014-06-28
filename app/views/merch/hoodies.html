@@ -3,18 +3,11 @@
 {% block titlecontent %}CSESoc Hoodie Preorder{% endblock %}
 
 {% block content %}{% spaceless %}
+
 <h1> CSESoc Hoodie Preorder</h1>
-<table>
-    <tr>
-        <td>
-            <img style="height:200px;" src="/assets/img/csesoc_sample_hoodie.png"/>
-        </td>
-        <td>
-            <img style="height:200px;" src="/assets/img/sizingchart_changed_edited-1.png"/>
-        </td>
-    </tr>
-</table>
+<a href="/assets/img/sizingchart_changed_edited-1.png"><img style="height:250px;" src="/assets/img/sizingchart_changed_edited-1.png"/>
 <div class='application_form camp_form'>
+  
    <form action="/merch/hoodies/" method="post">
 
    {% csrf_token %}
