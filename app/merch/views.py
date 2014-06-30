@@ -11,6 +11,7 @@ import urllib
 class HoodieForm(ModelForm):
    class Meta:
       model = Hoodie
+      exclude = ('payment_status',)
 
 def hoodies(request):
     if request.method == 'POST': # form submitted
